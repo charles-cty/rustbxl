@@ -13,6 +13,14 @@ fn main() {
     println!("canonical={}", env!("CANONICAL_MANIFEST"));
     println!("features={}:{}", cfg!(feature = "default-marker"), cfg!(feature = "extra"));
     println!("cargo-config={}", cfg!(from_cargo_config));
+    println!("links={}", env!("LINKS_MARKER"));
+    println!("added-metadata={}", option_env!("ADDED_METADATA").unwrap_or("absent"));
+    if let Some(git) = option_env!("GIT_MARKER") {
+        println!("git={git}");
+    }
+    if let Some(native) = option_env!("NATIVE_MARKER") {
+        println!("native={native}");
+    }
     println!("generated-path={}", GENERATED_PATH);
     #[cfg(has_optional)]
     println!("optional={}", include_str!("../new-input.txt").trim());

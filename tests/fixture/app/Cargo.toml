@@ -11,3 +11,4 @@ extra = []
 [dependencies]
 engine = { path = "../engine" }
 marker = { path = "../marker" }
+probe-support = { path = "../probe-support" }

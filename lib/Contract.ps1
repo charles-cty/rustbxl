@@ -43,7 +43,7 @@ function Get-CaptureContract([string]$Project, [string]$StateRoot, $Config, $Lay
     }
     [ordered]@{
         version = 1
-        graphFormat = 1
+        graphFormat = 2
         helperVersion = (Get-Item -LiteralPath (Get-Helper)).VersionInfo.FileVersion
         sourceNamespace = $Layout.Source
         targetNamespace = $Layout.Target
@@ -72,19 +72,23 @@ function Assert-CaptureContract([string]$Project, [string]$StateRoot, $Config, $
 function Assert-ContainedDependencies([string]$Project, [string]$StateRoot, $Config, $Layout) {
     $environment = Get-BuildEnvironment $Config $StateRoot $Layout
     $environment.CARGO_TARGET_DIR = $Layout.PhysicalTarget
+    $metadataArguments = @('metadata', '--format-version', '1', '--offline', '--locked', '--filter-platform', $Config.build.target)
+    if (-not $Config.build.defaultFeatures) { $metadataArguments += '--no-default-features' }
+    if ($Config.build.features.Count) { $metadataArguments += @('--features', ($Config.build.features -join ',')) }
     $metadata = Invoke-WithEnvironment $environment {
         Push-Location $Project
-        try { (cargo.exe metadata --format-version 1 --no-deps --offline --locked) -join [char]10 }
+        try { (cargo.exe @metadataArguments) -join [char]10 }
         finally { Pop-Location }
     } | ConvertFrom-Json -AsHashtable
     if ([IO.Path]::GetFullPath($metadata.workspace_root) -ne $Project) {
         throw "Use the Cargo workspace root: $($metadata.workspace_root)"
     }
-    foreach ($package in $metadata.packages) {
+    foreach ($package in @($metadata.packages | Where-Object { $_.id -in $metadata.workspace_members })) {
         foreach ($dependency in $package.dependencies) {
             if ($dependency.ContainsKey('path') -and -not (Test-Within $dependency.path $Project)) {
                 throw "Path dependency is outside the mapped workspace: $($dependency.path). An additional mapping adapter is required."
             }
         }
     }
+    $metadata
 }

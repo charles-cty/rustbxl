@@ -1,0 +1,747 @@
+{
+  "CheckedUtc": "2026-11-16T12:35:32.7741039Z",
+  "BaselineCommit": "7ea4cf4",
+  "RunRoot": "F:\\Temp\\rbm1116b",
+  "PassedCases": 26,
+  "Win32ArgumentCases": 505,
+  "BuildXLArgumentArrays": 22,
+  "ConcurrentWorktrees": 6,
+  "NewPopupCount": 0,
+  "ActiveProcesses": [],
+  "Cases": [
+    {
+      "passed": true,
+      "details": {
+        "existing": true,
+        "exception": true,
+        "absent": true,
+        "emptyValuePresent": true,
+        "cargoOverride": true,
+        "nested": true
+      },
+      "case": "scoped-process-environment"
+    },
+    {
+      "passed": true,
+      "details": 4,
+      "case": "contract-file-boundaries"
+    },
+    {
+      "passed": true,
+      "details": 1,
+      "case": "build-script-execution-identities"
+    },
+    {
+      "passed": true,
+      "details": true,
+      "case": "shell-session-contract"
+    },
+    {
+      "passed": true,
+      "details": 22,
+      "case": "structured-graph-arguments"
+    },
+    {
+      "passed": true,
+      "details": {
+        "processPips": 26,
+        "cold": {
+          "instance": "alpha",
+          "project": "F:\\Temp\\rbm1116b\\worktrees\\alpha",
+          "targetDirectory": "F:\\Temp\\rbm1116b\\sidecar state\\instances\\alpha\\target",
+          "processCacheHits": 0,
+          "processExecuted": 26
+        },
+        "shared": {
+          "instance": "beta",
+          "project": "F:\\Temp\\rbm1116b\\worktrees\\beta",
+          "targetDirectory": "F:\\Temp\\rbm1116b\\sidecar state\\instances\\beta\\target",
+          "processCacheHits": 26,
+          "processExecuted": 0
+        }
+      },
+      "case": "cold-and-shared-cache"
+    },
+    {
+      "passed": true,
+      "details": {
+        "instance": "beta",
+        "project": "F:\\Temp\\rbm1116b\\worktrees\\beta",
+        "targetDirectory": "F:\\Temp\\rbm1116b\\sidecar state\\instances\\beta\\target",
+        "processCacheHits": 26,
+        "processExecuted": 0
+      },
+      "case": "incremental-no-change"
+    },
+    {
+      "passed": true,
+      "details": {
+        "instance": "beta",
+        "project": "F:\\Temp\\rbm1116b\\worktrees\\beta",
+        "targetDirectory": "F:\\Temp\\rbm1116b\\sidecar state\\instances\\beta\\target",
+        "processCacheHits": 26,
+        "processExecuted": 0
+      },
+      "case": "incremental-missing-output"
+    },
+    {
+      "passed": true,
+      "details": {
+        "instance": "beta",
+        "project": "F:\\Temp\\rbm1116b\\worktrees\\beta",
+        "targetDirectory": "F:\\Temp\\rbm1116b\\sidecar state\\instances\\beta\\target",
+        "processCacheHits": 26,
+        "processExecuted": 0
+      },
+      "case": "cargo-input-invalidation"
+    },
+    {
+      "passed": true,
+      "details": {
+        "instance": "beta",
+        "project": "F:\\Temp\\rbm1116b\\worktrees\\beta",
+        "targetDirectory": "F:\\Temp\\rbm1116b\\sidecar state\\instances\\beta\\target",
+        "processCacheHits": 23,
+        "processExecuted": 3
+      },
+      "case": "ordinary-source"
+    },
+    {
+      "passed": true,
+      "details": {
+        "instance": "beta",
+        "project": "F:\\Temp\\rbm1116b\\worktrees\\beta",
+        "targetDirectory": "F:\\Temp\\rbm1116b\\sidecar state\\instances\\beta\\target",
+        "processCacheHits": 23,
+        "processExecuted": 3
+      },
+      "case": "new-module"
+    },
+    {
+      "passed": true,
+      "details": {
+        "instance": "beta",
+        "project": "F:\\Temp\\rbm1116b\\worktrees\\beta",
+        "targetDirectory": "F:\\Temp\\rbm1116b\\sidecar state\\instances\\beta\\target",
+        "processCacheHits": 22,
+        "processExecuted": 4
+      },
+      "case": "optional-file"
+    },
+    {
+      "passed": true,
+      "details": {
+        "instance": "beta",
+        "project": "F:\\Temp\\rbm1116b\\worktrees\\beta",
+        "targetDirectory": "F:\\Temp\\rbm1116b\\sidecar state\\instances\\beta\\target",
+        "processCacheHits": 22,
+        "processExecuted": 4
+      },
+      "case": "directory-member"
+    },
+    {
+      "passed": true,
+      "details": {
+        "instance": "beta",
+        "project": "F:\\Temp\\rbm1116b\\worktrees\\beta",
+        "targetDirectory": "F:\\Temp\\rbm1116b\\sidecar state\\instances\\beta\\target",
+        "processCacheHits": 22,
+        "processExecuted": 4
+      },
+      "case": "external-text"
+    },
+    {
+      "passed": true,
+      "details": {
+        "instance": "beta",
+        "project": "F:\\Temp\\rbm1116b\\worktrees\\beta",
+        "targetDirectory": "F:\\Temp\\rbm1116b\\sidecar state\\instances\\beta\\target",
+        "processCacheHits": 25,
+        "processExecuted": 1
+      },
+      "case": "same-directives"
+    },
+    {
+      "passed": true,
+      "details": {
+        "instance": "beta",
+        "project": "F:\\Temp\\rbm1116b\\worktrees\\beta",
+        "targetDirectory": "F:\\Temp\\rbm1116b\\sidecar state\\instances\\beta\\target",
+        "processCacheHits": 20,
+        "processExecuted": 6
+      },
+      "case": "build-script"
+    },
+    {
+      "passed": true,
+      "details": {
+        "instance": "beta",
+        "project": "F:\\Temp\\rbm1116b\\worktrees\\beta",
+        "targetDirectory": "F:\\Temp\\rbm1116b\\sidecar state\\instances\\beta\\target",
+        "processCacheHits": 15,
+        "processExecuted": 11
+      },
+      "case": "links-metadata"
+    },
+    {
+      "passed": true,
+      "details": {
+        "instance": "beta",
+        "project": "F:\\Temp\\rbm1116b\\worktrees\\beta",
+        "targetDirectory": "F:\\Temp\\rbm1116b\\sidecar state\\instances\\beta\\target",
+        "processCacheHits": 15,
+        "processExecuted": 11
+      },
+      "case": "compiler-probe"
+    },
+    {
+      "passed": true,
+      "details": {
+        "instance": "beta",
+        "project": "F:\\Temp\\rbm1116b\\worktrees\\beta",
+        "targetDirectory": "F:\\Temp\\rbm1116b\\sidecar state\\instances\\beta\\target",
+        "processCacheHits": 24,
+        "processExecuted": 2
+      },
+      "case": "source-text"
+    },
+    {
+      "passed": true,
+      "details": true,
+      "case": "compression-rejects-running-cache"
+    },
+    {
+      "passed": true,
+      "details": {
+        "compression": {
+          "Mode": "applied",
+          "ActiveInstances": [
+            "alpha",
+            "arguments",
+            "beta"
+          ],
+          "MinimumAgeDays": 0,
+          "MinimumBytes": 1024,
+          "ScannedUniqueFiles": 344,
+          "CandidateFiles": 62,
+          "CompressedFiles": 62,
+          "AllocatedBefore": 18214912,
+          "AllocatedAfter": 8896512,
+          "SavedBytes": 9318400,
+          "Skipped": {
+            "protected": 163,
+            "small": 119
+          },
+          "Files": [
+            {
+              "Path": "F:\\Temp\\rbm1116b\\sidecar state\\cache\\RustBxlTest65796\\Shared\\VSO0\\05B\\05B1105805100895731222326EF2BEBD12CA602DC2CFBEB88052C59A055E84AA00.blob",
+              "LogicalBytes": 1462272,
+              "AllocatedBefore": 1462272,
+              "AllocatedAfter": 675840,
+              "Status": "compressed"
+            },
+            {
+              "Path": "F:\\Temp\\rbm1116b\\sidecar state\\cache\\RustBxlTest65796\\Shared\\VSO0\\090\\0901E90C45C37BFDF597A365B89D4554BAE4A6A6093610FE2E48C72C5E2D8C5600.blob",
+              "LogicalBytes": 1043,
+              "AllocatedBefore": 4096,
+              "AllocatedAfter": 4096,
+              "Status": "compressed"
+            },
+            {
+              "Path": "F:\\Temp\\rbm1116b\\sidecar state\\cache\\RustBxlTest65796\\Shared\\VSO0\\1C0\\1C0E43DC9A852BBB31793A63FC7AD43F974FCD174E72B7B26A59658C1D77AF8B00.blob",
+              "LogicalBytes": 1591,
+              "AllocatedBefore": 4096,
+              "AllocatedAfter": 4096,
+              "Status": "compressed"
+            },
+            {
+              "Path": "F:\\Temp\\rbm1116b\\sidecar state\\cache\\RustBxlTest65796\\Shared\\VSO0\\1C3\\1C361437B5F8220D41271044046A42C959EC667AB1C8D7376C435F3B79AF466100.blob",
+              "LogicalBytes": 1462272,
+              "AllocatedBefore": 1462272,
+              "AllocatedAfter": 671744,
+              "Status": "compressed"
+            },
+            {
+              "Path": "F:\\Temp\\rbm1116b\\sidecar state\\cache\\RustBxlTest65796\\Shared\\VSO0\\204\\20481A739D76219F62BFF195C7946C84F55E14A4BB75B95BEE3D9917F7743D6A00.blob",
+              "LogicalBytes": 1585,
+              "AllocatedBefore": 4096,
+              "AllocatedAfter": 4096,
+              "Status": "compressed"
+            },
+            {
+              "Path": "F:\\Temp\\rbm1116b\\sidecar state\\cache\\RustBxlTest65796\\Shared\\VSO0\\25B\\25B59A68A24B2CFB141ED2F0D81FDD7630646D17659D83FBB1BC214715A5A65400.blob",
+              "LogicalBytes": 1576,
+              "AllocatedBefore": 4096,
+              "AllocatedAfter": 4096,
+              "Status": "compressed"
+            },
+            {
+              "Path": "F:\\Temp\\rbm1116b\\sidecar state\\cache\\RustBxlTest65796\\Shared\\VSO0\\26B\\26B97397A86B569C51354A463BF315318429D712DFF6CE58336FF82D15BDB40700.blob",
+              "LogicalBytes": 6964,
+              "AllocatedBefore": 8192,
+              "AllocatedAfter": 4096,
+              "Status": "compressed"
+            },
+            {
+              "Path": "F:\\Temp\\rbm1116b\\sidecar state\\cache\\RustBxlTest65796\\Shared\\VSO0\\29C\\29C555EA8CC67D1D05D507F956B6C4EFA1DD6787A039AF35DC7BE7C7F98378A700.blob",
+              "LogicalBytes": 13107,
+              "AllocatedBefore": 16384,
+              "AllocatedAfter": 8192,
+              "Status": "compressed"
+            },
+            {
+              "Path": "F:\\Temp\\rbm1116b\\sidecar state\\cache\\RustBxlTest65796\\Shared\\VSO0\\2E1\\2E166C90AC874E3CF4082382C3FEA705DFA876459726904ABC45F25C30811EF300.blob",
+              "LogicalBytes": 2547,
+              "AllocatedBefore": 4096,
+              "AllocatedAfter": 4096,
+              "Status": "compressed"
+            },
+            {
+              "Path": "F:\\Temp\\rbm1116b\\sidecar state\\cache\\RustBxlTest65796\\Shared\\VSO0\\36C\\36C0EADCDE582FF7EF647454F21BCACD25EE5DD9C014EF6843D20431666FF27400.blob",
+              "LogicalBytes": 1462272,
+              "AllocatedBefore": 1462272,
+              "AllocatedAfter": 675840,
+              "Status": "compressed"
+            },
+            {
+              "Path": "F:\\Temp\\rbm1116b\\sidecar state\\cache\\RustBxlTest65796\\Shared\\VSO0\\389\\389E9E7768D26D0BAFC30669001F8DF3FA718902DD41B7DD9E643A9A4CA2EB6B00.blob",
+              "LogicalBytes": 163104,
+              "AllocatedBefore": 163840,
+              "AllocatedAfter": 77824,
+              "Status": "compressed"
+            },
+            {
+              "Path": "F:\\Temp\\rbm1116b\\sidecar state\\cache\\RustBxlTest65796\\Shared\\VSO0\\3DA\\3DA58BD8F18F767DC5AAA280F7289C65F3D907D9E0E34E11BC6CB3A2E1B67E7200.blob",
+              "LogicalBytes": 1624,
+              "AllocatedBefore": 4096,
+              "AllocatedAfter": 4096,
+              "Status": "compressed"
+            },
+            {
+              "Path": "F:\\Temp\\rbm1116b\\sidecar state\\cache\\RustBxlTest65796\\Shared\\VSO0\\3DF\\3DF659C176CBE12455657E4E6D094A111ECDF0A128A2F84B64A77468F19B386B00.blob",
+              "LogicalBytes": 159232,
+              "AllocatedBefore": 159744,
+              "AllocatedAfter": 114688,
+              "Status": "compressed"
+            },
+            {
+              "Path": "F:\\Temp\\rbm1116b\\sidecar state\\cache\\RustBxlTest65796\\Shared\\VSO0\\3F2\\3F2CF58C12B8A9F87A44933AB548D74109E9DC380A1D419C77B821A0DB970A3800.blob",
+              "LogicalBytes": 1552,
+              "AllocatedBefore": 4096,
+              "AllocatedAfter": 4096,
+              "Status": "compressed"
+            },
+            {
+              "Path": "F:\\Temp\\rbm1116b\\sidecar state\\cache\\RustBxlTest65796\\Shared\\VSO0\\428\\428BAF1E5FBBBFF4983BFD0942586447DFFD12E811E28446EF5AB6AB8067F45500.blob",
+              "LogicalBytes": 1462272,
+              "AllocatedBefore": 1462272,
+              "AllocatedAfter": 667648,
+              "Status": "compressed"
+            },
+            {
+              "Path": "F:\\Temp\\rbm1116b\\sidecar state\\cache\\RustBxlTest65796\\Shared\\VSO0\\4C9\\4C910EA6EA9A5732FF5599FFE089236F5D18BBA209D9478A4CCEF7689ADFB76800.blob",
+              "LogicalBytes": 133418,
+              "AllocatedBefore": 135168,
+              "AllocatedAfter": 69632,
+              "Status": "compressed"
+            },
+            {
+              "Path": "F:\\Temp\\rbm1116b\\sidecar state\\cache\\RustBxlTest65796\\Shared\\VSO0\\4E2\\4E29E1F4F07D7065DF8184424174D8E8071EA6BDEE8053ED11DE5859BF18853000.blob",
+              "LogicalBytes": 1126,
+              "AllocatedBefore": 4096,
+              "AllocatedAfter": 4096,
+              "Status": "compressed"
+            },
+            {
+              "Path": "F:\\Temp\\rbm1116b\\sidecar state\\cache\\RustBxlTest65796\\Shared\\VSO0\\4EC\\4EC3A72B2763981BA2FAE2E95F3DC01A7B42C557DF0471518EB99D517617D6D400.blob",
+              "LogicalBytes": 1744,
+              "AllocatedBefore": 4096,
+              "AllocatedAfter": 4096,
+              "Status": "compressed"
+            },
+            {
+              "Path": "F:\\Temp\\rbm1116b\\sidecar state\\cache\\RustBxlTest65796\\Shared\\VSO0\\594\\594AC71C26D708FB5DDDC6C99FBAA9D3C59763D577C286DB636101F5C2756A4E00.blob",
+              "LogicalBytes": 163097,
+              "AllocatedBefore": 163840,
+              "AllocatedAfter": 77824,
+              "Status": "compressed"
+            },
+            {
+              "Path": "F:\\Temp\\rbm1116b\\sidecar state\\cache\\RustBxlTest65796\\Shared\\VSO0\\5B8\\5B84AB142D53F97E1C6822734389F0B2FA4A37162978585C243F15463EE2150E00.blob",
+              "LogicalBytes": 1599,
+              "AllocatedBefore": 4096,
+              "AllocatedAfter": 4096,
+              "Status": "compressed"
+            },
+            {
+              "Path": "F:\\Temp\\rbm1116b\\sidecar state\\cache\\RustBxlTest65796\\Shared\\VSO0\\5FE\\5FEBF4739877C5BCAC3EC5D786925CD6802D80DC406995ED11921C7E7BA6D17A00.blob",
+              "LogicalBytes": 163099,
+              "AllocatedBefore": 163840,
+              "AllocatedAfter": 77824,
+              "Status": "compressed"
+            },
+            {
+              "Path": "F:\\Temp\\rbm1116b\\sidecar state\\cache\\RustBxlTest65796\\Shared\\VSO0\\66A\\66A045B2865FDFA91398F5C851DA341DB3B3E0A36A182851A0A83158C4F0A05500.blob",
+              "LogicalBytes": 159232,
+              "AllocatedBefore": 159744,
+              "AllocatedAfter": 114688,
+              "Status": "compressed"
+            },
+            {
+              "Path": "F:\\Temp\\rbm1116b\\sidecar state\\cache\\RustBxlTest65796\\Shared\\VSO0\\674\\6749FA37342C1DF954939B76510AD83FC296D5281028717CBCE85BDDB516072500.blob",
+              "LogicalBytes": 132626,
+              "AllocatedBefore": 135168,
+              "AllocatedAfter": 69632,
+              "Status": "compressed"
+            },
+            {
+              "Path": "F:\\Temp\\rbm1116b\\sidecar state\\cache\\RustBxlTest65796\\Shared\\VSO0\\678\\678C4667DAF3023BC53E8B314869BF296CC7047074B378D5B72553912956631B00.blob",
+              "LogicalBytes": 164646,
+              "AllocatedBefore": 167936,
+              "AllocatedAfter": 77824,
+              "Status": "compressed"
+            },
+            {
+              "Path": "F:\\Temp\\rbm1116b\\sidecar state\\cache\\RustBxlTest65796\\Shared\\VSO0\\696\\6965BCA0982A3E95830ED637EC26DCADCEE8D5CA28ABC27474060EB2D98B4FDB00.blob",
+              "LogicalBytes": 159232,
+              "AllocatedBefore": 159744,
+              "AllocatedAfter": 114688,
+              "Status": "compressed"
+            },
+            {
+              "Path": "F:\\Temp\\rbm1116b\\sidecar state\\cache\\RustBxlTest65796\\Shared\\VSO0\\6C5\\6C536CE0DC6EA7B510A7FD3ACB87ECD05984B7427FB7F7F027734A0C704B128E00.blob",
+              "LogicalBytes": 1927,
+              "AllocatedBefore": 4096,
+              "AllocatedAfter": 4096,
+              "Status": "compressed"
+            },
+            {
+              "Path": "F:\\Temp\\rbm1116b\\sidecar state\\cache\\RustBxlTest65796\\Shared\\VSO0\\6C8\\6C886320695702D9F2B061883783DF6BF915E22A9A6EEE05A4D4EAD123F1BDDE00.blob",
+              "LogicalBytes": 2280,
+              "AllocatedBefore": 4096,
+              "AllocatedAfter": 4096,
+              "Status": "compressed"
+            },
+            {
+              "Path": "F:\\Temp\\rbm1116b\\sidecar state\\cache\\RustBxlTest65796\\Shared\\VSO0\\703\\703FCF7EF1666F9D8D8830CE6849CC2451413FAF1FF5F45FB48B39767B7D474200.blob",
+              "LogicalBytes": 1552,
+              "AllocatedBefore": 4096,
+              "AllocatedAfter": 4096,
+              "Status": "compressed"
+            },
+            {
+              "Path": "F:\\Temp\\rbm1116b\\sidecar state\\cache\\RustBxlTest65796\\Shared\\VSO0\\71D\\71D0E81B9269DC8AF54FAD65FB478E2E31D88CAF762120C41FE0148EF290662300.blob",
+              "LogicalBytes": 159232,
+              "AllocatedBefore": 159744,
+              "AllocatedAfter": 114688,
+              "Status": "compressed"
+            },
+            {
+              "Path": "F:\\Temp\\rbm1116b\\sidecar state\\cache\\RustBxlTest65796\\Shared\\VSO0\\725\\725B834C6D1CCF03CEB2BB5492184933A1695393FEEE9DFAEA8CDE18EB15BE1600.blob",
+              "LogicalBytes": 1042,
+              "AllocatedBefore": 4096,
+              "AllocatedAfter": 4096,
+              "Status": "compressed"
+            },
+            {
+              "Path": "F:\\Temp\\rbm1116b\\sidecar state\\cache\\RustBxlTest65796\\Shared\\VSO0\\739\\739A230D2164EA36B8802385B001F80A58F7A031F0B63701CD45FF766FD05F5900.blob",
+              "LogicalBytes": 159232,
+              "AllocatedBefore": 159744,
+              "AllocatedAfter": 114688,
+              "Status": "compressed"
+            },
+            {
+              "Path": "F:\\Temp\\rbm1116b\\sidecar state\\cache\\RustBxlTest65796\\Shared\\VSO0\\798\\798430ED5D8F83442C1A90AA689F46D4FAAC31EE532132341A1247A56C6AE23100.blob",
+              "LogicalBytes": 159232,
+              "AllocatedBefore": 159744,
+              "AllocatedAfter": 114688,
+              "Status": "compressed"
+            },
+            {
+              "Path": "F:\\Temp\\rbm1116b\\sidecar state\\cache\\RustBxlTest65796\\Shared\\VSO0\\7B2\\7B2D03437E570FA4EFEA22AFE74CB4B6AB5A3B1E1F5779399F83C863F3A8B7F600.blob",
+              "LogicalBytes": 1462272,
+              "AllocatedBefore": 1462272,
+              "AllocatedAfter": 675840,
+              "Status": "compressed"
+            },
+            {
+              "Path": "F:\\Temp\\rbm1116b\\sidecar state\\cache\\RustBxlTest65796\\Shared\\VSO0\\849\\84950D86EE3AA7EE2E0B0B1A671D36A02E2687D4EF9607D8550338246274E5E900.blob",
+              "LogicalBytes": 1042,
+              "AllocatedBefore": 4096,
+              "AllocatedAfter": 4096,
+              "Status": "compressed"
+            },
+            {
+              "Path": "F:\\Temp\\rbm1116b\\sidecar state\\cache\\RustBxlTest65796\\Shared\\VSO0\\904\\9048428EFA9BFA8E4C2CED3F313361246B63DB6D5C05F0F4577C465D628AEFE900.blob",
+              "LogicalBytes": 159232,
+              "AllocatedBefore": 159744,
+              "AllocatedAfter": 114688,
+              "Status": "compressed"
+            },
+            {
+              "Path": "F:\\Temp\\rbm1116b\\sidecar state\\cache\\RustBxlTest65796\\Shared\\VSO0\\91C\\91CF5C3946D6CC86D296CF0A6EF9A2B400D19B73AFEB02C80BAAE4475FB396A600.blob",
+              "LogicalBytes": 291183,
+              "AllocatedBefore": 294912,
+              "AllocatedAfter": 139264,
+              "Status": "compressed"
+            },
+            {
+              "Path": "F:\\Temp\\rbm1116b\\sidecar state\\cache\\RustBxlTest65796\\Shared\\VSO0\\932\\932FAF9853BD8B31509CF18FA3DC9AC25C78B6C9E29956B5D11F9FCDF0E2234800.blob",
+              "LogicalBytes": 13095,
+              "AllocatedBefore": 16384,
+              "AllocatedAfter": 8192,
+              "Status": "compressed"
+            },
+            {
+              "Path": "F:\\Temp\\rbm1116b\\sidecar state\\cache\\RustBxlTest65796\\Shared\\VSO0\\9AF\\9AF78D44EDDE0DD53950626BE853093448EDB875C445DE5B35DDA665942F4B5100.blob",
+              "LogicalBytes": 1799,
+              "AllocatedBefore": 4096,
+              "AllocatedAfter": 4096,
+              "Status": "compressed"
+            },
+            {
+              "Path": "F:\\Temp\\rbm1116b\\sidecar state\\cache\\RustBxlTest65796\\Shared\\VSO0\\9B3\\9B37DB9EAA89230A3C3BB64378119753B17ADC692F7AB21F601EFA6631F3E2DA00.blob",
+              "LogicalBytes": 159232,
+              "AllocatedBefore": 159744,
+              "AllocatedAfter": 114688,
+              "Status": "compressed"
+            },
+            {
+              "Path": "F:\\Temp\\rbm1116b\\sidecar state\\cache\\RustBxlTest65796\\Shared\\VSO0\\9FB\\9FBD15766D46FE4CFC26C0887AC6528B27FF14C98273E8E6215875DC3D53856B00.blob",
+              "LogicalBytes": 1462272,
+              "AllocatedBefore": 1462272,
+              "AllocatedAfter": 675840,
+              "Status": "compressed"
+            },
+            {
+              "Path": "F:\\Temp\\rbm1116b\\sidecar state\\cache\\RustBxlTest65796\\Shared\\VSO0\\A24\\A2470C15E97B6E62B3674F4279FBE8117A2E62EE5F38922D44BFA263ECD7F94600.blob",
+              "LogicalBytes": 1747,
+              "AllocatedBefore": 4096,
+              "AllocatedAfter": 4096,
+              "Status": "compressed"
+            },
+            {
+              "Path": "F:\\Temp\\rbm1116b\\sidecar state\\cache\\RustBxlTest65796\\Shared\\VSO0\\A56\\A56178A753F3D651CB94C4F3ED55F385ABA38309D561D5A8E94B02EC78768E5F00.blob",
+              "LogicalBytes": 1576,
+              "AllocatedBefore": 4096,
+              "AllocatedAfter": 4096,
+              "Status": "compressed"
+            },
+            {
+              "Path": "F:\\Temp\\rbm1116b\\sidecar state\\cache\\RustBxlTest65796\\Shared\\VSO0\\A56\\A56A0486FB57F02CC4030B9EB5E9FE18554A76216D91D071FCCABA5495A728BF00.blob",
+              "LogicalBytes": 1877,
+              "AllocatedBefore": 4096,
+              "AllocatedAfter": 4096,
+              "Status": "compressed"
+            },
+            {
+              "Path": "F:\\Temp\\rbm1116b\\sidecar state\\cache\\RustBxlTest65796\\Shared\\VSO0\\A7E\\A7E2CDE139BA65BCA866292889C2D5DAA04FC522B251A6C445D0A9BC46BD709400.blob",
+              "LogicalBytes": 2216,
+              "AllocatedBefore": 4096,
+              "AllocatedAfter": 4096,
+              "Status": "compressed"
+            },
+            {
+              "Path": "F:\\Temp\\rbm1116b\\sidecar state\\cache\\RustBxlTest65796\\Shared\\VSO0\\A9E\\A9E45F38A215A8C7F33BAAB60DA9C6C814664F9376E0577BF18E7AC7104866AB00.blob",
+              "LogicalBytes": 1462272,
+              "AllocatedBefore": 1462272,
+              "AllocatedAfter": 671744,
+              "Status": "compressed"
+            },
+            {
+              "Path": "F:\\Temp\\rbm1116b\\sidecar state\\cache\\RustBxlTest65796\\Shared\\VSO0\\ACC\\ACC58647B1F11C99B985A592F0EAABE2FC5F4B2E054A9EA7EF1C0F3CB318C69900.blob",
+              "LogicalBytes": 1585,
+              "AllocatedBefore": 4096,
+              "AllocatedAfter": 4096,
+              "Status": "compressed"
+            },
+            {
+              "Path": "F:\\Temp\\rbm1116b\\sidecar state\\cache\\RustBxlTest65796\\Shared\\VSO0\\B04\\B04B5AE4F4B1F80E8515795D029A2A54D713E6C2F45D63250B9E122F8A7AB35E00.blob",
+              "LogicalBytes": 1030,
+              "AllocatedBefore": 4096,
+              "AllocatedAfter": 4096,
+              "Status": "compressed"
+            },
+            {
+              "Path": "F:\\Temp\\rbm1116b\\sidecar state\\cache\\RustBxlTest65796\\Shared\\VSO0\\B58\\B58DB82D11959729A380FEEED0B46003EB44C058F45BDFFFD3143D9CCFCEB0FB00.blob",
+              "LogicalBytes": 163292,
+              "AllocatedBefore": 163840,
+              "AllocatedAfter": 77824,
+              "Status": "compressed"
+            },
+            {
+              "Path": "F:\\Temp\\rbm1116b\\sidecar state\\cache\\RustBxlTest65796\\Shared\\VSO0\\B6E\\B6E8663C0016A0752FB3A9F1FC87E1FDF4FDFF20C7BA1BB164E43BE11E02E42600.blob",
+              "LogicalBytes": 159232,
+              "AllocatedBefore": 159744,
+              "AllocatedAfter": 114688,
+              "Status": "compressed"
+            },
+            {
+              "Path": "F:\\Temp\\rbm1116b\\sidecar state\\cache\\RustBxlTest65796\\Shared\\VSO0\\B76\\B7651E1656424DDDCA0E1B6A90B4B355D393BA5D0876BBCA1903841FD3DA7D1B00.blob",
+              "LogicalBytes": 1462272,
+              "AllocatedBefore": 1462272,
+              "AllocatedAfter": 675840,
+              "Status": "compressed"
+            },
+            {
+              "Path": "F:\\Temp\\rbm1116b\\sidecar state\\cache\\RustBxlTest65796\\Shared\\VSO0\\B96\\B9635239D5F92A266361A573C843617BCCB0406D341B9EB03F832CB1820D984900.blob",
+              "LogicalBytes": 1901,
+              "AllocatedBefore": 4096,
+              "AllocatedAfter": 4096,
+              "Status": "compressed"
+            },
+            {
+              "Path": "F:\\Temp\\rbm1116b\\sidecar state\\cache\\RustBxlTest65796\\Shared\\VSO0\\C3D\\C3DA4BBEC55727F1B426906F867059C3F0F34D5E3EBCE56411AA62CD5BD8434B00.blob",
+              "LogicalBytes": 1754,
+              "AllocatedBefore": 4096,
+              "AllocatedAfter": 4096,
+              "Status": "compressed"
+            },
+            {
+              "Path": "F:\\Temp\\rbm1116b\\sidecar state\\cache\\RustBxlTest65796\\Shared\\VSO0\\C4C\\C4C429060C197CCDDCF5E5D61722084C60A79E8B3F18F3DB3DBD443878DD44D200.blob",
+              "LogicalBytes": 1462272,
+              "AllocatedBefore": 1462272,
+              "AllocatedAfter": 671744,
+              "Status": "compressed"
+            },
+            {
+              "Path": "F:\\Temp\\rbm1116b\\sidecar state\\cache\\RustBxlTest65796\\Shared\\VSO0\\C82\\C82114B8C6B5AC40FB972413D057B8F2C74B177D636C4570C75D8E9D3188B71200.blob",
+              "LogicalBytes": 163100,
+              "AllocatedBefore": 163840,
+              "AllocatedAfter": 77824,
+              "Status": "compressed"
+            },
+            {
+              "Path": "F:\\Temp\\rbm1116b\\sidecar state\\cache\\RustBxlTest65796\\Shared\\VSO0\\CA4\\CA4F5C67F1DEA469154CD4B08C1664A6CC69F179EBBFAE245EE6970DC8C8CDC000.blob",
+              "LogicalBytes": 2563,
+              "AllocatedBefore": 4096,
+              "AllocatedAfter": 4096,
+              "Status": "compressed"
+            },
+            {
+              "Path": "F:\\Temp\\rbm1116b\\sidecar state\\cache\\RustBxlTest65796\\Shared\\VSO0\\D49\\D49B6ACC3D9466A668AE1BC33E90F2E1D58C93A0F49C3FC7B893215A95F259F700.blob",
+              "LogicalBytes": 1642,
+              "AllocatedBefore": 4096,
+              "AllocatedAfter": 4096,
+              "Status": "compressed"
+            },
+            {
+              "Path": "F:\\Temp\\rbm1116b\\sidecar state\\cache\\RustBxlTest65796\\Shared\\VSO0\\DA7\\DA76DB14EE03D344C5CDAF4B031BC68915748E1E33B0AB480B878E4A8FEBAD2200.blob",
+              "LogicalBytes": 163101,
+              "AllocatedBefore": 163840,
+              "AllocatedAfter": 77824,
+              "Status": "compressed"
+            },
+            {
+              "Path": "F:\\Temp\\rbm1116b\\sidecar state\\cache\\RustBxlTest65796\\Shared\\VSO0\\DC0\\DC088F13408655A8A8D7A57F06D52A035A78DB7BBDEF0A8B59F67EF0C1F8053900.blob",
+              "LogicalBytes": 1552384,
+              "AllocatedBefore": 1552384,
+              "AllocatedAfter": 712704,
+              "Status": "compressed"
+            },
+            {
+              "Path": "F:\\Temp\\rbm1116b\\sidecar state\\cache\\RustBxlTest65796\\Shared\\VSO0\\DCD\\DCD396A6DF6B5F9008E22E53F827F99098F98CB09F633FB1086785392AD0B8A900.blob",
+              "LogicalBytes": 2544,
+              "AllocatedBefore": 4096,
+              "AllocatedAfter": 4096,
+              "Status": "compressed"
+            },
+            {
+              "Path": "F:\\Temp\\rbm1116b\\sidecar state\\cache\\RustBxlTest65796\\Shared\\VSO0\\E1C\\E1CB42D540F1B3907A61119141B85FF7185FA48F4494830B75332127505F6F8A00.blob",
+              "LogicalBytes": 1586,
+              "AllocatedBefore": 4096,
+              "AllocatedAfter": 4096,
+              "Status": "compressed"
+            },
+            {
+              "Path": "F:\\Temp\\rbm1116b\\sidecar state\\cache\\RustBxlTest65796\\Shared\\VSO0\\E29\\E29265826A84B31CF3A7F4209E354263F6BAE47FE32BA0C1D5A5ABDCF148A1D400.blob",
+              "LogicalBytes": 187904,
+              "AllocatedBefore": 188416,
+              "AllocatedAfter": 126976,
+              "Status": "compressed"
+            },
+            {
+              "Path": "F:\\Temp\\rbm1116b\\sidecar state\\cache\\RustBxlTest65796\\Shared\\VSO0\\F1D\\F1D691892FA414582370D2E5E9BD7103083E0A33924E1EBC0298780FDAA49CAF00.blob",
+              "LogicalBytes": 1706,
+              "AllocatedBefore": 4096,
+              "AllocatedAfter": 4096,
+              "Status": "compressed"
+            }
+          ]
+        },
+        "replay": {
+          "instance": "beta",
+          "project": "F:\\Temp\\rbm1116b\\worktrees\\beta",
+          "targetDirectory": "F:\\Temp\\rbm1116b\\sidecar state\\instances\\beta\\target",
+          "processCacheHits": 26,
+          "processExecuted": 0
+        }
+      },
+      "case": "compressed-cache-restoration"
+    },
+    {
+      "passed": true,
+      "details": [
+        "alpha",
+        "beta",
+        "gamma",
+        "delta",
+        "alpha-near",
+        "beta-near"
+      ],
+      "case": "six-concurrent-worktrees"
+    },
+    {
+      "passed": true,
+      "details": {
+        "edit": {
+          "instance": "alpha",
+          "project": "F:\\Temp\\rbm1116b\\worktrees\\alpha",
+          "targetDirectory": "F:\\Temp\\rbm1116b\\sidecar state\\instances\\alpha\\target",
+          "processCacheHits": 15,
+          "processExecuted": 11
+        },
+        "restored": {
+          "instance": "alpha",
+          "project": "F:\\Temp\\rbm1116b\\worktrees\\alpha",
+          "targetDirectory": "F:\\Temp\\rbm1116b\\sidecar state\\instances\\alpha\\target",
+          "processCacheHits": 26,
+          "processExecuted": 0
+        }
+      },
+      "case": "native-build-script-subtree"
+    },
+    {
+      "passed": true,
+      "details": {
+        "edit": {
+          "instance": "alpha",
+          "project": "F:\\Temp\\rbm1116b\\worktrees\\alpha",
+          "targetDirectory": "F:\\Temp\\rbm1116b\\sidecar state\\instances\\alpha\\target",
+          "processCacheHits": 15,
+          "processExecuted": 11
+        },
+        "restored": {
+          "instance": "alpha",
+          "project": "F:\\Temp\\rbm1116b\\worktrees\\alpha",
+          "targetDirectory": "F:\\Temp\\rbm1116b\\sidecar state\\instances\\alpha\\target",
+          "processCacheHits": 26,
+          "processExecuted": 0
+        }
+      },
+      "case": "git-state-invalidation"
+    },
+    {
+      "passed": true,
+      "details": [
+        "rustbxl-fixture/extra"
+      ],
+      "case": "feature-recapture"
+    },
+    {
+      "passed": true,
+      "details": true,
+      "case": "non-invasive-and-read-only-dependencies"
+    }
+  ]
+}

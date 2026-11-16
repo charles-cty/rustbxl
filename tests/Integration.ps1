@@ -11,6 +11,7 @@ $root = Split-Path -Parent $PSScriptRoot
 . (Join-Path $root 'lib\Common.ps1')
 . (Join-Path $PSScriptRoot 'GraphArguments.ps1')
 . (Join-Path $PSScriptRoot 'ContractFiles.ps1')
+. (Join-Path $PSScriptRoot 'Environment.ps1')
 $RunRoot = Assert-LocalPath $RunRoot
 if (Test-Path -LiteralPath $RunRoot) { throw "Use an empty test directory: $RunRoot" }
 New-Item -ItemType Directory -Path $RunRoot -Force | Out-Null
@@ -107,6 +108,7 @@ function Record([string]$Name, $Details) {
 }
 
 try {
+    Record 'scoped-process-environment' (Test-ScopedEnvironment)
     $contractFiles = Test-ContractFiles $RunRoot
     Record 'contract-file-boundaries' $contractFiles
     & (Join-Path $root 'scripts\build.ps1') | Out-Host
@@ -135,6 +137,10 @@ try {
         '-Port', "$port", '-CacheScenario', "RustBxlTest$PID")
     $configPath = Join-Path $state 'rustbxl.json'
     $config = Get-Content -LiteralPath $configPath -Raw | ConvertFrom-Json -AsHashtable
+    # Leave room for CMake compiler-check paths under each build-script OUT_DIR.
+    # The target namespace must still exceed instances\alpha-near\target.
+    $config.namespace.source = 'namespace\source'
+    $config.namespace.target = 'namespace\build-output-for-shared-cache'
     $external = Join-Path $RunRoot 'external input.txt'
     [IO.File]::WriteAllText($external, 'external-original')
     $config.build.environment.FIXTURE_EXTERNAL_INPUT = $external
@@ -152,6 +158,11 @@ try {
     $graph = @(Get-Content -LiteralPath (Join-Path $state 'captures\main\generated-graph.json') -Raw | ConvertFrom-Json)
     Assert ($graph.Count -ge 8) 'Expected separate compiler, linker, build-script, and directive pips.'
     Assert (@($graph | Where-Object { [IO.Path]::GetFileName($_.Executable) -eq 'cargo.exe' }).Count -eq 0) 'Cargo appeared as an execution pip.'
+    Assert (@($graph | Where-Object Name -Like 'probe-*').Count -eq 0) 'Compiler probes escaped their build-script pip.'
+    $scriptGroups = @($graph | Where-Object Name -Like 'run-*' | Group-Object Executable | Where-Object Count -GT 1)
+    Assert ($scriptGroups.Count -gt 0) 'Fixture did not exercise a shared host/target build-script executable.'
+    Assert (@($graph.Name | Sort-Object -Unique).Count -eq $graph.Count) 'Host/target graph identities collided.'
+    Record 'build-script-execution-identities' $scriptGroups.Count
 
     # Capture ran in a child PowerShell. The same graph must validate when the
     # caller invokes the CLI directly from its initialized developer shell.
@@ -166,6 +177,7 @@ try {
     $cold = Replay 'cold-alpha' 'alpha'
     $oracle = Cargo-Oracle 'baseline' 'alpha'
     Assert ($oracle.Contains('cargo-config=true')) 'Cargo configuration rustflags were lost.'
+    Assert ($oracle.Contains('links=initial-value:left=right with spaces:true')) 'Cargo metadata oracle did not cover both directive forms.'
     Assert ((Program-Output 'alpha') -ceq $oracle) 'Cold replay differs from Cargo.'
     $shared = Replay 'shared-beta' 'beta'
     Assert ($shared.processCacheHits -eq $graph.Count -and $shared.processExecuted -eq 0) 'Equal worktree did not share every process pip.'
@@ -206,7 +218,7 @@ try {
     Assert ($afterContractRestore.processExecuted -eq 0) 'Restored Cargo inputs caused recompilation.'
     Record 'cargo-input-invalidation' $afterContractRestore
 
-    foreach ($case in @('ordinary-source', 'new-module', 'optional-file', 'directory-member', 'external-text', 'same-directives', 'build-script', 'source-text')) {
+    foreach ($case in @('ordinary-source', 'new-module', 'optional-file', 'directory-member', 'external-text', 'same-directives', 'build-script', 'links-metadata', 'compiler-probe', 'source-text')) {
         $edit = $null
         $saved = $null
         $created = $null
@@ -234,8 +246,17 @@ try {
                     Copy-Item -LiteralPath (Join-Path $PSScriptRoot 'variants\edited-build.rs') -Destination $edit
                 }
                 'source-text' { $edit=Join-Path $trees.beta 'app\label.txt'; $saved=[IO.File]::ReadAllBytes($edit); [IO.File]::WriteAllText($edit,'label-changed') }
+                'links-metadata' { $edit=Join-Path $trees.beta 'probe-support\metadata.txt'; $saved=[IO.File]::ReadAllBytes($edit); [IO.File]::WriteAllText($edit,'changed=metadata with spaces') }
+                'compiler-probe' { $edit=Join-Path $trees.beta 'probe-support\probe-mode.txt'; $saved=[IO.File]::ReadAllBytes($edit); [IO.File]::WriteAllText($edit,'failure') }
             }
             $expected = Cargo-Oracle $case 'beta'
+            if ($case -eq 'links-metadata') {
+                Assert ($expected.Contains('links=changed=metadata with spaces:')) 'Metadata oracle did not use the changed value.'
+                Assert ($expected.Contains('added-metadata=new metadata key')) 'Metadata oracle did not add the new key.'
+            }
+            if ($case -eq 'compiler-probe') {
+                Assert ($expected.Contains('links=initial-value:left=right with spaces:false')) 'Compiler oracle did not observe the failed capability probe.'
+            }
             $result = Replay $case 'beta'
             Assert ((Program-Output 'beta') -ceq $expected) "Replay differs from Cargo: $case"
             Assert ($result.processExecuted -gt 0 -and $result.processExecuted -lt $graph.Count) "Expected partial rebuild: $case"
@@ -311,6 +332,54 @@ try {
         Assert ((Program-Output $name) -ceq $expectedOutputs[$name]) "Concurrent isolation failed: $name"
     }
     Record 'six-concurrent-worktrees' $names
+
+    # Exercise Git and CMake as descendants of the build-script pip. A commit
+    # changes Git state without changing source; a C edit changes native inputs.
+    $config.build.environment.FIXTURE_GIT_QUERY = '1'
+    $config.build.environment.FIXTURE_NATIVE_TOOLS = '1'
+    foreach ($tool in @('cmake.exe','ninja.exe')) { Get-Command $tool -ErrorAction Stop | Out-Null }
+    Write-Json $config $configPath
+    $null = Invoke-Cli 'capture-native' @('capture','-Instance','alpha','-Capture','native')
+    $nativeContract = Join-Path $state 'captures\native\contract.json'
+    $nativeContractBytes = [IO.File]::ReadAllBytes($nativeContract)
+    $null = Invoke-Cli 'build-native' @('build','-Instance','alpha','-Capture','native')
+    $nativeOracle = Cargo-Oracle 'native-baseline' 'alpha'
+    Assert ((Program-Output 'alpha') -ceq $nativeOracle -and $nativeOracle.Contains('native=42')) 'Native build-script subtree differs from Cargo.'
+    $baselineCommit = @(git.exe -C $trees.alpha rev-parse HEAD)[0]
+    Assert ($nativeOracle.Contains("git=$baselineCommit")) 'Git build input was lost.'
+    $nativeSource = Join-Path $trees.alpha 'probe-support\native\probe.c'
+    $nativeSaved = [IO.File]::ReadAllBytes($nativeSource)
+    try {
+        Copy-Item -LiteralPath (Join-Path $PSScriptRoot 'variants\native-probe.c') -Destination $nativeSource
+        $null = Invoke-Cli 'native-source-edit' @('build','-Instance','alpha','-Capture','native')
+        $nativeResult = Get-Content -LiteralPath (Join-Path $state 'instances\alpha\run\result.json') -Raw | ConvertFrom-Json -AsHashtable
+        Assert ($nativeResult.processExecuted -gt 0) 'Native source change did not rerun its build script.'
+        Assert ((Program-Output 'alpha') -ceq (Cargo-Oracle 'native-edit' 'alpha')) 'Native source edit differs from Cargo.'
+        Assert ((Program-Output 'alpha').Contains('native=43')) 'Native edit did not change the linked program result.'
+        $libraries = @(Get-ChildItem -LiteralPath (Join-Path $state 'instances\alpha\target') -Filter native_probe.lib -Recurse -File)
+        Assert ($libraries.Count -eq 2) 'Host and target native outputs did not remain distinct.'
+    } finally { [IO.File]::WriteAllBytes($nativeSource,$nativeSaved) }
+    $null = Invoke-Cli 'restore-native-source' @('build','-Instance','alpha','-Capture','native')
+    $nativeRestored = Get-Content -LiteralPath (Join-Path $state 'instances\alpha\run\result.json') -Raw | ConvertFrom-Json -AsHashtable
+    Assert ($nativeRestored.processExecuted -eq 0) 'Restored native source did not reuse cached outputs.'
+    Record 'native-build-script-subtree' @{edit=$nativeResult;restored=$nativeRestored}
+    try {
+        git.exe -C $trees.alpha -c user.name=RustBxl -c user.email=rustbxl@example.invalid commit --allow-empty -m 'test: change build-script Git input' | Out-Host
+        $newCommit = @(git.exe -C $trees.alpha rev-parse HEAD)[0]
+        $null = Invoke-Cli 'git-head-change' @('build','-Instance','alpha','-Capture','native')
+        $gitResult = Get-Content -LiteralPath (Join-Path $state 'instances\alpha\run\result.json') -Raw | ConvertFrom-Json -AsHashtable
+        Assert ($gitResult.processExecuted -gt 0) 'Git commit change did not invalidate the build script.'
+        Assert ((Program-Output 'alpha').Contains("git=$newCommit")) 'Git metadata remained captured at its original value.'
+        Assert ((Program-Output 'alpha') -ceq (Cargo-Oracle 'git-change' 'alpha')) 'Git commit change differs from Cargo.'
+    } finally { git.exe -C $trees.alpha checkout --detach $baselineCommit | Out-Host }
+    $null = Invoke-Cli 'git-head-restore' @('build','-Instance','alpha','-Capture','native')
+    $gitRestored = Get-Content -LiteralPath (Join-Path $state 'instances\alpha\run\result.json') -Raw | ConvertFrom-Json -AsHashtable
+    Assert ((Program-Output 'alpha') -ceq $nativeOracle) 'Git restoration did not restore baseline output.'
+    Assert ($gitRestored.processExecuted -eq 0) 'Git restoration did not reuse cached outputs.'
+    Assert ([Convert]::ToBase64String([IO.File]::ReadAllBytes($nativeContract)) -ceq [Convert]::ToBase64String($nativeContractBytes)) 'Git/native inputs caused recapture.'
+    Record 'git-state-invalidation' @{edit=$gitResult;restored=$gitRestored}
+    $config.build.environment.Remove('FIXTURE_GIT_QUERY')
+    $config.build.environment.Remove('FIXTURE_NATIVE_TOOLS')
 
     # A feature change must reject the old graph, then work after a new capture.
     $config.build.features = @('rustbxl-fixture/extra')

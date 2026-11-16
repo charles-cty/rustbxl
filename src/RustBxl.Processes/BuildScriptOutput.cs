@@ -23,12 +23,20 @@ internal static class BuildScriptOutput
             if (name is "rerun-if-changed" or "rerun-if-env-changed") continue;
             if (name == "warning") { Console.Error.WriteLine("build script: " + value); continue; }
             if (name == "error") throw new InvalidOperationException("Build script error: " + value);
-            if (name == "metadata") throw new NotSupportedException("Cargo links metadata requires a process adapter.");
-            if (name is not ("rustc-env" or "rustc-cfg" or "rustc-check-cfg" or "rustc-flags"
+            if (name == "metadata" && prefix == 6)
+            {
+                result.Add(new Directive("metadata", "metadata=" + value));
+                continue;
+            }
+            if (name is not ("metadata" or "rustc-env" or "rustc-cfg" or "rustc-check-cfg" or "rustc-flags"
                 or "rustc-link-lib" or "rustc-link-search" or "rustc-link-arg" or "rustc-link-arg-bin"
                 or "rustc-link-arg-bins" or "rustc-link-arg-cdylib" or "rustc-link-arg-tests"
                 or "rustc-link-arg-examples" or "rustc-link-arg-benches"))
+            {
+                // Cargo interprets unknown single-colon keys as links metadata.
+                if (prefix == 6) { result.Add(new Directive("metadata", name + "=" + value)); continue; }
                 throw new NotSupportedException($"Unsupported Cargo build-script directive: {name}.");
+            }
             result.Add(new Directive(name, value));
         }
         return result.ToArray();
@@ -49,6 +57,20 @@ internal static class BuildScriptOutput
             var separator = directive.Value.IndexOf('=');
             if (separator < 1) throw new InvalidOperationException("Invalid Cargo rustc-env directive.");
             result[directive.Value[..separator]] = directive.Value[(separator + 1)..];
+        }
+        return result;
+    }
+
+    public static string MetadataName(string name) => name.Replace('-', '_').ToUpperInvariant();
+
+    public static Dictionary<string, string> MetadataValues(IEnumerable<Directive> directives)
+    {
+        var result = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+        foreach (var directive in directives.Where(directive => directive.Name == "metadata"))
+        {
+            var separator = directive.Value.IndexOf('=');
+            if (separator < 1) throw new InvalidOperationException("Invalid Cargo metadata directive.");
+            result[MetadataName(directive.Value[..separator])] = directive.Value[(separator + 1)..];
         }
         return result;
     }

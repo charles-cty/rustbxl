@@ -108,6 +108,13 @@ The compilation PATH keeps the current PowerShell runtime directory at a fixed
 first position so shell nesting does not invalidate capture. Other search paths
 retain their order and remain capture inputs.
 
+For native tools with deeply nested generated directories, use a short state
+path. Before capture, `namespace.source` and `namespace.target` in `rustbxl.json`
+can also be shortened, for example to `namespace\source` and
+`namespace\build-output-for-shared-cache`. The logical target path must be at
+least as long as every `instances\<name>\target` path under the same state root.
+CMake compiler checks can exceed MSVC path limits with longer roots.
+
 Run different worktrees concurrently in separate PowerShell processes:
 
 ```powershell
@@ -145,10 +152,18 @@ capture invalidates its contract, so an incomplete graph cannot be replayed.
 This release supports `cargo build` for Windows x64, workspace-contained path
 dependencies, crates.io dependencies, proc macros, and supported Rust build
 scripts. Custom Cargo profiles and feature/package selection use configuration.
-Unsupported child processes, such as an unmodeled CMake or bindgen invocation,
-fail with an adapter error. Cargo `links` metadata also needs an adapter. Tests,
+A build script and its descendants execute in one BuildXL sandbox task. This
+includes compiler capability probes, local Git queries, and native tool invocations
+whose generated files stay in that script's `OUT_DIR`. Direct dependency `links`
+metadata is passed to downstream scripts at execution time. Host and target
+executions keep separate identities and outputs. Unsupported dependencies or
+ambiguous metadata producers fail during capture. Tests,
 benches, examples, other targets, external path dependencies, and arbitrary
-native build systems need extensions. There is no whole-Cargo replay fallback.
+native build systems need extensions. Network inputs and external services need
+explicit adapters. There is no whole-Cargo replay fallback.
+The tested CMake/MSVC configuration uses embedded debug information (`/Z7`) so
+object generation stays inside the build-script process tree. Native builds that
+depend on an external PDB service need separate service/path handling.
 Run the project's own tests before using outputs in a release workflow.
 
 BuildXL process caching, sandbox observation, inferred dependencies, graph disk
@@ -234,6 +249,9 @@ junctions, Cargo configuration invalidation, unchanged replay, and restoration o
 a deleted executable from cache. The suite also compresses historical CAS content,
 restarts the cache, and restores an executable without recompilation before the
 six-worktree parallel build.
+The build-script cases also require CMake and Ninja on PATH. They exercise a real
+MSVC C build, native source changes, and Git commit changes without Rust source
+changes. Capture contracts from graph format 1 require a new capture.
 
 Run the separate NTFS compression integration checks with:
 

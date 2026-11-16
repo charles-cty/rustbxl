@@ -1,6 +1,10 @@
 use std::{env, fs, path::Path};
 
 fn main() {
+    let version = env::var("DEP_RUSTBXL_PROBE_VERSION").unwrap();
+    let detail = env::var("DEP_RUSTBXL_PROBE_DETAIL_KEY").unwrap();
+    let probe = env::var("DEP_RUSTBXL_PROBE_PROBE").unwrap();
+    println!("cargo:rustc-env=LINKS_MARKER={version}:{detail}:{probe}");
     let optional = Path::new("optional.txt").exists();
     let members = fs::read_dir("entries").unwrap()
         .map(|entry| entry.unwrap().file_name())

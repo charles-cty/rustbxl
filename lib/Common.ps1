@@ -169,15 +169,18 @@ function Invoke-WithEnvironment($Environment, [scriptblock]$Action) {
     foreach ($entry in [Environment]::GetEnvironmentVariables().GetEnumerator()) {
         if ($entry.Key -match '^(CARGO|RUST|SIDECAR)' -and $entry.Key -ne 'RUSTUP_HOME') {
             $saved[$entry.Key] = $entry.Value
-            [Environment]::SetEnvironmentVariable($entry.Key, $null)
+            [Environment]::SetEnvironmentVariable($entry.Key, [NullString]::Value)
         }
     }
     foreach ($key in $Environment.Keys) {
         if (-not $saved.ContainsKey($key)) { $saved[$key] = [Environment]::GetEnvironmentVariable($key) }
-        [Environment]::SetEnvironmentVariable($key, $Environment[$key])
+        [Environment]::SetEnvironmentVariable($key, ($Environment[$key] ?? [NullString]::Value))
     }
     try { & $Action } finally {
-        foreach ($key in $saved.Keys) { [Environment]::SetEnvironmentVariable($key, $saved[$key]) }
+        foreach ($key in $saved.Keys) {
+            # A PowerShell null binds as an empty string. Preserve an absent variable.
+            [Environment]::SetEnvironmentVariable($key, ($saved[$key] ?? [NullString]::Value))
+        }
     }
 }
 

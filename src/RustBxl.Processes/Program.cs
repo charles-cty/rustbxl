@@ -2,12 +2,11 @@ using System.Diagnostics;
 using System.Text.Json;
 using RustBxl.Processes;
 
-if (Environment.GetEnvironmentVariable("SIDECAR_RUSTC_QUERIES") is { } queries)
-    return RustcQueries.Replay(args, queries);
 if (args.FirstOrDefault() == "capture") return DebugCapture.Run(args[1], args[2..]);
 if (args.FirstOrDefault() == "generate") { GraphGenerator.Generate(args[1], args[2], args[3], args[4], args[5]); return 0; }
 if (args.FirstOrDefault() == "prepare-build-script") { BuildScriptOutput.Prepare(args[1], args[2]); return 0; }
 if (args.FirstOrDefault() == "replay-rustc") return await BuildScriptOutput.CompileAsync(args[1], args[2], args[3], args[4..]);
+if (args.FirstOrDefault() == "run-build-script") return await BuildScriptRunner.RunAsync(args[1]);
 if (args.FirstOrDefault() == "check-arguments") { ArgumentChecks.Run(); return 0; }
 if (args.FirstOrDefault() == "compress-artifacts")
 {
@@ -33,6 +32,8 @@ var executable = Path.GetFullPath(args[0]);
 var arguments = args[1..].ToList();
 var crateName = Option(arguments, "--crate-name");
 if (crateName is null || Option(arguments, "--out-dir") is null) return await RunAsync(executable, arguments);
+if (CompilerInvocation.IsBuildScriptProbe(arguments, Environment.CurrentDirectory))
+    return await RunAsync(executable, arguments);
 // Add path remapping after Cargo resolves its own rustflags and target configuration.
 // Without SIDECAR_CAPTURE this wrapper also supports the mapped Cargo test oracle.
 if (Environment.GetEnvironmentVariable("SIDECAR_RUSTFLAGS") is { } extraFlags)

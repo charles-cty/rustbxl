@@ -1,0 +1,7 @@
+cmake_minimum_required(VERSION 3.25)
+cmake_policy(SET CMP0141 NEW)
+set(CMAKE_MSVC_DEBUG_INFORMATION_FORMAT Embedded)
+project(RustBxlNativeProbe LANGUAGES C)
+add_library(native_probe STATIC probe.c)
+add_executable(native_probe_tool main.c)
+target_link_libraries(native_probe_tool PRIVATE native_probe)

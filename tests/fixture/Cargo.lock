@@ -7,6 +7,7 @@ name = "engine"
 version = "0.1.0"
 dependencies = [
  "itoa",
+ "probe-support",
 ]
 
 [[package]]
@@ -18,6 +19,13 @@ checksum = "4a5f13b858c8d314ee3e8f639011f7ccefe71f97f96e50151fb991f267928e2c"
 [[package]]
 name = "marker"
 version = "0.1.0"
+dependencies = [
+ "probe-support",
+]
+
+[[package]]
+name = "probe-support"
+version = "0.1.0"
 
 [[package]]
 name = "rustbxl-fixture"
@@ -25,4 +33,5 @@ version = "0.1.0"
 dependencies = [
  "engine",
  "marker",
+ "probe-support",
 ]

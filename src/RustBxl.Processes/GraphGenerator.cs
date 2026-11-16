@@ -1,5 +1,7 @@
 using System.Text.Json;
 using System.Text.RegularExpressions;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace RustBxl.Processes;
 
@@ -17,7 +19,7 @@ internal static class GraphGenerator
         public HashSet<string> Reads { get; } = new(StringComparer.OrdinalIgnoreCase);
         public HashSet<Node> Dependencies { get; } = [];
         public string? Staging { get; set; }
-        public bool IsQuery => Name.StartsWith("probe-", StringComparison.Ordinal);
+        public bool IsBuildScript => Name.StartsWith("run-", StringComparison.Ordinal);
     }
 
     public static void Generate(string worktree, string state, string workspace, string physicalTarget, string logicalTarget)
@@ -44,12 +46,35 @@ internal static class GraphGenerator
         accesses = accesses.Select(access => access with { Path = Normalize(access.Path) }).ToList();
         var nodes = new List<Node>();
         var compilerByPid = new Dictionary<uint, Node>();
+        var scripts = new Dictionary<uint, Node>();
+        foreach (var snapshot in snapshots.Where(snapshot => Path.GetFileName(snapshot.Invocation.Executable)
+            .StartsWith("build-script-", StringComparison.OrdinalIgnoreCase)))
+        {
+            var invocation = NormalizeInvocation(snapshot.Invocation);
+            var identity = Convert.ToHexString(SHA256.HashData(Encoding.UTF8.GetBytes(invocation.Environment["OUT_DIR"])))[..12];
+            var node = new Node("run-" + Path.GetFileName(Path.GetDirectoryName(invocation.Executable)) + "-" + identity, invocation);
+            node.Processes.Add(snapshot.ProcessId);
+            scripts.Add(snapshot.ProcessId, node);
+            nodes.Add(node);
+        }
+        Node? ScriptOwner(uint processId)
+        {
+            while (processes.TryGetValue(processId, out var process))
+            {
+                if (scripts.TryGetValue(processId, out var script)) return script;
+                processId = process.Parent;
+            }
+            return null;
+        }
+        foreach (var process in processes.Values)
+            ScriptOwner(process.Id)?.Processes.Add(process.Id);
         foreach (var file in Directory.GetFiles(Path.Combine(state, "capture", "units"), "rustc.json", SearchOption.AllDirectories).Order())
         {
             var invocation = NormalizeInvocation(JsonSerializer.Deserialize<Invocation>(File.ReadAllText(file))!);
             var unit = Path.GetFileName(Path.GetDirectoryName(file))!;
             var snapshot = snapshots.Single(snapshot => Path.GetFileName(snapshot.Invocation.Executable) == "rustc.exe"
                 && Unit(snapshot.Invocation.Arguments) == unit);
+            if (ScriptOwner(snapshot.ProcessId) is not null) continue;
             var node = new Node(unit, invocation);
             node.Processes.Add(snapshot.ProcessId);
             compilerByPid.Add(snapshot.ProcessId, node);
@@ -57,6 +82,7 @@ internal static class GraphGenerator
         }
         foreach (var process in processes.Values.Where(process => Path.GetFileName(process.Executable) == "LinkerRecorder.exe"))
         {
+            if (ScriptOwner(process.Id) is not null) continue;
             var compiler = compilerByPid[process.Parent];
             compiler.Processes.Add(process.Id);
             var linker = processes.Values.Single(child => child.Parent == process.Id && Path.GetFileName(child.Executable) == "link.exe");
@@ -70,26 +96,12 @@ internal static class GraphGenerator
                 .Where(value => value.Contains("\\.sidecar\\", StringComparison.OrdinalIgnoreCase)).Select(Path.GetDirectoryName).First()!;
             nodes.Add(node);
         }
-        foreach (var snapshot in snapshots.Where(snapshot => Path.GetFileName(snapshot.Invocation.Executable).StartsWith("build-script-", StringComparison.OrdinalIgnoreCase)))
-        {
-            var node = new Node("run-" + Path.GetFileName(Path.GetDirectoryName(snapshot.Invocation.Executable)), NormalizeInvocation(snapshot.Invocation));
-            node.Processes.Add(snapshot.ProcessId);
-            nodes.Add(node);
-        }
-        foreach (var buildScript in nodes.Where(node => node.Name.StartsWith("run-", StringComparison.Ordinal)).ToArray())
-        {
-            var parent = buildScript.Processes.Single();
-            foreach (var child in processes.Values.Where(process => process.Parent == parent))
-            {
-                var snapshot = snapshots.Single(snapshot => snapshot.ProcessId == child.Id);
-                if (!RustcQueries.IsVersionQuery(snapshot.Invocation)) continue;
-                var argument = snapshot.Invocation.Arguments.Single();
-                var query = new Node("probe-" + buildScript.Name + "-" + argument.TrimStart('-'), NormalizeInvocation(snapshot.Invocation));
-                query.Processes.Add(child.Id);
-                nodes.Add(query);
-                buildScript.Dependencies.Add(query);
-            }
-        }
+        var metadata = new CargoMetadata(Path.Combine(state, "capture", "cargo-metadata.json"), Normalize, Physical, logicalTarget);
+        var metadataDependencies = scripts.Values.ToDictionary(script => script,
+            script => metadata.Dependencies(script.Invocation, scripts.Values.Select(value => value.Invocation).ToArray()));
+        foreach (var script in scripts.Values)
+            foreach (var input in metadataDependencies[script])
+                script.Dependencies.Add(scripts.Values.Single(candidate => candidate.Invocation == input.Producer));
         var owners = nodes.SelectMany(node => node.Processes.Select(pid => (pid, node))).ToDictionary(pair => pair.pid, pair => pair.node);
         foreach (var compiler in compilerByPid.Values)
         {
@@ -143,6 +155,7 @@ internal static class GraphGenerator
         {
             var alias = node.Invocation.Executable;
             if (producers.ContainsKey(alias)) continue;
+            if (aliases.TryGetValue(alias, out var existing)) { node.Reads.Add(existing); continue; }
             var bytes = File.ReadAllBytes(Physical(alias));
             var original = producers.Keys.Single(path => path.EndsWith(".exe", StringComparison.OrdinalIgnoreCase)
                 && Path.GetDirectoryName(path) == Path.GetDirectoryName(alias)
@@ -201,10 +214,7 @@ internal static class GraphGenerator
         }
         var graph = new List<GraphNode>();
         GraphInput FileReference(Node node, string path) => new("file", Relocate(path), node.Name, outputDirectories[node]);
-        string QueryOutput(Node node) => Path.Combine(logicalTarget, ".sidecar", "query-stdout", node.Name, "stdout.txt");
-        GraphInput DependencyReference(Node node) => node.IsQuery
-            ? new("file", QueryOutput(node), node.Name)
-            : new("directory", outputDirectories[node], node.Name);
+        GraphInput DependencyReference(Node node) => new("directory", outputDirectories[node], node.Name);
         var emittedAliases = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
         var configurationPips = new Dictionary<Node, string>();
         var configurationDirectories = new Dictionary<Node, string>();
@@ -231,20 +241,6 @@ internal static class GraphGenerator
             }
             foreach (var dependency in node.Dependencies) Visit(dependency);
             var extraDependencies = new List<GraphInput>();
-            var queries = node.Dependencies.Where(dependency => dependency.IsQuery).ToArray();
-            if (queries.Length > 0)
-            {
-                var plans = Path.Combine(state, "compiler-plans");
-                Directory.CreateDirectory(plans);
-                var map = Path.Combine(plans, node.Name + "-queries.json");
-                File.WriteAllText(map, JsonSerializer.Serialize(queries.Select(query =>
-                    new RustcQueries.Query(query.Invocation.Arguments, QueryOutput(query)))));
-                var adapter = Path.Combine(AppContext.BaseDirectory, "RustBxl.Processes.exe");
-                environment["RUSTC"] = adapter;
-                environment["SIDECAR_RUSTC_QUERIES"] = map;
-                extraDependencies.Add(new("file", map));
-                extraDependencies.Add(new("file", adapter));
-            }
             string? compilerTool = null;
             if (compilerDirectories.TryGetValue(node, out var compilerDirectory))
             {
@@ -298,13 +294,36 @@ internal static class GraphGenerator
                 var compiler = compilerDirectories.Keys.Single(candidate => candidate.Name + "-link" == node.Name);
                 arguments = ["@" + Path.Combine(compilerDirectories[compiler], "link.rsp")];
             }
+            if (node.IsBuildScript)
+            {
+                var inputs = metadataDependencies[node].Select(input =>
+                {
+                    var producer = scripts.Values.Single(candidate => candidate.Invocation == input.Producer);
+                    return new BuildScriptRunner.MetadataInput(input.Prefix,
+                        Path.Combine(configurationDirectories[producer], "config.json"));
+                }).ToArray();
+                var plans = Path.Combine(state, "build-script-plans");
+                Directory.CreateDirectory(plans);
+                var plan = Path.Combine(plans, node.Name + ".json");
+                File.WriteAllText(plan, JsonSerializer.Serialize(new BuildScriptRunner.Plan(
+                    Relocate(invocation.Executable), arguments.ToArray(), inputs)));
+                extraDependencies.Add(new("file", plan));
+                extraDependencies.Add(emittedAliases.TryGetValue(invocation.Executable, out var executableAlias)
+                    ? new("file", invocation.Executable, executableAlias)
+                    : FileReference(producers[invocation.Executable], invocation.Executable));
+                compilerTool = Path.Combine(AppContext.BaseDirectory, "RustBxl.Processes.exe");
+                arguments = ["run-build-script", plan];
+                foreach (var key in environment.Keys.Where(key => key.StartsWith("DEP_", StringComparison.Ordinal)).ToArray())
+                    environment.Remove(key);
+            }
             var dependencies = transitive.Select(DependencyReference).ToList();
             foreach (var dependency in transitive.Where(configurationPips.ContainsKey))
                 dependencies.Add(new("directory", configurationDirectories[dependency], configurationPips[dependency]));
             dependencies.AddRange(extraDependencies);
             var executable = compilerTool ?? invocation.Executable;
             GraphInput tool;
-            if (emittedAliases.TryGetValue(invocation.Executable, out var aliasId))
+            if (compilerTool is not null) tool = new("file", executable);
+            else if (emittedAliases.TryGetValue(invocation.Executable, out var aliasId))
                 tool = new("file", executable, aliasId);
             else if (producers.TryGetValue(invocation.Executable, out var toolProducer))
                 tool = FileReference(toolProducer, invocation.Executable);
@@ -322,9 +341,8 @@ internal static class GraphGenerator
                         new[] { "PATH", "LIB", "INCLUDE", "LIBPATH" }.Contains(pair.Key, StringComparer.OrdinalIgnoreCase)
                             ? pair.Value.Split(';', StringSplitOptions.RemoveEmptyEntries) : null)).ToArray(),
                 Dependencies = dependencies.ToArray(),
-                OutputDirectories = node.IsQuery ? [] : [outputDirectories[node]],
-                ConsoleOutput = node.IsQuery ? QueryOutput(node)
-                    : node.Name.StartsWith("run-", StringComparison.Ordinal) ? transcript : null
+                OutputDirectories = [outputDirectories[node]],
+                ConsoleOutput = node.IsBuildScript ? transcript : null
             });
             if (node.Name.StartsWith("run-", StringComparison.Ordinal))
             {

@@ -13,6 +13,33 @@ retain their contents.
 
 ## Verified results
 
+The build-script modeling implementation passed all 26 Windows integration
+cases on 2026-11-16. The suite retained 505 Win32 argument checks, 22 actual
+BuildXL argument arrays, six concurrent worktrees, compressed CAS restoration,
+and comparisons with clean offline Cargo builds. The expanded fixture has 26
+process pips. An equal second worktree reused all 26 without execution.
+
+The new cases cover shared host/target script executables, current `links`
+metadata, newly added metadata keys, normal versus build dependencies, repeated
+direct/wrapped compiler version requests, and successful or expected-failure
+capability probes. CMake and Ninja build a real MSVC C library and executable.
+Changing the C result from 42 to 43 or changing only Git HEAD executed 11 pips
+and reused 15. Both restorations reused all 26 with zero process execution and
+without recapture. The CMake fixture uses embedded debug information (`/Z7`)
+and short logical paths; external PDB services remain unsupported by this trial.
+
+Evidence: [build-script validation](build-script-modeling-evidence/validation.json).
+Full logs remain under `F:\Temp\rbm1116b`. The final event query found no new
+matching compiler/helper startup popup events or active build/cache processes.
+The cache stopped normally. Intermediate capture cleanup, PDB-service, shell,
+and path-length issues are recorded in
+[modeling issues](build-script-modeling-issues.md).
+Environment checks also cover absent, empty, and existing values, nested scopes,
+explicit removal, ambient Cargo overrides, and restoration after an exception.
+These tests cover the fixture; the earlier large-project storage and latency
+measurements have not been repeated with the new model. The dependency graph
+was not trimmed, and experimental patches stayed outside the baseline commit.
+
 The optional artifact-compression implementation passed 20 complete Windows
 integration cases and 7 separate NTFS policy cases on 2026-11-16. The complete
 suite retained the 505 Win32 argument checks, 22 actual BuildXL argument arrays,

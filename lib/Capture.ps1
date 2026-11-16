@@ -2,7 +2,7 @@ function Invoke-Capture([string]$Project, [string]$StateRoot, $Config, $Layout, 
     $helper = Get-Helper
     $bxl = Get-BuildXL $Config $StateRoot
     Initialize-Msvc
-    Assert-ContainedDependencies $Project $StateRoot $Config $Layout
+    $metadata = Assert-ContainedDependencies $Project $StateRoot $Config $Layout
     # Invalidate the contract before replacing capture data. A failed capture cannot be replayed.
     $contract = Join-Path $Layout.Capture 'contract.json'
     if (Test-Path -LiteralPath $contract) { Remove-Item -LiteralPath $contract }
@@ -34,6 +34,7 @@ function Invoke-Capture([string]$Project, [string]$StateRoot, $Config, $Layout, 
     }
     Write-Json $discovery (Join-Path $graph 'graph.json')
     Invoke-BuildXL $bxl $graph (Join-Path $Layout.Capture 'discovery-run') $Project $Layout $Config $StateRoot $Instance -Discovery
+    Write-Json $metadata (Join-Path $capture 'cargo-metadata.json')
     & $helper generate $Project $Layout.Capture $Layout.Source $Layout.PhysicalTarget $Layout.Target
     # Cargo discovery outputs must not become undeclared replay inputs.
     # Only BuildXL's pip outputs can populate an instance target during replay.

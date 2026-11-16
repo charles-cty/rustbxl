@@ -51,6 +51,41 @@ Equal worktrees must share all process pips; concurrent source variants must
 produce their own expected outputs. The original Cargo target sentinel and
 dependency-source timestamps must remain unchanged.
 
+## Build-script execution and metadata
+
+A build-script execution owns its complete descendant process tree. Compiler
+version requests, wrapped requests, successful capability probes, expected-failure
+probes, and native tools execute under that pip. BuildXL observes their file reads
+and generated files. The script decides how a child's exit status affects the
+build. Formal crate compilations and their linker pips retain separate nodes.
+The capture wrapper recognizes probe output inside `OUT_DIR` and forwards those
+calls directly, without staging them as formal crate builds.
+
+Execution identities include the normalized `OUT_DIR`, which separates host and
+target runs of the same executable across concurrent instances. Cargo metadata
+records package identities, direct dependency edges, and `links` names. Capture
+matches each consumer with the producer for its host or target role. Build
+dependencies provide libraries for the script; they do not inject `DEP_*` values.
+Ambiguous producer roles and unresolved captured `DEP_*` variables stop capture.
+
+The directive preparation pip preserves modern `cargo::metadata=key=value` and
+single-colon Cargo metadata. The build-script runner reads current producer
+configuration, removes captured `DEP_*` values, and supplies the derived metadata
+environment before it launches the consumer. New metadata keys and changed values
+therefore propagate without recapture. Compiler environment and link directives
+continue to come from current script output. The graph-format contract is 2;
+earlier captures must be repeated.
+
+Local Git queries run within this process tree. The worktree pointer, HEAD,
+references, and objects are observed filesystem inputs. The Git integration check changes only a
+commit and restores it, while requiring changed output and cache reuse. CMake and
+Ninja build a static C library and an executable inside `OUT_DIR`; the integration
+check changes a C function from 42 to 43 and compares its result with clean Cargo.
+The CMake fixture selects `CMP0141 NEW` and embedded debug information (`/Z7`).
+The default `/Zi` trial failed C1041 on a PDB path and left an idle `mspdbsrv`
+descendant. Embedding debug information avoids that separate file writer. General
+PDB-service support requires additional lifecycle and path handling.
+
 ## Storage and process lifetime
 
 Each instance has a physical output tree mapped to the common logical target.
