@@ -173,8 +173,8 @@ hardlinks. No sidecar-wide automatic cleanup policy is implemented.
 The integration test builds the helper, prepares its own dependency store,
 downloads its own BuildXL package, and creates six Git worktrees from the
 committed fixture. It compares replay outputs with clean offline Cargo builds
-in the same namespace. Cases cover shared hits, partial rebuilds, newly read
-modules, dynamic inputs, restoration hits, concurrent isolation, feature
+in the same namespace. Cases cover shell nesting, shared hits, partial rebuilds,
+newly read modules, dynamic inputs, restoration hits, concurrent isolation, feature
 recapture, preserved project targets, and unchanged dependency sources.
 Argument arrays also pass through the actual JSON frontend and BuildXL process
 execution. The Win32 argument check uses 505 asymmetric and randomized cases.

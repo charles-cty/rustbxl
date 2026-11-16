@@ -11,6 +11,46 @@ BuildXL process execution. It compares replay results with clean offline
 Cargo builds and checks that existing Cargo targets and dependency sources
 retain their contents.
 
+## Verified results
+
+On 2026-11-16, a clean Git clone passed all 14 integration cases. The clone
+had no build artifacts or test state. It built its own helper, downloaded its
+own BuildXL package, and fetched the locked crates.io dependency into its own
+Cargo home. The external BuildXL checkout and bindmount executable were supplied
+as command arguments. No files from the earlier experiment were used.
+
+The host used PowerShell 7.6.4, .NET SDK 9.0.318, Rust 1.93.1 stable, Visual
+Studio 2022 17.14.41 with MSVC 14.44, and BuildXL 0.1.0-20260814.1.
+All 505 Win32 argument cases and 22 BuildXL argument-array cases passed.
+
+The fixture has 10 process pips, plus copy pips for executable aliases:
+
+| Build or edit | Executed process pips | Process cache hits |
+| --- | ---: | ---: |
+| Cold replay | 10 | 0 |
+| Equal second worktree | 0 | 10 |
+| Ordinary library source | 3 | 7 |
+| Newly read Rust module | 3 | 7 |
+| Previously absent file appears | 4 | 6 |
+| Directory member added | 4 | 6 |
+| External text changes | 4 | 6 |
+| Input changes with equal resulting directives | 1 | 9 |
+| Build-script source changes | 6 | 4 |
+| Included source text changes | 2 | 8 |
+
+Each restored source case executed zero process pips. The capture contract
+and process trace remained unchanged through ordinary and dynamic input edits.
+Six worktree variants built concurrently and matched their separate clean
+Cargo outputs. Feature changes rejected the old capture and passed after a new
+capture. Existing project targets and dependency sources stayed unchanged.
+
+Additional CLI checks passed from a fresh, uninitialized PowerShell session:
+the current capture validated, and a changed tool search path rejected it.
+The frontend directory kept only its three committed source files. Git stayed
+clean in the clone. Disposable test states and clones were removed after these
+results were recorded. These checks establish correctness and isolation; they
+do not measure build time or disk savings.
+
 ## Resolved implementation issues
 
 - Source rewriting and a string-based DScript renderer made data escaping and
@@ -64,14 +104,18 @@ $text.Replace([char]13+[char]10,[char]10)
 Cli 'init' ...
 @(..., 'line1' + [char]10 + 'line2')
 Get-Content '.\.test\current\sidecar state\captures\main\capture\units\rustbxl_fixture-*\rustc.json'
+Get-Item .\frontend\Out\BuildXLCurrentLog -Force | Select-Object FullName,Attributes,LinkType,Target
 ```
 
 The first expression selected an unsuitable character overload. That source
 rewrite workflow was removed. The second command resolved to the `cli` alias
 for `Clear-Item`; the test helper is now `Invoke-Cli`. The third expression
 formed multiple array elements; parentheses now group the newline expression.
-The last probe assumed a hashed unit name; enumerating the captured unit
+The captured-unit probe assumed a hashed unit name; enumerating the captured unit
 directories found the correct file.
+The last command queried a temporary junction after BuildXL had removed it.
+The retained engine configuration supplied its location. The per-instance
+storage-root change then moved this junction into the sidecar.
 
 An initial `rg` pattern, `AddProcess\\(`, had an unclosed group. Literal
 searches now use `rg -F`. The command
