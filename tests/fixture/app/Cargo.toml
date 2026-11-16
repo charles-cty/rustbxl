@@ -1,0 +1,13 @@
+[package]
+name = "rustbxl-fixture"
+version = "0.1.0"
+edition = "2021"
+
+[features]
+default = ["default-marker"]
+default-marker = []
+extra = []
+
+[dependencies]
+engine = { path = "../engine" }
+marker = { path = "../marker" }

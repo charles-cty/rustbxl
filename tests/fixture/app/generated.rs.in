@@ -1,0 +1,2 @@
+pub const GENERATED: &str = "generated";
+pub const GENERATED_PATH: &str = file!();
