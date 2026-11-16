@@ -104,6 +104,9 @@ additional arguments. The discovery process has an explicit environment.
 Ambient Cargo/Rust overrides are cleared for preparation and metadata commands;
 set build options in the sidecar configuration. Cargo configuration files are
 part of the capture contract.
+The compilation PATH keeps the current PowerShell runtime directory at a fixed
+first position so shell nesting does not invalidate capture. Other search paths
+retain their order and remain capture inputs.
 
 Run different worktrees concurrently in separate PowerShell processes:
 

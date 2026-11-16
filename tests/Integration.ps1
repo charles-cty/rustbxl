@@ -136,6 +136,13 @@ try {
     Assert ($graph.Count -ge 8) 'Expected separate compiler, linker, build-script, and directive pips.'
     Assert (@($graph | Where-Object { [IO.Path]::GetFileName($_.Executable) -eq 'cargo.exe' }).Count -eq 0) 'Cargo appeared as an execution pip.'
 
+    # Capture ran in a child PowerShell. The same graph must validate when the
+    # caller invokes the CLI directly from its initialized developer shell.
+    $status = @(& (Join-Path $root 'rustbxl.ps1') status -State $state -Project $trees.alpha -Instance alpha)
+    $status = ($status -join [char]10) | ConvertFrom-Json -AsHashtable
+    Assert $status.captureValid "Capture changed across shell nesting: $($status.reason)"
+    Record 'shell-session-contract' $true
+
     $service = Start-Driver 'cache-service' @('cache-start', '-State', $state)
     $timer = [Diagnostics.Stopwatch]::StartNew()
     while ($true) {

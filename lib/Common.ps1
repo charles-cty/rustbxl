@@ -146,6 +146,12 @@ function Get-BuildEnvironment($Config, [string]$StateRoot, $Layout) {
         $value = [Environment]::GetEnvironmentVariable($key)
         if ($null -ne $value) { $environment[$key] = $value }
     }
+    # PowerShell prepends its runtime directory in child sessions. Keep that
+    # directory at one stable position across normal and developer shells.
+    $searchPaths = @($env:PATH -split ';' | Where-Object {
+        -not $_.TrimEnd('\').Equals($PSHOME.TrimEnd('\'), [StringComparison]::OrdinalIgnoreCase)
+    })
+    $environment.PATH = (@($PSHOME) + $searchPaths) -join ';'
     foreach ($key in $Config.build.environment.Keys) { $environment[$key] = $Config.build.environment[$key] }
     $environment.CARGO_HOME = Join-Path $StateRoot 'cargo-home'
     $environment.CARGO_INCREMENTAL = '0'

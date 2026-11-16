@@ -42,6 +42,12 @@ retain their contents.
   the frontend. An explicit per-instance storage root now keeps this junction
   and other engine defaults inside the sidecar. Transient logs were removed
   from the Git index before the initial commit.
+- A status check from another shell found an avoidable capture rejection.
+  A child PowerShell prepends its runtime directory to PATH; Visual Studio
+  initialization can place that entry after the compiler directories. The
+  compile environment now puts this one runtime directory at a stable first
+  position. It preserves the order of other search paths. A direct-call versus
+  child-session integration check covers this boundary.
 - A partial migration retained a removed `DiskUsage` call and caused CS0103.
   The stale call was removed. Initial source/API searches also used incorrect
   paths and an overescaped regex; scoped file discovery and literal searches
