@@ -13,6 +13,67 @@ retain their contents.
 
 ## Verified results
 
+The optional artifact-compression implementation passed 20 complete Windows
+integration cases and 7 separate NTFS policy cases on 2026-11-16. The complete
+suite retained the 505 Win32 argument checks, 22 actual BuildXL argument arrays,
+and six concurrent worktrees. Source edits and restorations still matched clean
+Cargo builds. The dependency graph was unchanged.
+
+The real shared CAS test compressed 38 historical content files while protecting
+all active instance files. Unique allocated space for those selected files changed
+from 14,540,800 to 7,032,832 bytes: 7,507,968 bytes saved (51.63%). The cache then
+restarted and restored the historical executable with 10 process cache hits and
+zero executed processes. Its SHA-256, output, and original CAS ACL matched the
+values recorded before compression. These fixture results establish cache
+correctness and selected-file savings; they do not measure large-project edit
+latency or total-state compression ratios.
+
+NTFS policy cases cover default preview, empty state, explicit exclusions,
+active aliases through CAS and another instance, unknown external hardlinks,
+7-day age boundaries, 64-KiB size boundaries, partial-cluster allocation,
+incremental/engine/database exclusions, junctions, maintenance locks, an occupied
+cache endpoint, retained ACLs on success and failed exclusive open, read-only
+files, other deny rules, file identity, last-write time, and repeated apply.
+
+Evidence: [compression validation](compression-evidence/validation.json).
+Full logs remain under `F:\Temp\rustbxl-compression-20261116\integration-final`
+and `allocation-verified`. Intermediate issues and their resolutions are recorded
+in [compression issues](compression-evidence/issues.md).
+The final event query found zero new matching startup popup events and zero
+active compiler, helper, engine, or cache processes. Both cache lifetimes ended
+through the normal stop command.
+
+The replay optimization integration passed all 18 cases on 2026-11-16 using the
+maintained CLI. Replay enabled BuildXL incremental scheduling; discovery kept it
+disabled. The generator, frontend, and declared graph dependencies were unchanged.
+The run retained the same 505 Win32 and 22 actual BuildXL argument checks.
+
+The four added cases cover filesystem scan boundaries, unchanged incremental
+replay, cache materialization after deleting the executable, and rejection of new
+hidden manifests or changed Cargo/toolchain configuration. Scanner checks include
+zero, one, and several manifests; hidden directories; nested `target` exclusions;
+directory junctions; Git worktree metadata; file addition/edit/removal; and ancestor
+and Cargo-home configuration.
+
+All eight existing source/dynamic-input edits still matched clean Cargo builds.
+Their restorations executed zero processes. Six worktree variants built
+concurrently and matched their independent Cargo outputs. Feature recapture and
+preservation of project targets and dependency sources also passed.
+
+The maintained scanner produced identical serialized contract dictionaries to
+the original scanner on the retained rust-analyzer, Biome, and Typst worktrees.
+This is a content-equivalence check; the prior latency measurements remain in the
+[latency investigation](build-latency-investigation.md).
+The source-level integration did not apply the experimental large-project adapter
+patch or graph trimming. Those remain separate review material.
+
+Evidence: [validation.json](replay-optimization-evidence/validation.json).
+Full logs remain in `F:\Temp\rustbxl-merge-20261116\integration`.
+The cache exited normally, with zero active compiler/helper/engine/cache processes
+and no new matching startup popup events at the final check. Intermediate
+diagnostic read issues are recorded in
+[issues.md](replay-optimization-evidence/issues.md).
+
 On 2026-11-16, a clean Git clone passed all 14 integration cases. The clone
 had no build artifacts or test state. It built its own helper, downloaded its
 own BuildXL package, and fetched the locked crates.io dependency into its own
@@ -76,8 +137,9 @@ do not measure build time or disk savings.
   boundaries. It now maps actual roots directly to the common logical roots.
 - A new test expected `/` after the remapped Rust target prefix. Windows
   `file!()` retained `\` separators. The test now compares path components.
-- Integration cleanup now terminates test-owned pending clients before it
-  stops the cache service after a failure.
+- Integration cleanup waits for test-owned pending clients before it stops the
+  cache service after a failure. A timeout retains the active sandbox client for
+  diagnosis; it does not terminate the process tree.
 - BuildXL's default output root created a temporary shared log junction beside
   the frontend. An explicit per-instance storage root now keeps this junction
   and other engine defaults inside the sidecar. Transient logs were removed

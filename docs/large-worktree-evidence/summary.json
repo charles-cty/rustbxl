@@ -1,0 +1,1956 @@
+{
+  "Integration": [
+    {
+      "passed": true,
+      "details": true,
+      "case": "shell-session-contract"
+    },
+    {
+      "passed": true,
+      "details": 22,
+      "case": "structured-graph-arguments"
+    },
+    {
+      "passed": true,
+      "details": {
+        "processPips": 12,
+        "cold": {
+          "instance": "alpha",
+          "project": "F:\\Temp\\rustbxl-large-20261116\\integration-dependency-views\\worktrees\\alpha",
+          "targetDirectory": "F:\\Temp\\rustbxl-large-20261116\\integration-dependency-views\\sidecar state\\instances\\alpha\\target",
+          "processCacheHits": 0,
+          "processExecuted": 12
+        },
+        "shared": {
+          "instance": "beta",
+          "project": "F:\\Temp\\rustbxl-large-20261116\\integration-dependency-views\\worktrees\\beta",
+          "targetDirectory": "F:\\Temp\\rustbxl-large-20261116\\integration-dependency-views\\sidecar state\\instances\\beta\\target",
+          "processCacheHits": 12,
+          "processExecuted": 0
+        }
+      },
+      "case": "cold-and-shared-cache"
+    },
+    {
+      "passed": true,
+      "details": {
+        "instance": "beta",
+        "project": "F:\\Temp\\rustbxl-large-20261116\\integration-dependency-views\\worktrees\\beta",
+        "targetDirectory": "F:\\Temp\\rustbxl-large-20261116\\integration-dependency-views\\sidecar state\\instances\\beta\\target",
+        "processCacheHits": 9,
+        "processExecuted": 3
+      },
+      "case": "ordinary-source"
+    },
+    {
+      "passed": true,
+      "details": {
+        "instance": "beta",
+        "project": "F:\\Temp\\rustbxl-large-20261116\\integration-dependency-views\\worktrees\\beta",
+        "targetDirectory": "F:\\Temp\\rustbxl-large-20261116\\integration-dependency-views\\sidecar state\\instances\\beta\\target",
+        "processCacheHits": 9,
+        "processExecuted": 3
+      },
+      "case": "new-module"
+    },
+    {
+      "passed": true,
+      "details": {
+        "instance": "beta",
+        "project": "F:\\Temp\\rustbxl-large-20261116\\integration-dependency-views\\worktrees\\beta",
+        "targetDirectory": "F:\\Temp\\rustbxl-large-20261116\\integration-dependency-views\\sidecar state\\instances\\beta\\target",
+        "processCacheHits": 8,
+        "processExecuted": 4
+      },
+      "case": "optional-file"
+    },
+    {
+      "passed": true,
+      "details": {
+        "instance": "beta",
+        "project": "F:\\Temp\\rustbxl-large-20261116\\integration-dependency-views\\worktrees\\beta",
+        "targetDirectory": "F:\\Temp\\rustbxl-large-20261116\\integration-dependency-views\\sidecar state\\instances\\beta\\target",
+        "processCacheHits": 8,
+        "processExecuted": 4
+      },
+      "case": "directory-member"
+    },
+    {
+      "passed": true,
+      "details": {
+        "instance": "beta",
+        "project": "F:\\Temp\\rustbxl-large-20261116\\integration-dependency-views\\worktrees\\beta",
+        "targetDirectory": "F:\\Temp\\rustbxl-large-20261116\\integration-dependency-views\\sidecar state\\instances\\beta\\target",
+        "processCacheHits": 8,
+        "processExecuted": 4
+      },
+      "case": "external-text"
+    },
+    {
+      "passed": true,
+      "details": {
+        "instance": "beta",
+        "project": "F:\\Temp\\rustbxl-large-20261116\\integration-dependency-views\\worktrees\\beta",
+        "targetDirectory": "F:\\Temp\\rustbxl-large-20261116\\integration-dependency-views\\sidecar state\\instances\\beta\\target",
+        "processCacheHits": 11,
+        "processExecuted": 1
+      },
+      "case": "same-directives"
+    },
+    {
+      "passed": true,
+      "details": {
+        "instance": "beta",
+        "project": "F:\\Temp\\rustbxl-large-20261116\\integration-dependency-views\\worktrees\\beta",
+        "targetDirectory": "F:\\Temp\\rustbxl-large-20261116\\integration-dependency-views\\sidecar state\\instances\\beta\\target",
+        "processCacheHits": 6,
+        "processExecuted": 6
+      },
+      "case": "build-script"
+    },
+    {
+      "passed": true,
+      "details": {
+        "instance": "beta",
+        "project": "F:\\Temp\\rustbxl-large-20261116\\integration-dependency-views\\worktrees\\beta",
+        "targetDirectory": "F:\\Temp\\rustbxl-large-20261116\\integration-dependency-views\\sidecar state\\instances\\beta\\target",
+        "processCacheHits": 10,
+        "processExecuted": 2
+      },
+      "case": "source-text"
+    },
+    {
+      "passed": true,
+      "details": [
+        "alpha",
+        "beta",
+        "gamma",
+        "delta",
+        "alpha-near",
+        "beta-near"
+      ],
+      "case": "six-concurrent-worktrees"
+    },
+    {
+      "passed": true,
+      "details": [
+        "rustbxl-fixture/extra"
+      ],
+      "case": "feature-recapture"
+    },
+    {
+      "passed": true,
+      "details": true,
+      "case": "non-invasive-and-read-only-dependencies"
+    }
+  ],
+  "MeasuredUtc": "2026-11-16T09:34:10.8282088Z",
+  "CompressionUsed": false,
+  "Startup": {
+    "CheckedUtc": "2026-11-16T09:31:38.4477666Z",
+    "StartLocal": "2026-11-16T14:47:05",
+    "NewPopupCount": 0,
+    "IntegrationCases": 14,
+    "PassedCases": 14,
+    "DependencyViewCases": 14,
+    "DependencyViewPassed": 14,
+    "ActiveProcesses": []
+  },
+  "RustcQueryIncremental": false,
+  "LargeGraphsPatched": true,
+  "WorktreesPerProject": 4,
+  "Projects": [
+    {
+      "Phases": [
+        {
+          "Clients": [
+            {
+              "Name": "rust-analyzer",
+              "Command": "build",
+              "Instance": "a",
+              "Label": "four-equal",
+              "Seconds": 50.3041291,
+              "StartUtc": "2026-11-16T09:05:17.1258411Z",
+              "ExitUtc": "2026-11-16T09:06:07.4299702Z",
+              "ExitCode": 0,
+              "Statistics": {
+                "instance": "a",
+                "project": "F:\\Temp\\rustbxl-large-20261116\\runs\\rust-analyzer\\a",
+                "targetDirectory": "F:\\Temp\\rustbxl-large-20261116\\shared-rust-analyzer\\instances\\a\\target",
+                "processCacheHits": 365,
+                "processExecuted": 0
+              },
+              "Output": "rustbxl-probe-SHARED-A\nrust-analyzer 0.0.0 (c75729d 2026-02-09)"
+            },
+            {
+              "Name": "rust-analyzer",
+              "Command": "build",
+              "Instance": "b",
+              "Label": "four-equal",
+              "Seconds": 66.9271708,
+              "StartUtc": "2026-11-16T09:05:17.3631721Z",
+              "ExitUtc": "2026-11-16T09:06:24.2903429Z",
+              "ExitCode": 0,
+              "Statistics": {
+                "instance": "b",
+                "project": "F:\\Temp\\rustbxl-large-20261116\\runs\\rust-analyzer\\b",
+                "targetDirectory": "F:\\Temp\\rustbxl-large-20261116\\shared-rust-analyzer\\instances\\b\\target",
+                "processCacheHits": 364,
+                "processExecuted": 1
+              },
+              "Output": "rustbxl-probe-SHARED-A\nrust-analyzer 0.0.0 (c75729d 2026-02-09)"
+            },
+            {
+              "Name": "rust-analyzer",
+              "Command": "build",
+              "Instance": "c",
+              "Label": "four-equal",
+              "Seconds": 66.7337814,
+              "StartUtc": "2026-11-16T09:05:17.5112996Z",
+              "ExitUtc": "2026-11-16T09:06:24.245081Z",
+              "ExitCode": 0,
+              "Statistics": {
+                "instance": "c",
+                "project": "F:\\Temp\\rustbxl-large-20261116\\runs\\rust-analyzer\\c",
+                "targetDirectory": "F:\\Temp\\rustbxl-large-20261116\\shared-rust-analyzer\\instances\\c\\target",
+                "processCacheHits": 364,
+                "processExecuted": 1
+              },
+              "Output": "rustbxl-probe-SHARED-A\nrust-analyzer 0.0.0 (c75729d 2026-02-09)"
+            },
+            {
+              "Name": "rust-analyzer",
+              "Command": "build",
+              "Instance": "d",
+              "Label": "four-equal",
+              "Seconds": 66.9295132,
+              "StartUtc": "2026-11-16T09:05:17.3305081Z",
+              "ExitUtc": "2026-11-16T09:06:24.2600213Z",
+              "ExitCode": 0,
+              "Statistics": {
+                "instance": "d",
+                "project": "F:\\Temp\\rustbxl-large-20261116\\runs\\rust-analyzer\\d",
+                "targetDirectory": "F:\\Temp\\rustbxl-large-20261116\\shared-rust-analyzer\\instances\\d\\target",
+                "processCacheHits": 364,
+                "processExecuted": 1
+              },
+              "Output": "rustbxl-probe-SHARED-A\nrust-analyzer 0.0.0 (c75729d 2026-02-09)"
+            }
+          ],
+          "AllFourOverlapSeconds": 50.0,
+          "Programs": [
+            {
+              "Passed": true,
+              "Name": "rust-analyzer",
+              "Output": "SOURCE_FILE@0..24\n  FN@0..24\n    FN_KW@0..2 \"fn\"\n    WHITESPACE@2..3 \" \"\n    NAME@3..8\n      IDENT@3..8 \"value\"\n    PARAM_LIST@8..10\n      L_PAREN@8..9 \"(\"\n      R_PAREN@9..10 \")\"\n    WHITESPACE@10..11 \" \"\n    RET_TYPE@11..17\n      THIN_ARROW@11..13 \"->\"\n      WHITESPACE@13..14 \" \"\n      PATH_TYPE@14..17\n        PATH@14..17\n          PATH_SEGMENT@14..17\n            NAME_REF@14..17\n              IDENT@14..17 \"i32\"\n    WHITESPACE@17..18 \" \"\n    BLOCK_EXPR@18..24\n      STMT_LIST@18..24\n        L_CURLY@18..19 \"{\"\n        WHITESPACE@19..20 \" \"\n        LITERAL@20..22\n          INT_NUMBER@20..22 \"42\"\n        WHITESPACE@22..23 \" \"\n        R_CURLY@23..24 \"}\"\n\n",
+              "Phase": "equal",
+              "Instance": "a",
+              "Marker": "SHARED-A"
+            },
+            {
+              "Passed": true,
+              "Name": "rust-analyzer",
+              "Output": "SOURCE_FILE@0..24\n  FN@0..24\n    FN_KW@0..2 \"fn\"\n    WHITESPACE@2..3 \" \"\n    NAME@3..8\n      IDENT@3..8 \"value\"\n    PARAM_LIST@8..10\n      L_PAREN@8..9 \"(\"\n      R_PAREN@9..10 \")\"\n    WHITESPACE@10..11 \" \"\n    RET_TYPE@11..17\n      THIN_ARROW@11..13 \"->\"\n      WHITESPACE@13..14 \" \"\n      PATH_TYPE@14..17\n        PATH@14..17\n          PATH_SEGMENT@14..17\n            NAME_REF@14..17\n              IDENT@14..17 \"i32\"\n    WHITESPACE@17..18 \" \"\n    BLOCK_EXPR@18..24\n      STMT_LIST@18..24\n        L_CURLY@18..19 \"{\"\n        WHITESPACE@19..20 \" \"\n        LITERAL@20..22\n          INT_NUMBER@20..22 \"42\"\n        WHITESPACE@22..23 \" \"\n        R_CURLY@23..24 \"}\"\n\n",
+              "Phase": "equal",
+              "Instance": "b",
+              "Marker": "SHARED-A"
+            },
+            {
+              "Passed": true,
+              "Name": "rust-analyzer",
+              "Output": "SOURCE_FILE@0..24\n  FN@0..24\n    FN_KW@0..2 \"fn\"\n    WHITESPACE@2..3 \" \"\n    NAME@3..8\n      IDENT@3..8 \"value\"\n    PARAM_LIST@8..10\n      L_PAREN@8..9 \"(\"\n      R_PAREN@9..10 \")\"\n    WHITESPACE@10..11 \" \"\n    RET_TYPE@11..17\n      THIN_ARROW@11..13 \"->\"\n      WHITESPACE@13..14 \" \"\n      PATH_TYPE@14..17\n        PATH@14..17\n          PATH_SEGMENT@14..17\n            NAME_REF@14..17\n              IDENT@14..17 \"i32\"\n    WHITESPACE@17..18 \" \"\n    BLOCK_EXPR@18..24\n      STMT_LIST@18..24\n        L_CURLY@18..19 \"{\"\n        WHITESPACE@19..20 \" \"\n        LITERAL@20..22\n          INT_NUMBER@20..22 \"42\"\n        WHITESPACE@22..23 \" \"\n        R_CURLY@23..24 \"}\"\n\n",
+              "Phase": "equal",
+              "Instance": "c",
+              "Marker": "SHARED-A"
+            },
+            {
+              "Passed": true,
+              "Name": "rust-analyzer",
+              "Output": "SOURCE_FILE@0..24\n  FN@0..24\n    FN_KW@0..2 \"fn\"\n    WHITESPACE@2..3 \" \"\n    NAME@3..8\n      IDENT@3..8 \"value\"\n    PARAM_LIST@8..10\n      L_PAREN@8..9 \"(\"\n      R_PAREN@9..10 \")\"\n    WHITESPACE@10..11 \" \"\n    RET_TYPE@11..17\n      THIN_ARROW@11..13 \"->\"\n      WHITESPACE@13..14 \" \"\n      PATH_TYPE@14..17\n        PATH@14..17\n          PATH_SEGMENT@14..17\n            NAME_REF@14..17\n              IDENT@14..17 \"i32\"\n    WHITESPACE@17..18 \" \"\n    BLOCK_EXPR@18..24\n      STMT_LIST@18..24\n        L_CURLY@18..19 \"{\"\n        WHITESPACE@19..20 \" \"\n        LITERAL@20..22\n          INT_NUMBER@20..22 \"42\"\n        WHITESPACE@22..23 \" \"\n        R_CURLY@23..24 \"}\"\n\n",
+              "Phase": "equal",
+              "Instance": "d",
+              "Marker": "SHARED-A"
+            }
+          ],
+          "Phase": "equal"
+        },
+        {
+          "Clients": [
+            {
+              "Name": "rust-analyzer",
+              "Command": "build",
+              "Instance": "a",
+              "Label": "four-edit",
+              "Seconds": 23.3849938,
+              "StartUtc": "2026-11-16T09:09:56.129171Z",
+              "ExitUtc": "2026-11-16T09:10:19.5141648Z",
+              "ExitCode": 0,
+              "Statistics": {
+                "instance": "a",
+                "project": "F:\\Temp\\rustbxl-large-20261116\\runs\\rust-analyzer\\a",
+                "targetDirectory": "F:\\Temp\\rustbxl-large-20261116\\shared-rust-analyzer\\instances\\a\\target",
+                "processCacheHits": 363,
+                "processExecuted": 2
+              },
+              "Output": "rustbxl-probe-FOUR-A\nrust-analyzer 0.0.0 (c75729d 2026-02-09)"
+            },
+            {
+              "Name": "rust-analyzer",
+              "Command": "build",
+              "Instance": "b",
+              "Label": "four-edit",
+              "Seconds": 23.2354006,
+              "StartUtc": "2026-11-16T09:09:56.1512502Z",
+              "ExitUtc": "2026-11-16T09:10:19.3866508Z",
+              "ExitCode": 0,
+              "Statistics": {
+                "instance": "b",
+                "project": "F:\\Temp\\rustbxl-large-20261116\\runs\\rust-analyzer\\b",
+                "targetDirectory": "F:\\Temp\\rustbxl-large-20261116\\shared-rust-analyzer\\instances\\b\\target",
+                "processCacheHits": 363,
+                "processExecuted": 2
+              },
+              "Output": "rustbxl-probe-FOUR-B\nrust-analyzer 0.0.0 (c75729d 2026-02-09)"
+            },
+            {
+              "Name": "rust-analyzer",
+              "Command": "build",
+              "Instance": "c",
+              "Label": "four-edit",
+              "Seconds": 23.2776322,
+              "StartUtc": "2026-11-16T09:09:56.1335466Z",
+              "ExitUtc": "2026-11-16T09:10:19.4111788Z",
+              "ExitCode": 0,
+              "Statistics": {
+                "instance": "c",
+                "project": "F:\\Temp\\rustbxl-large-20261116\\runs\\rust-analyzer\\c",
+                "targetDirectory": "F:\\Temp\\rustbxl-large-20261116\\shared-rust-analyzer\\instances\\c\\target",
+                "processCacheHits": 363,
+                "processExecuted": 2
+              },
+              "Output": "rustbxl-probe-FOUR-C\nrust-analyzer 0.0.0 (c75729d 2026-02-09)"
+            },
+            {
+              "Name": "rust-analyzer",
+              "Command": "build",
+              "Instance": "d",
+              "Label": "four-edit",
+              "Seconds": 23.4463236,
+              "StartUtc": "2026-11-16T09:09:56.1911171Z",
+              "ExitUtc": "2026-11-16T09:10:19.6374407Z",
+              "ExitCode": 0,
+              "Statistics": {
+                "instance": "d",
+                "project": "F:\\Temp\\rustbxl-large-20261116\\runs\\rust-analyzer\\d",
+                "targetDirectory": "F:\\Temp\\rustbxl-large-20261116\\shared-rust-analyzer\\instances\\d\\target",
+                "processCacheHits": 363,
+                "processExecuted": 2
+              },
+              "Output": "rustbxl-probe-FOUR-D\nrust-analyzer 0.0.0 (c75729d 2026-02-09)"
+            }
+          ],
+          "AllFourOverlapSeconds": 23.0,
+          "Programs": [
+            {
+              "Passed": true,
+              "Instance": "a",
+              "Output": "SOURCE_FILE@0..24\n  FN@0..24\n    FN_KW@0..2 \"fn\"\n    WHITESPACE@2..3 \" \"\n    NAME@3..8\n      IDENT@3..8 \"value\"\n    PARAM_LIST@8..10\n      L_PAREN@8..9 \"(\"\n      R_PAREN@9..10 \")\"\n    WHITESPACE@10..11 \" \"\n    RET_TYPE@11..17\n      THIN_ARROW@11..13 \"->\"\n      WHITESPACE@13..14 \" \"\n      PATH_TYPE@14..17\n        PATH@14..17\n          PATH_SEGMENT@14..17\n            NAME_REF@14..17\n              IDENT@14..17 \"i32\"\n    WHITESPACE@17..18 \" \"\n    BLOCK_EXPR@18..24\n      STMT_LIST@18..24\n        L_CURLY@18..19 \"{\"\n        WHITESPACE@19..20 \" \"\n        LITERAL@20..22\n          INT_NUMBER@20..22 \"42\"\n        WHITESPACE@22..23 \" \"\n        R_CURLY@23..24 \"}\"\n\n",
+              "Marker": "FOUR-A",
+              "Phase": "edit",
+              "Name": "rust-analyzer"
+            },
+            {
+              "Passed": true,
+              "Instance": "b",
+              "Output": "SOURCE_FILE@0..24\n  FN@0..24\n    FN_KW@0..2 \"fn\"\n    WHITESPACE@2..3 \" \"\n    NAME@3..8\n      IDENT@3..8 \"value\"\n    PARAM_LIST@8..10\n      L_PAREN@8..9 \"(\"\n      R_PAREN@9..10 \")\"\n    WHITESPACE@10..11 \" \"\n    RET_TYPE@11..17\n      THIN_ARROW@11..13 \"->\"\n      WHITESPACE@13..14 \" \"\n      PATH_TYPE@14..17\n        PATH@14..17\n          PATH_SEGMENT@14..17\n            NAME_REF@14..17\n              IDENT@14..17 \"i32\"\n    WHITESPACE@17..18 \" \"\n    BLOCK_EXPR@18..24\n      STMT_LIST@18..24\n        L_CURLY@18..19 \"{\"\n        WHITESPACE@19..20 \" \"\n        LITERAL@20..22\n          INT_NUMBER@20..22 \"42\"\n        WHITESPACE@22..23 \" \"\n        R_CURLY@23..24 \"}\"\n\n",
+              "Marker": "FOUR-B",
+              "Phase": "edit",
+              "Name": "rust-analyzer"
+            },
+            {
+              "Passed": true,
+              "Instance": "c",
+              "Output": "SOURCE_FILE@0..24\n  FN@0..24\n    FN_KW@0..2 \"fn\"\n    WHITESPACE@2..3 \" \"\n    NAME@3..8\n      IDENT@3..8 \"value\"\n    PARAM_LIST@8..10\n      L_PAREN@8..9 \"(\"\n      R_PAREN@9..10 \")\"\n    WHITESPACE@10..11 \" \"\n    RET_TYPE@11..17\n      THIN_ARROW@11..13 \"->\"\n      WHITESPACE@13..14 \" \"\n      PATH_TYPE@14..17\n        PATH@14..17\n          PATH_SEGMENT@14..17\n            NAME_REF@14..17\n              IDENT@14..17 \"i32\"\n    WHITESPACE@17..18 \" \"\n    BLOCK_EXPR@18..24\n      STMT_LIST@18..24\n        L_CURLY@18..19 \"{\"\n        WHITESPACE@19..20 \" \"\n        LITERAL@20..22\n          INT_NUMBER@20..22 \"42\"\n        WHITESPACE@22..23 \" \"\n        R_CURLY@23..24 \"}\"\n\n",
+              "Marker": "FOUR-C",
+              "Phase": "edit",
+              "Name": "rust-analyzer"
+            },
+            {
+              "Passed": true,
+              "Instance": "d",
+              "Output": "SOURCE_FILE@0..24\n  FN@0..24\n    FN_KW@0..2 \"fn\"\n    WHITESPACE@2..3 \" \"\n    NAME@3..8\n      IDENT@3..8 \"value\"\n    PARAM_LIST@8..10\n      L_PAREN@8..9 \"(\"\n      R_PAREN@9..10 \")\"\n    WHITESPACE@10..11 \" \"\n    RET_TYPE@11..17\n      THIN_ARROW@11..13 \"->\"\n      WHITESPACE@13..14 \" \"\n      PATH_TYPE@14..17\n        PATH@14..17\n          PATH_SEGMENT@14..17\n            NAME_REF@14..17\n              IDENT@14..17 \"i32\"\n    WHITESPACE@17..18 \" \"\n    BLOCK_EXPR@18..24\n      STMT_LIST@18..24\n        L_CURLY@18..19 \"{\"\n        WHITESPACE@19..20 \" \"\n        LITERAL@20..22\n          INT_NUMBER@20..22 \"42\"\n        WHITESPACE@22..23 \" \"\n        R_CURLY@23..24 \"}\"\n\n",
+              "Marker": "FOUR-D",
+              "Phase": "edit",
+              "Name": "rust-analyzer"
+            }
+          ],
+          "Phase": "edit"
+        },
+        {
+          "Clients": [
+            {
+              "Name": "rust-analyzer",
+              "Command": "build",
+              "Instance": "a",
+              "Label": "four-restore",
+              "Seconds": 15.1054882,
+              "StartUtc": "2026-11-16T09:12:00.5665648Z",
+              "ExitUtc": "2026-11-16T09:12:15.672053Z",
+              "ExitCode": 0,
+              "Statistics": {
+                "instance": "a",
+                "project": "F:\\Temp\\rustbxl-large-20261116\\runs\\rust-analyzer\\a",
+                "targetDirectory": "F:\\Temp\\rustbxl-large-20261116\\shared-rust-analyzer\\instances\\a\\target",
+                "processCacheHits": 365,
+                "processExecuted": 0
+              },
+              "Output": "rustbxl-probe-SHARED-A\nrust-analyzer 0.0.0 (c75729d 2026-02-09)"
+            },
+            {
+              "Name": "rust-analyzer",
+              "Command": "build",
+              "Instance": "b",
+              "Label": "four-restore",
+              "Seconds": 15.0686838,
+              "StartUtc": "2026-11-16T09:12:00.6190658Z",
+              "ExitUtc": "2026-11-16T09:12:15.6877496Z",
+              "ExitCode": 0,
+              "Statistics": {
+                "instance": "b",
+                "project": "F:\\Temp\\rustbxl-large-20261116\\runs\\rust-analyzer\\b",
+                "targetDirectory": "F:\\Temp\\rustbxl-large-20261116\\shared-rust-analyzer\\instances\\b\\target",
+                "processCacheHits": 365,
+                "processExecuted": 0
+              },
+              "Output": "rustbxl-probe-SHARED-A\nrust-analyzer 0.0.0 (c75729d 2026-02-09)"
+            },
+            {
+              "Name": "rust-analyzer",
+              "Command": "build",
+              "Instance": "c",
+              "Label": "four-restore",
+              "Seconds": 15.0537011,
+              "StartUtc": "2026-11-16T09:12:00.6183708Z",
+              "ExitUtc": "2026-11-16T09:12:15.6720719Z",
+              "ExitCode": 0,
+              "Statistics": {
+                "instance": "c",
+                "project": "F:\\Temp\\rustbxl-large-20261116\\runs\\rust-analyzer\\c",
+                "targetDirectory": "F:\\Temp\\rustbxl-large-20261116\\shared-rust-analyzer\\instances\\c\\target",
+                "processCacheHits": 365,
+                "processExecuted": 0
+              },
+              "Output": "rustbxl-probe-SHARED-A\nrust-analyzer 0.0.0 (c75729d 2026-02-09)"
+            },
+            {
+              "Name": "rust-analyzer",
+              "Command": "build",
+              "Instance": "d",
+              "Label": "four-restore",
+              "Seconds": 15.0557939,
+              "StartUtc": "2026-11-16T09:12:00.6210654Z",
+              "ExitUtc": "2026-11-16T09:12:15.6768593Z",
+              "ExitCode": 0,
+              "Statistics": {
+                "instance": "d",
+                "project": "F:\\Temp\\rustbxl-large-20261116\\runs\\rust-analyzer\\d",
+                "targetDirectory": "F:\\Temp\\rustbxl-large-20261116\\shared-rust-analyzer\\instances\\d\\target",
+                "processCacheHits": 365,
+                "processExecuted": 0
+              },
+              "Output": "rustbxl-probe-SHARED-A\nrust-analyzer 0.0.0 (c75729d 2026-02-09)"
+            }
+          ],
+          "AllFourOverlapSeconds": 15.0,
+          "Programs": [
+            {
+              "Marker": "SHARED-A",
+              "Instance": "a",
+              "Name": "rust-analyzer",
+              "Passed": true,
+              "Phase": "restore",
+              "Output": "SOURCE_FILE@0..24\n  FN@0..24\n    FN_KW@0..2 \"fn\"\n    WHITESPACE@2..3 \" \"\n    NAME@3..8\n      IDENT@3..8 \"value\"\n    PARAM_LIST@8..10\n      L_PAREN@8..9 \"(\"\n      R_PAREN@9..10 \")\"\n    WHITESPACE@10..11 \" \"\n    RET_TYPE@11..17\n      THIN_ARROW@11..13 \"->\"\n      WHITESPACE@13..14 \" \"\n      PATH_TYPE@14..17\n        PATH@14..17\n          PATH_SEGMENT@14..17\n            NAME_REF@14..17\n              IDENT@14..17 \"i32\"\n    WHITESPACE@17..18 \" \"\n    BLOCK_EXPR@18..24\n      STMT_LIST@18..24\n        L_CURLY@18..19 \"{\"\n        WHITESPACE@19..20 \" \"\n        LITERAL@20..22\n          INT_NUMBER@20..22 \"42\"\n        WHITESPACE@22..23 \" \"\n        R_CURLY@23..24 \"}\"\n\n"
+            },
+            {
+              "Marker": "SHARED-A",
+              "Instance": "b",
+              "Name": "rust-analyzer",
+              "Passed": true,
+              "Phase": "restore",
+              "Output": "SOURCE_FILE@0..24\n  FN@0..24\n    FN_KW@0..2 \"fn\"\n    WHITESPACE@2..3 \" \"\n    NAME@3..8\n      IDENT@3..8 \"value\"\n    PARAM_LIST@8..10\n      L_PAREN@8..9 \"(\"\n      R_PAREN@9..10 \")\"\n    WHITESPACE@10..11 \" \"\n    RET_TYPE@11..17\n      THIN_ARROW@11..13 \"->\"\n      WHITESPACE@13..14 \" \"\n      PATH_TYPE@14..17\n        PATH@14..17\n          PATH_SEGMENT@14..17\n            NAME_REF@14..17\n              IDENT@14..17 \"i32\"\n    WHITESPACE@17..18 \" \"\n    BLOCK_EXPR@18..24\n      STMT_LIST@18..24\n        L_CURLY@18..19 \"{\"\n        WHITESPACE@19..20 \" \"\n        LITERAL@20..22\n          INT_NUMBER@20..22 \"42\"\n        WHITESPACE@22..23 \" \"\n        R_CURLY@23..24 \"}\"\n\n"
+            },
+            {
+              "Marker": "SHARED-A",
+              "Instance": "c",
+              "Name": "rust-analyzer",
+              "Passed": true,
+              "Phase": "restore",
+              "Output": "SOURCE_FILE@0..24\n  FN@0..24\n    FN_KW@0..2 \"fn\"\n    WHITESPACE@2..3 \" \"\n    NAME@3..8\n      IDENT@3..8 \"value\"\n    PARAM_LIST@8..10\n      L_PAREN@8..9 \"(\"\n      R_PAREN@9..10 \")\"\n    WHITESPACE@10..11 \" \"\n    RET_TYPE@11..17\n      THIN_ARROW@11..13 \"->\"\n      WHITESPACE@13..14 \" \"\n      PATH_TYPE@14..17\n        PATH@14..17\n          PATH_SEGMENT@14..17\n            NAME_REF@14..17\n              IDENT@14..17 \"i32\"\n    WHITESPACE@17..18 \" \"\n    BLOCK_EXPR@18..24\n      STMT_LIST@18..24\n        L_CURLY@18..19 \"{\"\n        WHITESPACE@19..20 \" \"\n        LITERAL@20..22\n          INT_NUMBER@20..22 \"42\"\n        WHITESPACE@22..23 \" \"\n        R_CURLY@23..24 \"}\"\n\n"
+            },
+            {
+              "Marker": "SHARED-A",
+              "Instance": "d",
+              "Name": "rust-analyzer",
+              "Passed": true,
+              "Phase": "restore",
+              "Output": "SOURCE_FILE@0..24\n  FN@0..24\n    FN_KW@0..2 \"fn\"\n    WHITESPACE@2..3 \" \"\n    NAME@3..8\n      IDENT@3..8 \"value\"\n    PARAM_LIST@8..10\n      L_PAREN@8..9 \"(\"\n      R_PAREN@9..10 \")\"\n    WHITESPACE@10..11 \" \"\n    RET_TYPE@11..17\n      THIN_ARROW@11..13 \"->\"\n      WHITESPACE@13..14 \" \"\n      PATH_TYPE@14..17\n        PATH@14..17\n          PATH_SEGMENT@14..17\n            NAME_REF@14..17\n              IDENT@14..17 \"i32\"\n    WHITESPACE@17..18 \" \"\n    BLOCK_EXPR@18..24\n      STMT_LIST@18..24\n        L_CURLY@18..19 \"{\"\n        WHITESPACE@19..20 \" \"\n        LITERAL@20..22\n          INT_NUMBER@20..22 \"42\"\n        WHITESPACE@22..23 \" \"\n        R_CURLY@23..24 \"}\"\n\n"
+            }
+          ],
+          "Phase": "restore"
+        }
+      ],
+      "SharedFinalBytes": 7169866576,
+      "NativeBytes": 13370451200,
+      "NativeTargets": [
+        {
+          "Storage": {
+            "Files": 8046,
+            "UniqueFiles": 7771,
+            "LogicalBytes": 3955892341,
+            "UniqueLogicalBytes": 3337528812,
+            "UniqueAllocatedBytes": 3350700352,
+            "HardlinkedFiles": 550
+          },
+          "Path": "F:\\Temp\\rustbxl-large-20261116\\runs\\rust-analyzer\\cargo-a"
+        },
+        {
+          "Storage": {
+            "Files": 8046,
+            "UniqueFiles": 7771,
+            "LogicalBytes": 3955837447,
+            "UniqueLogicalBytes": 3337473918,
+            "UniqueAllocatedBytes": 3350651200,
+            "HardlinkedFiles": 550
+          },
+          "Path": "F:\\Temp\\rustbxl-large-20261116\\runs\\rust-analyzer\\cargo-b"
+        },
+        {
+          "Storage": {
+            "Files": 7851,
+            "UniqueFiles": 7766,
+            "LogicalBytes": 3921454526,
+            "UniqueLogicalBytes": 3321384311,
+            "UniqueAllocatedBytes": 3334549824,
+            "HardlinkedFiles": 170
+          },
+          "Path": "F:\\Temp\\rustbxl-large-20261116\\runs\\rust-analyzer\\cargo-c"
+        },
+        {
+          "Storage": {
+            "Files": 7851,
+            "UniqueFiles": 7766,
+            "LogicalBytes": 3921454543,
+            "UniqueLogicalBytes": 3321384328,
+            "UniqueAllocatedBytes": 3334549824,
+            "HardlinkedFiles": 170
+          },
+          "Path": "F:\\Temp\\rustbxl-large-20261116\\runs\\rust-analyzer\\cargo-d"
+        }
+      ],
+      "WarmMedianSeconds": {
+        "buildxl": 15.376527,
+        "cargo": 6.6251364
+      },
+      "Storage": {
+        "Name": "rust-analyzer",
+        "Label": "final",
+        "MeasuredUtc": "2026-11-16T09:31:40.7496989Z",
+        "Targets": {
+          "Files": 35956,
+          "UniqueFiles": 1008,
+          "LogicalBytes": 68189386388,
+          "UniqueLogicalBytes": 1700486149,
+          "UniqueAllocatedBytes": 1702357120,
+          "HardlinkedFiles": 35944
+        },
+        "TargetsAndCache": {
+          "Files": 39141,
+          "UniqueFiles": 3197,
+          "LogicalBytes": 75351896352,
+          "UniqueLogicalBytes": 7162509964,
+          "UniqueAllocatedBytes": 7169866576,
+          "HardlinkedFiles": 36991
+        },
+        "EntireStateExcludingJunctions": {
+          "Files": 40330,
+          "UniqueFiles": 4254,
+          "LogicalBytes": 75721505963,
+          "UniqueLogicalBytes": 7486481686,
+          "UniqueAllocatedBytes": 7495356536,
+          "HardlinkedFiles": 37146
+        },
+        "CompressedFiles": 0
+      },
+      "SavedPercent": 46.375283311306646,
+      "WarmSamples": [
+        {
+          "Name": "rust-analyzer",
+          "Condition": "cargo",
+          "Label": "0",
+          "Seconds": 18.5778247,
+          "StartUtc": "2026-11-16T09:17:16.650932Z",
+          "ExitUtc": "2026-11-16T09:17:35.2287567Z",
+          "Output": "rustbxl-probe-WARM-0\nrust-analyzer 0.0.0 (c75729d 2026-02-09)"
+        },
+        {
+          "Name": "rust-analyzer",
+          "Condition": "buildxl",
+          "Label": "0",
+          "Seconds": 17.2232369,
+          "StartUtc": "2026-11-16T09:17:35.9799146Z",
+          "ExitUtc": "2026-11-16T09:17:53.2031515Z",
+          "Output": "rustbxl-probe-WARM-0\nrust-analyzer 0.0.0 (c75729d 2026-02-09)",
+          "Statistics": {
+            "instance": "a",
+            "project": "F:\\Temp\\rustbxl-large-20261116\\runs\\rust-analyzer\\a",
+            "targetDirectory": "F:\\Temp\\rustbxl-large-20261116\\shared-rust-analyzer\\instances\\a\\target",
+            "processCacheHits": 363,
+            "processExecuted": 2
+          }
+        },
+        {
+          "Name": "rust-analyzer",
+          "Condition": "buildxl",
+          "Label": "1",
+          "Seconds": 15.3045638,
+          "StartUtc": "2026-11-16T09:17:53.9228252Z",
+          "ExitUtc": "2026-11-16T09:18:09.227389Z",
+          "Output": "rustbxl-probe-WARM-1\nrust-analyzer 0.0.0 (c75729d 2026-02-09)",
+          "Statistics": {
+            "instance": "a",
+            "project": "F:\\Temp\\rustbxl-large-20261116\\runs\\rust-analyzer\\a",
+            "targetDirectory": "F:\\Temp\\rustbxl-large-20261116\\shared-rust-analyzer\\instances\\a\\target",
+            "processCacheHits": 363,
+            "processExecuted": 2
+          }
+        },
+        {
+          "Name": "rust-analyzer",
+          "Condition": "cargo",
+          "Label": "1",
+          "Seconds": 6.6251364,
+          "StartUtc": "2026-11-16T09:18:09.9298098Z",
+          "ExitUtc": "2026-11-16T09:18:16.5549462Z",
+          "Output": "rustbxl-probe-WARM-1\nrust-analyzer 0.0.0 (c75729d 2026-02-09)"
+        },
+        {
+          "Name": "rust-analyzer",
+          "Condition": "cargo",
+          "Label": "2",
+          "Seconds": 6.6597064,
+          "StartUtc": "2026-11-16T09:18:17.2963611Z",
+          "ExitUtc": "2026-11-16T09:18:23.9560675Z",
+          "Output": "rustbxl-probe-WARM-2\nrust-analyzer 0.0.0 (c75729d 2026-02-09)"
+        },
+        {
+          "Name": "rust-analyzer",
+          "Condition": "buildxl",
+          "Label": "2",
+          "Seconds": 15.8246371,
+          "StartUtc": "2026-11-16T09:18:24.6613952Z",
+          "ExitUtc": "2026-11-16T09:18:40.4860323Z",
+          "Output": "rustbxl-probe-WARM-2\nrust-analyzer 0.0.0 (c75729d 2026-02-09)",
+          "Statistics": {
+            "instance": "a",
+            "project": "F:\\Temp\\rustbxl-large-20261116\\runs\\rust-analyzer\\a",
+            "targetDirectory": "F:\\Temp\\rustbxl-large-20261116\\shared-rust-analyzer\\instances\\a\\target",
+            "processCacheHits": 363,
+            "processExecuted": 2
+          }
+        },
+        {
+          "Name": "rust-analyzer",
+          "Condition": "buildxl",
+          "Label": "3",
+          "Seconds": 15.376527,
+          "StartUtc": "2026-11-16T09:18:41.1952913Z",
+          "ExitUtc": "2026-11-16T09:18:56.5718183Z",
+          "Output": "rustbxl-probe-WARM-3\nrust-analyzer 0.0.0 (c75729d 2026-02-09)",
+          "Statistics": {
+            "instance": "a",
+            "project": "F:\\Temp\\rustbxl-large-20261116\\runs\\rust-analyzer\\a",
+            "targetDirectory": "F:\\Temp\\rustbxl-large-20261116\\shared-rust-analyzer\\instances\\a\\target",
+            "processCacheHits": 363,
+            "processExecuted": 2
+          }
+        },
+        {
+          "Name": "rust-analyzer",
+          "Condition": "cargo",
+          "Label": "3",
+          "Seconds": 6.5723941,
+          "StartUtc": "2026-11-16T09:18:57.2708344Z",
+          "ExitUtc": "2026-11-16T09:19:03.8432285Z",
+          "Output": "rustbxl-probe-WARM-3\nrust-analyzer 0.0.0 (c75729d 2026-02-09)"
+        },
+        {
+          "Name": "rust-analyzer",
+          "Condition": "cargo",
+          "Label": "restore",
+          "Seconds": 6.5914553,
+          "StartUtc": "2026-11-16T09:19:04.5513306Z",
+          "ExitUtc": "2026-11-16T09:19:11.1427859Z",
+          "Output": "rustbxl-probe-SHARED-A\nrust-analyzer 0.0.0 (c75729d 2026-02-09)"
+        },
+        {
+          "Name": "rust-analyzer",
+          "Condition": "buildxl",
+          "Label": "restore",
+          "Seconds": 9.8693343,
+          "StartUtc": "2026-11-16T09:19:11.8476822Z",
+          "ExitUtc": "2026-11-16T09:19:21.7170165Z",
+          "Output": "rustbxl-probe-SHARED-A\nrust-analyzer 0.0.0 (c75729d 2026-02-09)",
+          "Statistics": {
+            "instance": "a",
+            "project": "F:\\Temp\\rustbxl-large-20261116\\runs\\rust-analyzer\\a",
+            "targetDirectory": "F:\\Temp\\rustbxl-large-20261116\\shared-rust-analyzer\\instances\\a\\target",
+            "processCacheHits": 365,
+            "processExecuted": 0
+          }
+        }
+      ],
+      "SharedEqualBytes": 2122070040,
+      "EntireStateBytes": 7495356536,
+      "Name": "rust-analyzer"
+    },
+    {
+      "Phases": [
+        {
+          "Clients": [
+            {
+              "Name": "biome",
+              "Command": "build",
+              "Instance": "a",
+              "Label": "four-equal",
+              "Seconds": 23.5703301,
+              "StartUtc": "2026-11-16T09:07:18.4394696Z",
+              "ExitUtc": "2026-11-16T09:07:42.0097997Z",
+              "ExitCode": 0,
+              "Statistics": {
+                "instance": "a",
+                "project": "F:\\Temp\\rustbxl-large-20261116\\runs\\biome\\a",
+                "targetDirectory": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\instances\\a\\target",
+                "processCacheHits": 493,
+                "processExecuted": 0
+              },
+              "Output": "rustbxl-probe-SHARED-A\nVersion: 0.0.0\n"
+            },
+            {
+              "Name": "biome",
+              "Command": "build",
+              "Instance": "b",
+              "Label": "four-equal",
+              "Seconds": 51.9737776,
+              "StartUtc": "2026-11-16T09:07:18.4398519Z",
+              "ExitUtc": "2026-11-16T09:08:10.4136295Z",
+              "ExitCode": 0,
+              "Statistics": {
+                "instance": "b",
+                "project": "F:\\Temp\\rustbxl-large-20261116\\runs\\biome\\b",
+                "targetDirectory": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\instances\\b\\target",
+                "processCacheHits": 493,
+                "processExecuted": 0
+              },
+              "Output": "rustbxl-probe-SHARED-A\nVersion: 0.0.0\n"
+            },
+            {
+              "Name": "biome",
+              "Command": "build",
+              "Instance": "c",
+              "Label": "four-equal",
+              "Seconds": 51.8914681,
+              "StartUtc": "2026-11-16T09:07:18.4397977Z",
+              "ExitUtc": "2026-11-16T09:08:10.3312658Z",
+              "ExitCode": 0,
+              "Statistics": {
+                "instance": "c",
+                "project": "F:\\Temp\\rustbxl-large-20261116\\runs\\biome\\c",
+                "targetDirectory": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\instances\\c\\target",
+                "processCacheHits": 493,
+                "processExecuted": 0
+              },
+              "Output": "rustbxl-probe-SHARED-A\nVersion: 0.0.0\n"
+            },
+            {
+              "Name": "biome",
+              "Command": "build",
+              "Instance": "d",
+              "Label": "four-equal",
+              "Seconds": 51.8077001,
+              "StartUtc": "2026-11-16T09:07:18.5544784Z",
+              "ExitUtc": "2026-11-16T09:08:10.3621785Z",
+              "ExitCode": 0,
+              "Statistics": {
+                "instance": "d",
+                "project": "F:\\Temp\\rustbxl-large-20261116\\runs\\biome\\d",
+                "targetDirectory": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\instances\\d\\target",
+                "processCacheHits": 493,
+                "processExecuted": 0
+              },
+              "Output": "rustbxl-probe-SHARED-A\nVersion: 0.0.0\n"
+            }
+          ],
+          "AllFourOverlapSeconds": 24.0,
+          "Programs": [
+            {
+              "Phase": "equal",
+              "Passed": true,
+              "Output": "function value() {\n\treturn 42;\n}\n",
+              "Name": "biome",
+              "Instance": "a",
+              "Marker": "SHARED-A"
+            },
+            {
+              "Phase": "equal",
+              "Passed": true,
+              "Output": "function value() {\n\treturn 42;\n}\n",
+              "Name": "biome",
+              "Instance": "b",
+              "Marker": "SHARED-A"
+            },
+            {
+              "Phase": "equal",
+              "Passed": true,
+              "Output": "function value() {\n\treturn 42;\n}\n",
+              "Name": "biome",
+              "Instance": "c",
+              "Marker": "SHARED-A"
+            },
+            {
+              "Phase": "equal",
+              "Passed": true,
+              "Output": "function value() {\n\treturn 42;\n}\n",
+              "Name": "biome",
+              "Instance": "d",
+              "Marker": "SHARED-A"
+            }
+          ],
+          "Phase": "equal"
+        },
+        {
+          "Clients": [
+            {
+              "Name": "biome",
+              "Command": "build",
+              "Instance": "a",
+              "Label": "four-edit",
+              "Seconds": 52.044172,
+              "StartUtc": "2026-11-16T09:10:43.3187221Z",
+              "ExitUtc": "2026-11-16T09:11:35.3628941Z",
+              "ExitCode": 0,
+              "Statistics": {
+                "instance": "a",
+                "project": "F:\\Temp\\rustbxl-large-20261116\\runs\\biome\\a",
+                "targetDirectory": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\instances\\a\\target",
+                "processCacheHits": 491,
+                "processExecuted": 2
+              },
+              "Output": "rustbxl-probe-FOUR-A\nVersion: 0.0.0\n"
+            },
+            {
+              "Name": "biome",
+              "Command": "build",
+              "Instance": "b",
+              "Label": "four-edit",
+              "Seconds": 51.6451091,
+              "StartUtc": "2026-11-16T09:10:43.3139036Z",
+              "ExitUtc": "2026-11-16T09:11:34.9590127Z",
+              "ExitCode": 0,
+              "Statistics": {
+                "instance": "b",
+                "project": "F:\\Temp\\rustbxl-large-20261116\\runs\\biome\\b",
+                "targetDirectory": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\instances\\b\\target",
+                "processCacheHits": 491,
+                "processExecuted": 2
+              },
+              "Output": "rustbxl-probe-FOUR-B\nVersion: 0.0.0\n"
+            },
+            {
+              "Name": "biome",
+              "Command": "build",
+              "Instance": "c",
+              "Label": "four-edit",
+              "Seconds": 52.1917175,
+              "StartUtc": "2026-11-16T09:10:43.4041597Z",
+              "ExitUtc": "2026-11-16T09:11:35.5958772Z",
+              "ExitCode": 0,
+              "Statistics": {
+                "instance": "c",
+                "project": "F:\\Temp\\rustbxl-large-20261116\\runs\\biome\\c",
+                "targetDirectory": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\instances\\c\\target",
+                "processCacheHits": 491,
+                "processExecuted": 2
+              },
+              "Output": "rustbxl-probe-FOUR-C\nVersion: 0.0.0\n"
+            },
+            {
+              "Name": "biome",
+              "Command": "build",
+              "Instance": "d",
+              "Label": "four-edit",
+              "Seconds": 52.2052904,
+              "StartUtc": "2026-11-16T09:10:43.3747234Z",
+              "ExitUtc": "2026-11-16T09:11:35.5800138Z",
+              "ExitCode": 0,
+              "Statistics": {
+                "instance": "d",
+                "project": "F:\\Temp\\rustbxl-large-20261116\\runs\\biome\\d",
+                "targetDirectory": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\instances\\d\\target",
+                "processCacheHits": 491,
+                "processExecuted": 2
+              },
+              "Output": "rustbxl-probe-FOUR-D\nVersion: 0.0.0\n"
+            }
+          ],
+          "AllFourOverlapSeconds": 51.0,
+          "Programs": [
+            {
+              "Instance": "a",
+              "Output": "function value() {\n\treturn 42;\n}\n",
+              "Phase": "edit",
+              "Marker": "FOUR-A",
+              "Name": "biome",
+              "Passed": true
+            },
+            {
+              "Instance": "b",
+              "Output": "function value() {\n\treturn 42;\n}\n",
+              "Phase": "edit",
+              "Marker": "FOUR-B",
+              "Name": "biome",
+              "Passed": true
+            },
+            {
+              "Instance": "c",
+              "Output": "function value() {\n\treturn 42;\n}\n",
+              "Phase": "edit",
+              "Marker": "FOUR-C",
+              "Name": "biome",
+              "Passed": true
+            },
+            {
+              "Instance": "d",
+              "Output": "function value() {\n\treturn 42;\n}\n",
+              "Phase": "edit",
+              "Marker": "FOUR-D",
+              "Name": "biome",
+              "Passed": true
+            }
+          ],
+          "Phase": "edit"
+        },
+        {
+          "Clients": [
+            {
+              "Name": "biome",
+              "Command": "build",
+              "Instance": "a",
+              "Label": "four-restore",
+              "Seconds": 23.504152,
+              "StartUtc": "2026-11-16T09:13:11.2811067Z",
+              "ExitUtc": "2026-11-16T09:13:34.7852587Z",
+              "ExitCode": 0,
+              "Statistics": {
+                "instance": "a",
+                "project": "F:\\Temp\\rustbxl-large-20261116\\runs\\biome\\a",
+                "targetDirectory": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\instances\\a\\target",
+                "processCacheHits": 493,
+                "processExecuted": 0
+              },
+              "Output": "rustbxl-probe-SHARED-A\nVersion: 0.0.0\n"
+            },
+            {
+              "Name": "biome",
+              "Command": "build",
+              "Instance": "b",
+              "Label": "four-restore",
+              "Seconds": 23.2863887,
+              "StartUtc": "2026-11-16T09:13:11.3026854Z",
+              "ExitUtc": "2026-11-16T09:13:34.5890741Z",
+              "ExitCode": 0,
+              "Statistics": {
+                "instance": "b",
+                "project": "F:\\Temp\\rustbxl-large-20261116\\runs\\biome\\b",
+                "targetDirectory": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\instances\\b\\target",
+                "processCacheHits": 493,
+                "processExecuted": 0
+              },
+              "Output": "rustbxl-probe-SHARED-A\nVersion: 0.0.0\n"
+            },
+            {
+              "Name": "biome",
+              "Command": "build",
+              "Instance": "c",
+              "Label": "four-restore",
+              "Seconds": 23.22665,
+              "StartUtc": "2026-11-16T09:13:11.2990787Z",
+              "ExitUtc": "2026-11-16T09:13:34.5257287Z",
+              "ExitCode": 0,
+              "Statistics": {
+                "instance": "c",
+                "project": "F:\\Temp\\rustbxl-large-20261116\\runs\\biome\\c",
+                "targetDirectory": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\instances\\c\\target",
+                "processCacheHits": 493,
+                "processExecuted": 0
+              },
+              "Output": "rustbxl-probe-SHARED-A\nVersion: 0.0.0\n"
+            },
+            {
+              "Name": "biome",
+              "Command": "build",
+              "Instance": "d",
+              "Label": "four-restore",
+              "Seconds": 22.8015619,
+              "StartUtc": "2026-11-16T09:13:11.2965928Z",
+              "ExitUtc": "2026-11-16T09:13:34.0981547Z",
+              "ExitCode": 0,
+              "Statistics": {
+                "instance": "d",
+                "project": "F:\\Temp\\rustbxl-large-20261116\\runs\\biome\\d",
+                "targetDirectory": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\instances\\d\\target",
+                "processCacheHits": 493,
+                "processExecuted": 0
+              },
+              "Output": "rustbxl-probe-SHARED-A\nVersion: 0.0.0\n"
+            }
+          ],
+          "AllFourOverlapSeconds": 23.0,
+          "Programs": [
+            {
+              "Marker": "SHARED-A",
+              "Phase": "restore",
+              "Name": "biome",
+              "Passed": true,
+              "Instance": "a",
+              "Output": "function value() {\n\treturn 42;\n}\n"
+            },
+            {
+              "Marker": "SHARED-A",
+              "Phase": "restore",
+              "Name": "biome",
+              "Passed": true,
+              "Instance": "b",
+              "Output": "function value() {\n\treturn 42;\n}\n"
+            },
+            {
+              "Marker": "SHARED-A",
+              "Phase": "restore",
+              "Name": "biome",
+              "Passed": true,
+              "Instance": "c",
+              "Output": "function value() {\n\treturn 42;\n}\n"
+            },
+            {
+              "Marker": "SHARED-A",
+              "Phase": "restore",
+              "Name": "biome",
+              "Passed": true,
+              "Instance": "d",
+              "Output": "function value() {\n\treturn 42;\n}\n"
+            }
+          ],
+          "Phase": "restore"
+        }
+      ],
+      "SharedFinalBytes": 11187276272,
+      "NativeBytes": 43095254096,
+      "NativeTargets": [
+        {
+          "Storage": {
+            "Files": 12444,
+            "UniqueFiles": 12280,
+            "LogicalBytes": 12240464588,
+            "UniqueLogicalBytes": 10756872366,
+            "UniqueAllocatedBytes": 10778470672,
+            "HardlinkedFiles": 328
+          },
+          "Path": "F:\\Temp\\rustbxl-large-20261116\\runs\\biome\\cargo-a"
+        },
+        {
+          "Storage": {
+            "Files": 12444,
+            "UniqueFiles": 12280,
+            "LogicalBytes": 12239266431,
+            "UniqueLogicalBytes": 10756190305,
+            "UniqueAllocatedBytes": 10777790752,
+            "HardlinkedFiles": 328
+          },
+          "Path": "F:\\Temp\\rustbxl-large-20261116\\runs\\biome\\cargo-b"
+        },
+        {
+          "Storage": {
+            "Files": 12425,
+            "UniqueFiles": 12275,
+            "LogicalBytes": 12226287408,
+            "UniqueLogicalBytes": 10747885023,
+            "UniqueAllocatedBytes": 10769475856,
+            "HardlinkedFiles": 300
+          },
+          "Path": "F:\\Temp\\rustbxl-large-20261116\\runs\\biome\\cargo-c"
+        },
+        {
+          "Storage": {
+            "Files": 12425,
+            "UniqueFiles": 12275,
+            "LogicalBytes": 12226385922,
+            "UniqueLogicalBytes": 10747926193,
+            "UniqueAllocatedBytes": 10769516816,
+            "HardlinkedFiles": 300
+          },
+          "Path": "F:\\Temp\\rustbxl-large-20261116\\runs\\biome\\cargo-d"
+        }
+      ],
+      "WarmMedianSeconds": {
+        "buildxl": 21.9287708,
+        "cargo": 11.3249395
+      },
+      "Storage": {
+        "Name": "biome",
+        "Label": "final",
+        "MeasuredUtc": "2026-11-16T09:31:41.0885652Z",
+        "Targets": {
+          "Files": 59516,
+          "UniqueFiles": 1196,
+          "LogicalBytes": 175058610604,
+          "UniqueLogicalBytes": 4296506217,
+          "UniqueAllocatedBytes": 4298690504,
+          "HardlinkedFiles": 59508
+        },
+        "TargetsAndCache": {
+          "Files": 62946,
+          "UniqueFiles": 3438,
+          "LogicalBytes": 186237967884,
+          "UniqueLogicalBytes": 11179357280,
+          "UniqueAllocatedBytes": 11187276272,
+          "HardlinkedFiles": 60746
+        },
+        "EntireStateExcludingJunctions": {
+          "Files": 64412,
+          "UniqueFiles": 4775,
+          "LogicalBytes": 186780733861,
+          "UniqueLogicalBytes": 11658782375,
+          "UniqueAllocatedBytes": 11668456120,
+          "HardlinkedFiles": 60897
+        },
+        "CompressedFiles": 0
+      },
+      "SavedPercent": 74.04058403489404,
+      "WarmSamples": [
+        {
+          "Name": "biome",
+          "Condition": "cargo",
+          "Label": "0",
+          "Seconds": 24.812047,
+          "StartUtc": "2026-11-16T09:19:43.5116879Z",
+          "ExitUtc": "2026-11-16T09:20:08.3237349Z",
+          "Output": "rustbxl-probe-WARM-0\nVersion: 0.0.0\n"
+        },
+        {
+          "Name": "biome",
+          "Condition": "buildxl",
+          "Label": "0",
+          "Seconds": 22.0852645,
+          "StartUtc": "2026-11-16T09:20:08.9372311Z",
+          "ExitUtc": "2026-11-16T09:20:31.0224956Z",
+          "Output": "rustbxl-probe-WARM-0\nVersion: 0.0.0\n",
+          "Statistics": {
+            "instance": "a",
+            "project": "F:\\Temp\\rustbxl-large-20261116\\runs\\biome\\a",
+            "targetDirectory": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\instances\\a\\target",
+            "processCacheHits": 491,
+            "processExecuted": 2
+          }
+        },
+        {
+          "Name": "biome",
+          "Condition": "buildxl",
+          "Label": "1",
+          "Seconds": 22.7195655,
+          "StartUtc": "2026-11-16T09:20:31.5981963Z",
+          "ExitUtc": "2026-11-16T09:20:54.3177618Z",
+          "Output": "rustbxl-probe-WARM-1\nVersion: 0.0.0\n",
+          "Statistics": {
+            "instance": "a",
+            "project": "F:\\Temp\\rustbxl-large-20261116\\runs\\biome\\a",
+            "targetDirectory": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\instances\\a\\target",
+            "processCacheHits": 491,
+            "processExecuted": 2
+          }
+        },
+        {
+          "Name": "biome",
+          "Condition": "cargo",
+          "Label": "1",
+          "Seconds": 11.5237839,
+          "StartUtc": "2026-11-16T09:20:54.891673Z",
+          "ExitUtc": "2026-11-16T09:21:06.4154569Z",
+          "Output": "rustbxl-probe-WARM-1\nVersion: 0.0.0\n"
+        },
+        {
+          "Name": "biome",
+          "Condition": "cargo",
+          "Label": "2",
+          "Seconds": 11.3249395,
+          "StartUtc": "2026-11-16T09:21:06.9799079Z",
+          "ExitUtc": "2026-11-16T09:21:18.3048474Z",
+          "Output": "rustbxl-probe-WARM-2\nVersion: 0.0.0\n"
+        },
+        {
+          "Name": "biome",
+          "Condition": "buildxl",
+          "Label": "2",
+          "Seconds": 21.9287708,
+          "StartUtc": "2026-11-16T09:21:18.8635315Z",
+          "ExitUtc": "2026-11-16T09:21:40.7923023Z",
+          "Output": "rustbxl-probe-WARM-2\nVersion: 0.0.0\n",
+          "Statistics": {
+            "instance": "a",
+            "project": "F:\\Temp\\rustbxl-large-20261116\\runs\\biome\\a",
+            "targetDirectory": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\instances\\a\\target",
+            "processCacheHits": 491,
+            "processExecuted": 2
+          }
+        },
+        {
+          "Name": "biome",
+          "Condition": "buildxl",
+          "Label": "3",
+          "Seconds": 21.621079,
+          "StartUtc": "2026-11-16T09:21:41.3603481Z",
+          "ExitUtc": "2026-11-16T09:22:02.9814271Z",
+          "Output": "rustbxl-probe-WARM-3\nVersion: 0.0.0\n",
+          "Statistics": {
+            "instance": "a",
+            "project": "F:\\Temp\\rustbxl-large-20261116\\runs\\biome\\a",
+            "targetDirectory": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\instances\\a\\target",
+            "processCacheHits": 491,
+            "processExecuted": 2
+          }
+        },
+        {
+          "Name": "biome",
+          "Condition": "cargo",
+          "Label": "3",
+          "Seconds": 11.0719318,
+          "StartUtc": "2026-11-16T09:22:03.5393329Z",
+          "ExitUtc": "2026-11-16T09:22:14.6112647Z",
+          "Output": "rustbxl-probe-WARM-3\nVersion: 0.0.0\n"
+        },
+        {
+          "Name": "biome",
+          "Condition": "cargo",
+          "Label": "restore",
+          "Seconds": 11.7540053,
+          "StartUtc": "2026-11-16T09:22:15.1751452Z",
+          "ExitUtc": "2026-11-16T09:22:26.9291505Z",
+          "Output": "rustbxl-probe-SHARED-A\nVersion: 0.0.0\n"
+        },
+        {
+          "Name": "biome",
+          "Condition": "buildxl",
+          "Label": "restore",
+          "Seconds": 13.9664227,
+          "StartUtc": "2026-11-16T09:22:27.4981116Z",
+          "ExitUtc": "2026-11-16T09:22:41.4645343Z",
+          "Output": "rustbxl-probe-SHARED-A\nVersion: 0.0.0\n",
+          "Statistics": {
+            "instance": "a",
+            "project": "F:\\Temp\\rustbxl-large-20261116\\runs\\biome\\a",
+            "targetDirectory": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\instances\\a\\target",
+            "processCacheHits": 493,
+            "processExecuted": 0
+          }
+        }
+      ],
+      "SharedEqualBytes": 5101392088,
+      "EntireStateBytes": 11668456120,
+      "Name": "biome"
+    },
+    {
+      "Phases": [
+        {
+          "Clients": [
+            {
+              "Name": "typst",
+              "Command": "build",
+              "Instance": "a",
+              "Label": "four-equal",
+              "Seconds": 34.1985088,
+              "StartUtc": "2026-11-16T09:10:40.992991Z",
+              "ExitUtc": "2026-11-16T09:11:15.1914998Z",
+              "ExitCode": 0,
+              "Statistics": {
+                "instance": "a",
+                "project": "F:\\Temp\\rustbxl-large-20261116\\runs\\typst\\a",
+                "targetDirectory": "F:\\Temp\\rustbxl-large-20261116\\shared-typst\\instances\\a\\target",
+                "processCacheHits": 478,
+                "processExecuted": 0
+              },
+              "Output": "rustbxl-probe-SHARED-A\ntypst 0.13.1 (8ace67d9)"
+            },
+            {
+              "Name": "typst",
+              "Command": "build",
+              "Instance": "b",
+              "Label": "four-equal",
+              "Seconds": 52.0917249,
+              "StartUtc": "2026-11-16T09:10:41.0812575Z",
+              "ExitUtc": "2026-11-16T09:11:33.1729824Z",
+              "ExitCode": 0,
+              "Statistics": {
+                "instance": "b",
+                "project": "F:\\Temp\\rustbxl-large-20261116\\runs\\typst\\b",
+                "targetDirectory": "F:\\Temp\\rustbxl-large-20261116\\shared-typst\\instances\\b\\target",
+                "processCacheHits": 477,
+                "processExecuted": 1
+              },
+              "Output": "rustbxl-probe-SHARED-A\ntypst 0.13.1 (8ace67d9)"
+            },
+            {
+              "Name": "typst",
+              "Command": "build",
+              "Instance": "c",
+              "Label": "four-equal",
+              "Seconds": 52.1799135,
+              "StartUtc": "2026-11-16T09:10:41.0604263Z",
+              "ExitUtc": "2026-11-16T09:11:33.2403398Z",
+              "ExitCode": 0,
+              "Statistics": {
+                "instance": "c",
+                "project": "F:\\Temp\\rustbxl-large-20261116\\runs\\typst\\c",
+                "targetDirectory": "F:\\Temp\\rustbxl-large-20261116\\shared-typst\\instances\\c\\target",
+                "processCacheHits": 477,
+                "processExecuted": 1
+              },
+              "Output": "rustbxl-probe-SHARED-A\ntypst 0.13.1 (8ace67d9)"
+            },
+            {
+              "Name": "typst",
+              "Command": "build",
+              "Instance": "d",
+              "Label": "four-equal",
+              "Seconds": 52.1598423,
+              "StartUtc": "2026-11-16T09:10:41.0741189Z",
+              "ExitUtc": "2026-11-16T09:11:33.2339612Z",
+              "ExitCode": 0,
+              "Statistics": {
+                "instance": "d",
+                "project": "F:\\Temp\\rustbxl-large-20261116\\runs\\typst\\d",
+                "targetDirectory": "F:\\Temp\\rustbxl-large-20261116\\shared-typst\\instances\\d\\target",
+                "processCacheHits": 477,
+                "processExecuted": 1
+              },
+              "Output": "rustbxl-probe-SHARED-A\ntypst 0.13.1 (8ace67d9)"
+            }
+          ],
+          "AllFourOverlapSeconds": 34.0,
+          "Programs": [
+            {
+              "Marker": "SHARED-A",
+              "Name": "typst",
+              "Phase": "equal",
+              "Instance": "a",
+              "Output": "42\n",
+              "Passed": true
+            },
+            {
+              "Marker": "SHARED-A",
+              "Name": "typst",
+              "Phase": "equal",
+              "Instance": "b",
+              "Output": "42\n",
+              "Passed": true
+            },
+            {
+              "Marker": "SHARED-A",
+              "Name": "typst",
+              "Phase": "equal",
+              "Instance": "c",
+              "Output": "42\n",
+              "Passed": true
+            },
+            {
+              "Marker": "SHARED-A",
+              "Name": "typst",
+              "Phase": "equal",
+              "Instance": "d",
+              "Output": "42\n",
+              "Passed": true
+            }
+          ],
+          "Phase": "equal"
+        },
+        {
+          "Clients": [
+            {
+              "Name": "typst",
+              "Command": "build",
+              "Instance": "a",
+              "Label": "four-edit",
+              "Seconds": 30.1874644,
+              "StartUtc": "2026-11-16T09:13:35.7440106Z",
+              "ExitUtc": "2026-11-16T09:14:05.931475Z",
+              "ExitCode": 0,
+              "Statistics": {
+                "instance": "a",
+                "project": "F:\\Temp\\rustbxl-large-20261116\\runs\\typst\\a",
+                "targetDirectory": "F:\\Temp\\rustbxl-large-20261116\\shared-typst\\instances\\a\\target",
+                "processCacheHits": 476,
+                "processExecuted": 2
+              },
+              "Output": "rustbxl-probe-FOUR-A\ntypst 0.13.1 (8ace67d9)"
+            },
+            {
+              "Name": "typst",
+              "Command": "build",
+              "Instance": "b",
+              "Label": "four-edit",
+              "Seconds": 30.1838362,
+              "StartUtc": "2026-11-16T09:13:35.7962895Z",
+              "ExitUtc": "2026-11-16T09:14:05.9801257Z",
+              "ExitCode": 0,
+              "Statistics": {
+                "instance": "b",
+                "project": "F:\\Temp\\rustbxl-large-20261116\\runs\\typst\\b",
+                "targetDirectory": "F:\\Temp\\rustbxl-large-20261116\\shared-typst\\instances\\b\\target",
+                "processCacheHits": 476,
+                "processExecuted": 2
+              },
+              "Output": "rustbxl-probe-FOUR-B\ntypst 0.13.1 (8ace67d9)"
+            },
+            {
+              "Name": "typst",
+              "Command": "build",
+              "Instance": "c",
+              "Label": "four-edit",
+              "Seconds": 30.265089,
+              "StartUtc": "2026-11-16T09:13:35.8122819Z",
+              "ExitUtc": "2026-11-16T09:14:06.0773709Z",
+              "ExitCode": 0,
+              "Statistics": {
+                "instance": "c",
+                "project": "F:\\Temp\\rustbxl-large-20261116\\runs\\typst\\c",
+                "targetDirectory": "F:\\Temp\\rustbxl-large-20261116\\shared-typst\\instances\\c\\target",
+                "processCacheHits": 476,
+                "processExecuted": 2
+              },
+              "Output": "rustbxl-probe-FOUR-C\ntypst 0.13.1 (8ace67d9)"
+            },
+            {
+              "Name": "typst",
+              "Command": "build",
+              "Instance": "d",
+              "Label": "four-edit",
+              "Seconds": 30.2458431,
+              "StartUtc": "2026-11-16T09:13:35.8396148Z",
+              "ExitUtc": "2026-11-16T09:14:06.0854579Z",
+              "ExitCode": 0,
+              "Statistics": {
+                "instance": "d",
+                "project": "F:\\Temp\\rustbxl-large-20261116\\runs\\typst\\d",
+                "targetDirectory": "F:\\Temp\\rustbxl-large-20261116\\shared-typst\\instances\\d\\target",
+                "processCacheHits": 476,
+                "processExecuted": 2
+              },
+              "Output": "rustbxl-probe-FOUR-D\ntypst 0.13.1 (8ace67d9)"
+            }
+          ],
+          "AllFourOverlapSeconds": 30.0,
+          "Programs": [
+            {
+              "Name": "typst",
+              "Phase": "edit",
+              "Marker": "FOUR-A",
+              "Output": "42\n",
+              "Instance": "a",
+              "Passed": true
+            },
+            {
+              "Name": "typst",
+              "Phase": "edit",
+              "Marker": "FOUR-B",
+              "Output": "42\n",
+              "Instance": "b",
+              "Passed": true
+            },
+            {
+              "Name": "typst",
+              "Phase": "edit",
+              "Marker": "FOUR-C",
+              "Output": "42\n",
+              "Instance": "c",
+              "Passed": true
+            },
+            {
+              "Name": "typst",
+              "Phase": "edit",
+              "Marker": "FOUR-D",
+              "Output": "42\n",
+              "Instance": "d",
+              "Passed": true
+            }
+          ],
+          "Phase": "edit"
+        },
+        {
+          "Clients": [
+            {
+              "Name": "typst",
+              "Command": "build",
+              "Instance": "a",
+              "Label": "four-restore",
+              "Seconds": 17.4454568,
+              "StartUtc": "2026-11-16T09:15:59.8757999Z",
+              "ExitUtc": "2026-11-16T09:16:17.3212567Z",
+              "ExitCode": 0,
+              "Statistics": {
+                "instance": "a",
+                "project": "F:\\Temp\\rustbxl-large-20261116\\runs\\typst\\a",
+                "targetDirectory": "F:\\Temp\\rustbxl-large-20261116\\shared-typst\\instances\\a\\target",
+                "processCacheHits": 478,
+                "processExecuted": 0
+              },
+              "Output": "rustbxl-probe-SHARED-A\ntypst 0.13.1 (8ace67d9)"
+            },
+            {
+              "Name": "typst",
+              "Command": "build",
+              "Instance": "b",
+              "Label": "four-restore",
+              "Seconds": 17.5768292,
+              "StartUtc": "2026-11-16T09:15:59.8741846Z",
+              "ExitUtc": "2026-11-16T09:16:17.4510138Z",
+              "ExitCode": 0,
+              "Statistics": {
+                "instance": "b",
+                "project": "F:\\Temp\\rustbxl-large-20261116\\runs\\typst\\b",
+                "targetDirectory": "F:\\Temp\\rustbxl-large-20261116\\shared-typst\\instances\\b\\target",
+                "processCacheHits": 478,
+                "processExecuted": 0
+              },
+              "Output": "rustbxl-probe-SHARED-A\ntypst 0.13.1 (8ace67d9)"
+            },
+            {
+              "Name": "typst",
+              "Command": "build",
+              "Instance": "c",
+              "Label": "four-restore",
+              "Seconds": 17.5583891,
+              "StartUtc": "2026-11-16T09:15:59.9083986Z",
+              "ExitUtc": "2026-11-16T09:16:17.4667877Z",
+              "ExitCode": 0,
+              "Statistics": {
+                "instance": "c",
+                "project": "F:\\Temp\\rustbxl-large-20261116\\runs\\typst\\c",
+                "targetDirectory": "F:\\Temp\\rustbxl-large-20261116\\shared-typst\\instances\\c\\target",
+                "processCacheHits": 478,
+                "processExecuted": 0
+              },
+              "Output": "rustbxl-probe-SHARED-A\ntypst 0.13.1 (8ace67d9)"
+            },
+            {
+              "Name": "typst",
+              "Command": "build",
+              "Instance": "d",
+              "Label": "four-restore",
+              "Seconds": 17.6839661,
+              "StartUtc": "2026-11-16T09:15:59.907873Z",
+              "ExitUtc": "2026-11-16T09:16:17.5918391Z",
+              "ExitCode": 0,
+              "Statistics": {
+                "instance": "d",
+                "project": "F:\\Temp\\rustbxl-large-20261116\\runs\\typst\\d",
+                "targetDirectory": "F:\\Temp\\rustbxl-large-20261116\\shared-typst\\instances\\d\\target",
+                "processCacheHits": 478,
+                "processExecuted": 0
+              },
+              "Output": "rustbxl-probe-SHARED-A\ntypst 0.13.1 (8ace67d9)"
+            }
+          ],
+          "AllFourOverlapSeconds": 18.0,
+          "Programs": [
+            {
+              "Name": "typst",
+              "Passed": true,
+              "Instance": "a",
+              "Output": "42\n",
+              "Marker": "SHARED-A",
+              "Phase": "restore"
+            },
+            {
+              "Name": "typst",
+              "Passed": true,
+              "Instance": "b",
+              "Output": "42\n",
+              "Marker": "SHARED-A",
+              "Phase": "restore"
+            },
+            {
+              "Name": "typst",
+              "Passed": true,
+              "Instance": "c",
+              "Output": "42\n",
+              "Marker": "SHARED-A",
+              "Phase": "restore"
+            },
+            {
+              "Name": "typst",
+              "Passed": true,
+              "Instance": "d",
+              "Output": "42\n",
+              "Marker": "SHARED-A",
+              "Phase": "restore"
+            }
+          ],
+          "Phase": "restore"
+        }
+      ],
+      "SharedFinalBytes": 6350920080,
+      "NativeBytes": 17526753920,
+      "NativeTargets": [
+        {
+          "Storage": {
+            "Files": 5461,
+            "UniqueFiles": 5134,
+            "LogicalBytes": 4937246951,
+            "UniqueLogicalBytes": 4390138829,
+            "UniqueAllocatedBytes": 4397477536,
+            "HardlinkedFiles": 654
+          },
+          "Path": "F:\\Temp\\rustbxl-large-20261116\\runs\\typst\\cargo-a"
+        },
+        {
+          "Storage": {
+            "Files": 5461,
+            "UniqueFiles": 5134,
+            "LogicalBytes": 4936573279,
+            "UniqueLogicalBytes": 4389801029,
+            "UniqueAllocatedBytes": 4397137568,
+            "HardlinkedFiles": 654
+          },
+          "Path": "F:\\Temp\\rustbxl-large-20261116\\runs\\typst\\cargo-b"
+        },
+        {
+          "Storage": {
+            "Files": 5201,
+            "UniqueFiles": 5128,
+            "LogicalBytes": 4826679683,
+            "UniqueLogicalBytes": 4358734450,
+            "UniqueAllocatedBytes": 4366061216,
+            "HardlinkedFiles": 146
+          },
+          "Path": "F:\\Temp\\rustbxl-large-20261116\\runs\\typst\\cargo-c"
+        },
+        {
+          "Storage": {
+            "Files": 5201,
+            "UniqueFiles": 5128,
+            "LogicalBytes": 4826728748,
+            "UniqueLogicalBytes": 4358750747,
+            "UniqueAllocatedBytes": 4366077600,
+            "HardlinkedFiles": 146
+          },
+          "Path": "F:\\Temp\\rustbxl-large-20261116\\runs\\typst\\cargo-d"
+        }
+      ],
+      "WarmMedianSeconds": {
+        "buildxl": 19.4202681,
+        "cargo": 7.4152447
+      },
+      "Storage": {
+        "Name": "typst",
+        "Label": "final",
+        "MeasuredUtc": "2026-11-16T09:31:41.0018697Z",
+        "Targets": {
+          "Files": 42472,
+          "UniqueFiles": 1312,
+          "LogicalBytes": 113237775136,
+          "UniqueLogicalBytes": 2714676260,
+          "UniqueAllocatedBytes": 2717173864,
+          "HardlinkedFiles": 42460
+        },
+        "TargetsAndCache": {
+          "Files": 45520,
+          "UniqueFiles": 3060,
+          "LogicalBytes": 119581501372,
+          "UniqueLogicalBytes": 6343726236,
+          "UniqueAllocatedBytes": 6350920080,
+          "HardlinkedFiles": 43810
+        },
+        "EntireStateExcludingJunctions": {
+          "Files": 46975,
+          "UniqueFiles": 4386,
+          "LogicalBytes": 119998328995,
+          "UniqueLogicalBytes": 6707843645,
+          "UniqueAllocatedBytes": 6716809504,
+          "HardlinkedFiles": 43961
+        },
+        "CompressedFiles": 0
+      },
+      "SavedPercent": 63.764424895856585,
+      "WarmSamples": [
+        {
+          "Name": "typst",
+          "Condition": "cargo",
+          "Label": "0",
+          "Seconds": 21.0095614,
+          "StartUtc": "2026-11-16T09:23:16.1647885Z",
+          "ExitUtc": "2026-11-16T09:23:37.1743499Z",
+          "Output": "rustbxl-probe-WARM-0\ntypst 0.13.1 (8ace67d9)"
+        },
+        {
+          "Name": "typst",
+          "Condition": "buildxl",
+          "Label": "0",
+          "Seconds": 20.9939809,
+          "StartUtc": "2026-11-16T09:23:37.9377357Z",
+          "ExitUtc": "2026-11-16T09:23:58.9317166Z",
+          "Output": "rustbxl-probe-WARM-0\ntypst 0.13.1 (8ace67d9)",
+          "Statistics": {
+            "instance": "a",
+            "project": "F:\\Temp\\rustbxl-large-20261116\\runs\\typst\\a",
+            "targetDirectory": "F:\\Temp\\rustbxl-large-20261116\\shared-typst\\instances\\a\\target",
+            "processCacheHits": 476,
+            "processExecuted": 2
+          }
+        },
+        {
+          "Name": "typst",
+          "Condition": "buildxl",
+          "Label": "1",
+          "Seconds": 19.4202681,
+          "StartUtc": "2026-11-16T09:23:59.6645747Z",
+          "ExitUtc": "2026-11-16T09:24:19.0848428Z",
+          "Output": "rustbxl-probe-WARM-1\ntypst 0.13.1 (8ace67d9)",
+          "Statistics": {
+            "instance": "a",
+            "project": "F:\\Temp\\rustbxl-large-20261116\\runs\\typst\\a",
+            "targetDirectory": "F:\\Temp\\rustbxl-large-20261116\\shared-typst\\instances\\a\\target",
+            "processCacheHits": 476,
+            "processExecuted": 2
+          }
+        },
+        {
+          "Name": "typst",
+          "Condition": "cargo",
+          "Label": "1",
+          "Seconds": 7.4152447,
+          "StartUtc": "2026-11-16T09:24:19.7941874Z",
+          "ExitUtc": "2026-11-16T09:24:27.2094321Z",
+          "Output": "rustbxl-probe-WARM-1\ntypst 0.13.1 (8ace67d9)"
+        },
+        {
+          "Name": "typst",
+          "Condition": "cargo",
+          "Label": "2",
+          "Seconds": 7.3651025,
+          "StartUtc": "2026-11-16T09:24:27.927287Z",
+          "ExitUtc": "2026-11-16T09:24:35.2923895Z",
+          "Output": "rustbxl-probe-WARM-2\ntypst 0.13.1 (8ace67d9)"
+        },
+        {
+          "Name": "typst",
+          "Condition": "buildxl",
+          "Label": "2",
+          "Seconds": 19.1557655,
+          "StartUtc": "2026-11-16T09:24:35.9997907Z",
+          "ExitUtc": "2026-11-16T09:24:55.1555562Z",
+          "Output": "rustbxl-probe-WARM-2\ntypst 0.13.1 (8ace67d9)",
+          "Statistics": {
+            "instance": "a",
+            "project": "F:\\Temp\\rustbxl-large-20261116\\runs\\typst\\a",
+            "targetDirectory": "F:\\Temp\\rustbxl-large-20261116\\shared-typst\\instances\\a\\target",
+            "processCacheHits": 476,
+            "processExecuted": 2
+          }
+        },
+        {
+          "Name": "typst",
+          "Condition": "buildxl",
+          "Label": "3",
+          "Seconds": 19.5649227,
+          "StartUtc": "2026-11-16T09:24:55.8907795Z",
+          "ExitUtc": "2026-11-16T09:25:15.4557022Z",
+          "Output": "rustbxl-probe-WARM-3\ntypst 0.13.1 (8ace67d9)",
+          "Statistics": {
+            "instance": "a",
+            "project": "F:\\Temp\\rustbxl-large-20261116\\runs\\typst\\a",
+            "targetDirectory": "F:\\Temp\\rustbxl-large-20261116\\shared-typst\\instances\\a\\target",
+            "processCacheHits": 476,
+            "processExecuted": 2
+          }
+        },
+        {
+          "Name": "typst",
+          "Condition": "cargo",
+          "Label": "3",
+          "Seconds": 7.4234518,
+          "StartUtc": "2026-11-16T09:25:16.1652555Z",
+          "ExitUtc": "2026-11-16T09:25:23.5887073Z",
+          "Output": "rustbxl-probe-WARM-3\ntypst 0.13.1 (8ace67d9)"
+        },
+        {
+          "Name": "typst",
+          "Condition": "cargo",
+          "Label": "restore",
+          "Seconds": 7.3976658,
+          "StartUtc": "2026-11-16T09:25:24.3022996Z",
+          "ExitUtc": "2026-11-16T09:25:31.6999654Z",
+          "Output": "rustbxl-probe-SHARED-A\ntypst 0.13.1 (8ace67d9)"
+        },
+        {
+          "Name": "typst",
+          "Condition": "buildxl",
+          "Label": "restore",
+          "Seconds": 11.5582868,
+          "StartUtc": "2026-11-16T09:25:32.405391Z",
+          "ExitUtc": "2026-11-16T09:25:43.9636778Z",
+          "Output": "rustbxl-probe-SHARED-A\ntypst 0.13.1 (8ace67d9)",
+          "Statistics": {
+            "instance": "a",
+            "project": "F:\\Temp\\rustbxl-large-20261116\\runs\\typst\\a",
+            "targetDirectory": "F:\\Temp\\rustbxl-large-20261116\\shared-typst\\instances\\a\\target",
+            "processCacheHits": 478,
+            "processExecuted": 0
+          }
+        }
+      ],
+      "SharedEqualBytes": 3147251832,
+      "EntireStateBytes": 6716809504,
+      "Name": "typst"
+    }
+  ],
+  "RustAnalyzerIncrementalScheduling": {
+    "WarmMedianSeconds": {
+      "buildxl": 12.2578616,
+      "cargo": 7.0826598
+    },
+    "Samples": [
+      {
+        "Name": "rust-analyzer",
+        "Condition": "cargo",
+        "Label": "0",
+        "Seconds": 7.1757538,
+        "StartUtc": "2026-11-16T09:27:21.0752368Z",
+        "ExitUtc": "2026-11-16T09:27:28.2509906Z",
+        "Output": "rustbxl-probe-SCHEDULE-0\nrust-analyzer 0.0.0 (c75729d 2026-02-09)"
+      },
+      {
+        "Name": "rust-analyzer",
+        "Condition": "buildxl",
+        "Label": "0",
+        "Seconds": 12.6247584,
+        "StartUtc": "2026-11-16T09:27:29.0091701Z",
+        "ExitUtc": "2026-11-16T09:27:41.6339285Z",
+        "Output": "rustbxl-probe-SCHEDULE-0\nrust-analyzer 0.0.0 (c75729d 2026-02-09)",
+        "Statistics": {
+          "instance": "a",
+          "project": "F:\\Temp\\rustbxl-large-20261116\\runs\\rust-analyzer\\a",
+          "targetDirectory": "F:\\Temp\\rustbxl-large-20261116\\shared-rust-analyzer\\instances\\a\\target",
+          "processCacheHits": 363,
+          "processExecuted": 2
+        }
+      },
+      {
+        "Name": "rust-analyzer",
+        "Condition": "buildxl",
+        "Label": "1",
+        "Seconds": 12.2139939,
+        "StartUtc": "2026-11-16T09:27:42.3645882Z",
+        "ExitUtc": "2026-11-16T09:27:54.5785821Z",
+        "Output": "rustbxl-probe-SCHEDULE-1\nrust-analyzer 0.0.0 (c75729d 2026-02-09)",
+        "Statistics": {
+          "instance": "a",
+          "project": "F:\\Temp\\rustbxl-large-20261116\\runs\\rust-analyzer\\a",
+          "targetDirectory": "F:\\Temp\\rustbxl-large-20261116\\shared-rust-analyzer\\instances\\a\\target",
+          "processCacheHits": 363,
+          "processExecuted": 2
+        }
+      },
+      {
+        "Name": "rust-analyzer",
+        "Condition": "cargo",
+        "Label": "1",
+        "Seconds": 7.0826598,
+        "StartUtc": "2026-11-16T09:27:55.2760956Z",
+        "ExitUtc": "2026-11-16T09:28:02.3587554Z",
+        "Output": "rustbxl-probe-SCHEDULE-1\nrust-analyzer 0.0.0 (c75729d 2026-02-09)"
+      },
+      {
+        "Name": "rust-analyzer",
+        "Condition": "cargo",
+        "Label": "2",
+        "Seconds": 7.1954002,
+        "StartUtc": "2026-11-16T09:28:03.0759459Z",
+        "ExitUtc": "2026-11-16T09:28:10.2713461Z",
+        "Output": "rustbxl-probe-SCHEDULE-2\nrust-analyzer 0.0.0 (c75729d 2026-02-09)"
+      },
+      {
+        "Name": "rust-analyzer",
+        "Condition": "buildxl",
+        "Label": "2",
+        "Seconds": 12.5102624,
+        "StartUtc": "2026-11-16T09:28:10.9884999Z",
+        "ExitUtc": "2026-11-16T09:28:23.4987623Z",
+        "Output": "rustbxl-probe-SCHEDULE-2\nrust-analyzer 0.0.0 (c75729d 2026-02-09)",
+        "Statistics": {
+          "instance": "a",
+          "project": "F:\\Temp\\rustbxl-large-20261116\\runs\\rust-analyzer\\a",
+          "targetDirectory": "F:\\Temp\\rustbxl-large-20261116\\shared-rust-analyzer\\instances\\a\\target",
+          "processCacheHits": 363,
+          "processExecuted": 2
+        }
+      },
+      {
+        "Name": "rust-analyzer",
+        "Condition": "buildxl",
+        "Label": "3",
+        "Seconds": 12.2578616,
+        "StartUtc": "2026-11-16T09:28:24.2122433Z",
+        "ExitUtc": "2026-11-16T09:28:36.4701049Z",
+        "Output": "rustbxl-probe-SCHEDULE-3\nrust-analyzer 0.0.0 (c75729d 2026-02-09)",
+        "Statistics": {
+          "instance": "a",
+          "project": "F:\\Temp\\rustbxl-large-20261116\\runs\\rust-analyzer\\a",
+          "targetDirectory": "F:\\Temp\\rustbxl-large-20261116\\shared-rust-analyzer\\instances\\a\\target",
+          "processCacheHits": 363,
+          "processExecuted": 2
+        }
+      },
+      {
+        "Name": "rust-analyzer",
+        "Condition": "cargo",
+        "Label": "3",
+        "Seconds": 6.984801,
+        "StartUtc": "2026-11-16T09:28:37.178726Z",
+        "ExitUtc": "2026-11-16T09:28:44.163527Z",
+        "Output": "rustbxl-probe-SCHEDULE-3\nrust-analyzer 0.0.0 (c75729d 2026-02-09)"
+      },
+      {
+        "Name": "rust-analyzer",
+        "Condition": "cargo",
+        "Label": "restore",
+        "Seconds": 7.0512638,
+        "StartUtc": "2026-11-16T09:28:44.8764247Z",
+        "ExitUtc": "2026-11-16T09:28:51.9276885Z",
+        "Output": "rustbxl-probe-SHARED-A\nrust-analyzer 0.0.0 (c75729d 2026-02-09)"
+      },
+      {
+        "Name": "rust-analyzer",
+        "Condition": "buildxl",
+        "Label": "restore",
+        "Seconds": 6.6270453,
+        "StartUtc": "2026-11-16T09:28:52.6411269Z",
+        "ExitUtc": "2026-11-16T09:28:59.2681722Z",
+        "Output": "rustbxl-probe-SHARED-A\nrust-analyzer 0.0.0 (c75729d 2026-02-09)",
+        "Statistics": {
+          "instance": "a",
+          "project": "F:\\Temp\\rustbxl-large-20261116\\runs\\rust-analyzer\\a",
+          "targetDirectory": "F:\\Temp\\rustbxl-large-20261116\\shared-rust-analyzer\\instances\\a\\target",
+          "processCacheHits": 365,
+          "processExecuted": 0
+        }
+      }
+    ]
+  }
+}

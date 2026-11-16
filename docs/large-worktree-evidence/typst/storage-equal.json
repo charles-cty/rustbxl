@@ -1,0 +1,30 @@
+{
+  "Name": "typst",
+  "Label": "equal",
+  "MeasuredUtc": "2026-11-16T09:12:46.8489388Z",
+  "Targets": {
+    "Files": 42472,
+    "UniqueFiles": 1312,
+    "LogicalBytes": 113237775136,
+    "UniqueLogicalBytes": 2714676260,
+    "UniqueAllocatedBytes": 2717173864,
+    "HardlinkedFiles": 42460
+  },
+  "TargetsAndCache": {
+    "Files": 45365,
+    "UniqueFiles": 2905,
+    "LogicalBytes": 116373873350,
+    "UniqueLogicalBytes": 3136098214,
+    "UniqueAllocatedBytes": 3147251832,
+    "HardlinkedFiles": 43810
+  },
+  "EntireStateExcludingJunctions": {
+    "Files": 46775,
+    "UniqueFiles": 4186,
+    "LogicalBytes": 116777059818,
+    "UniqueLogicalBytes": 3487615751,
+    "UniqueAllocatedBytes": 3500519064,
+    "HardlinkedFiles": 43961
+  },
+  "CompressedFiles": 0
+}

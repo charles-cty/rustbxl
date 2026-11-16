@@ -10,6 +10,7 @@ $PSNativeCommandUseErrorActionPreference = $true
 $root = Split-Path -Parent $PSScriptRoot
 . (Join-Path $root 'lib\Common.ps1')
 . (Join-Path $PSScriptRoot 'GraphArguments.ps1')
+. (Join-Path $PSScriptRoot 'ContractFiles.ps1')
 $RunRoot = Assert-LocalPath $RunRoot
 if (Test-Path -LiteralPath $RunRoot) { throw "Use an empty test directory: $RunRoot" }
 New-Item -ItemType Directory -Path $RunRoot -Force | Out-Null
@@ -39,7 +40,7 @@ function Start-Driver([string]$Label, [string[]]$Arguments) {
 }
 
 function Complete-Driver($Driver, [int]$ExpectedExit = 0) {
-    if (-not $Driver.Process.WaitForExit(180000)) { $Driver.Process.Kill($true); throw "Timeout: $($Driver.Label)" }
+    if (-not $Driver.Process.WaitForExit(180000)) { throw "Timeout: $($Driver.Label). The client is retained for diagnosis." }
     $output = $Driver.Output.GetAwaiter().GetResult() + $Driver.Error.GetAwaiter().GetResult()
     [IO.File]::WriteAllText((Join-Path $RunRoot ($Driver.Label + '.log')), $output)
     $exitCode = $Driver.Process.ExitCode
@@ -85,6 +86,20 @@ function Cargo-Oracle([string]$Label, [string]$Name) {
     $output
 }
 
+function Start-TestCache([string]$Label) {
+    $driver = Start-Driver $Label @('cache-start', '-State', $state)
+    $timer = [Diagnostics.Stopwatch]::StartNew()
+    while ($true) {
+        if ($driver.Process.HasExited) { $null = Complete-Driver $driver; throw 'Cache service exited.' }
+        $client = [Net.Sockets.TcpClient]::new()
+        try { $client.Connect('127.0.0.1', $port); return $driver }
+        catch [Net.Sockets.SocketException] {
+            if ($timer.Elapsed.TotalSeconds -gt 30) { throw 'Cache startup timeout.' }
+            Start-Sleep -Milliseconds 100
+        } finally { $client.Dispose() }
+    }
+}
+
 function Record([string]$Name, $Details) {
     $records.Add(@{ case = $Name; details = $Details; passed = $true })
     Write-Json @($records.ToArray()) (Join-Path $RunRoot 'results.json')
@@ -92,6 +107,8 @@ function Record([string]$Name, $Details) {
 }
 
 try {
+    $contractFiles = Test-ContractFiles $RunRoot
+    Record 'contract-file-boundaries' $contractFiles
     & (Join-Path $root 'scripts\build.ps1') | Out-Host
     & (Get-Helper) check-arguments | Out-Host
     Initialize-Msvc
@@ -143,17 +160,7 @@ try {
     Assert $status.captureValid "Capture changed across shell nesting: $($status.reason)"
     Record 'shell-session-contract' $true
 
-    $service = Start-Driver 'cache-service' @('cache-start', '-State', $state)
-    $timer = [Diagnostics.Stopwatch]::StartNew()
-    while ($true) {
-        if ($service.Process.HasExited) { $null = Complete-Driver $service; throw 'Cache service exited.' }
-        $client = [Net.Sockets.TcpClient]::new()
-        try { $client.Connect('127.0.0.1', $port); break }
-        catch [Net.Sockets.SocketException] {
-            if ($timer.Elapsed.TotalSeconds -gt 30) { throw 'Cache startup timeout.' }
-            Start-Sleep -Milliseconds 100
-        } finally { $client.Dispose() }
-    }
+    $service = Start-TestCache 'cache-service'
     $argumentCases = Test-GraphArguments $trees.alpha $state $config
     Record 'structured-graph-arguments' $argumentCases
     $cold = Replay 'cold-alpha' 'alpha'
@@ -164,6 +171,40 @@ try {
     Assert ($shared.processCacheHits -eq $graph.Count -and $shared.processExecuted -eq 0) 'Equal worktree did not share every process pip.'
     Assert ((Program-Output 'beta') -ceq $oracle) 'Shared replay differs from Cargo.'
     Record 'cold-and-shared-cache' @{ cold=$cold; shared=$shared; processPips=$graph.Count }
+
+    $warm = Replay 'warm-beta' 'beta'
+    Assert ($warm.processExecuted -eq 0) 'Unchanged replay executed a process.'
+    $statsFile = Join-Path $state 'instances\beta\run\logs\BuildXL.stats'
+    $skipped = Select-String -LiteralPath $statsFile -Pattern '^BuildSetCalculatorProcessStats_ProcessesSkippedByIncrementalScheduling=(\d+)$'
+    Assert ($null -ne $skipped -and [int]$skipped.Matches[0].Groups[1].Value -gt 0) 'Warm replay did not skip unchanged processes through incremental scheduling.'
+    Record 'incremental-no-change' $warm
+
+    $binary = Join-Path $state 'instances\beta\target\x86_64-pc-windows-msvc\debug\rustbxl-fixture.exe'
+    Remove-Item -LiteralPath $binary
+    $materialized = Replay 'missing-output-beta' 'beta'
+    Assert ($materialized.processExecuted -eq 0) 'Missing cached executable caused recompilation.'
+    Assert ((Program-Output 'beta') -ceq $oracle) 'Missing executable was not restored from cache.'
+    Record 'incremental-missing-output' $materialized
+
+    foreach ($relative in @('.hidden\Cargo.toml', 'rust-toolchain.toml', '.cargo\config.toml')) {
+        $path = Join-Path $trees.beta $relative
+        $saved = if (Test-Path -LiteralPath $path) { [IO.File]::ReadAllBytes($path) } else { $null }
+        New-Item -ItemType Directory -Path (Split-Path -Parent $path) -Force | Out-Null
+        try {
+            # These are configuration data. Rejection must occur before invoking Cargo or BuildXL.
+            [IO.File]::WriteAllText($path, '# changed capture input')
+            $label = 'reject-cargo-input-' + [IO.Path]::GetFileName($path)
+            $errorText = Invoke-Cli $label @('build','-Project',$trees.beta,'-Instance','beta') 1
+            Assert ($errorText.Contains('Capture input changed: files')) "Cargo input change was accepted: $relative"
+        } finally {
+            if ($null -eq $saved) { Remove-Item -LiteralPath $path }
+            else { [IO.File]::WriteAllBytes($path, $saved) }
+        }
+    }
+    Remove-Item -LiteralPath (Join-Path $trees.beta '.hidden')
+    $afterContractRestore = Replay 'restored-cargo-inputs' 'beta'
+    Assert ($afterContractRestore.processExecuted -eq 0) 'Restored Cargo inputs caused recompilation.'
+    Record 'cargo-input-invalidation' $afterContractRestore
 
     foreach ($case in @('ordinary-source', 'new-module', 'optional-file', 'directory-member', 'external-text', 'same-directives', 'build-script', 'source-text')) {
         $edit = $null
@@ -200,6 +241,11 @@ try {
             Assert ($result.processExecuted -gt 0 -and $result.processExecuted -lt $graph.Count) "Expected partial rebuild: $case"
             Assert ($contractBytes -ceq [Convert]::ToBase64String([IO.File]::ReadAllBytes($contractPath))) 'Unexpected recapture.'
             Assert ($traceTime -eq (Get-Item -LiteralPath $tracePath).LastWriteTimeUtc) 'Unexpected discovery run.'
+            if ($case -eq 'source-text') {
+                $historicalOutput = $expected
+                $historicalHash = (Get-FileHash -LiteralPath $binary -Algorithm SHA256).Hash
+                $historicalLength = (Get-Item -LiteralPath $binary).Length
+            }
             Record $case $result
         } finally {
             if ($edit) { [IO.File]::WriteAllBytes($edit, $saved) }
@@ -210,6 +256,45 @@ try {
         Assert ((Program-Output 'beta') -ceq $oracle) "Restore differs from Cargo: $case"
         Assert ($restored.processExecuted -eq 0) "Restore did not use cached pips: $case"
     }
+
+    # Compress a historical executable that now exists only in the real CAS,
+    # then require BuildXL to restore those exact bytes without recompilation.
+    $errorText = Invoke-Cli 'reject-compression-active-cache' @('compress') 1
+    Assert ($errorText.Contains('maintenance.lock')) 'Compression did not reject the running cache service.'
+    Record 'compression-rejects-running-cache' $true
+    $null = Invoke-Cli 'cache-stop-before-compression' @('cache-stop')
+    $null = Complete-Driver $service
+    $sharedRoot = Join-Path $state "cache\$($config.cache.scenario)\Shared"
+    $historicalBlobs = @(Get-ChildItem -LiteralPath $sharedRoot -Filter '*.blob' -Recurse -File | Where-Object {
+        $_.Length -eq $historicalLength -and (Get-FileHash -LiteralPath $_.FullName -Algorithm SHA256).Hash -ceq $historicalHash
+    })
+    Assert ($historicalBlobs.Count -eq 1) 'Historical executable is missing from the shared CAS.'
+    $historicalBlob = $historicalBlobs[0].FullName
+    $historicalAcl = (Get-Acl -LiteralPath $historicalBlob).Sddl
+    $compressionArguments = @('compress','-MinimumAgeDays','0','-MinimumSizeKiB','1')
+    $preview = Invoke-Cli 'compression-preview' $compressionArguments | ConvertFrom-Json -AsHashtable
+    Assert ($historicalBlob -in @($preview.Files.Path)) 'Historical CAS output was not a compression candidate.'
+    $compressed = Invoke-Cli 'compression-apply' ($compressionArguments + '-Apply') | ConvertFrom-Json -AsHashtable
+    Assert ($historicalBlob -in @($compressed.Files.Path)) 'Historical CAS output was not compressed.'
+    Assert ($compressed.CompressedFiles -gt 0 -and $compressed.SavedBytes -gt 0) 'Real CAS compression saved no space.'
+    Assert (([IO.File]::GetAttributes($historicalBlob) -band [IO.FileAttributes]::Compressed) -ne 0) 'CAS compression attribute is absent.'
+    Assert ((Get-Acl -LiteralPath $historicalBlob).Sddl -ceq $historicalAcl) 'CAS compression changed the original ACL.'
+    Assert ((Get-FileHash -LiteralPath $historicalBlob -Algorithm SHA256).Hash -ceq $historicalHash) 'CAS compression changed the original content.'
+    Assert (([IO.File]::GetAttributes($binary) -band [IO.FileAttributes]::Compressed) -eq 0) 'Active output was compressed.'
+    $service = Start-TestCache 'cache-service-after-compression'
+    $labelPath = Join-Path $trees.beta 'app\label.txt'
+    $savedLabel = [IO.File]::ReadAllBytes($labelPath)
+    try {
+        [IO.File]::WriteAllText($labelPath,'label-changed')
+        Remove-Item -LiteralPath $binary
+        $restoredCompressed = Replay 'restore-compressed-cas' 'beta'
+        Assert ($restoredCompressed.processExecuted -eq 0 -and $restoredCompressed.processCacheHits -gt 0) 'Compressed CAS output caused recompilation.'
+        Assert ((Program-Output 'beta') -ceq $historicalOutput) 'Compressed CAS replay differs from clean Cargo.'
+        Assert ((Get-FileHash -LiteralPath $binary -Algorithm SHA256).Hash -ceq $historicalHash) 'Restored executable differs from compressed CAS content.'
+    } finally { [IO.File]::WriteAllBytes($labelPath,$savedLabel) }
+    $null = Replay 'restore-after-compression' 'beta'
+    Assert ((Program-Output 'beta') -ceq $oracle) 'Baseline replay changed after cache compression.'
+    Record 'compressed-cache-restoration' @{ compression=$compressed; replay=$restoredCompressed }
 
     # Six separate worktrees share one compatible graph, with four development variants and two near forks.
     $expectedOutputs = @{}
@@ -253,7 +338,7 @@ try {
 } finally {
     foreach ($driver in $startedDrivers.ToArray()) {
         if ($driver -ne $service -and -not $driver.Completed -and -not $driver.Process.HasExited) {
-            $driver.Process.Kill($true)
+            Write-Host "Waiting for active sandbox client: $($driver.Label)"
             $driver.Process.WaitForExit()
         }
     }

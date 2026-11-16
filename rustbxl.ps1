@@ -2,7 +2,7 @@
 [CmdletBinding()]
 param(
     [Parameter(Position=0)]
-    [ValidateSet('help', 'init', 'prepare', 'capture', 'build', 'status', 'cache-start', 'cache-stop')]
+    [ValidateSet('help', 'init', 'prepare', 'capture', 'build', 'status', 'cache-start', 'cache-stop', 'compress')]
     [string]$Command = 'help',
     [string]$State,
     [string]$Project,
@@ -18,7 +18,12 @@ param(
     [ValidateRange(1024,65535)][int]$Port = 7089,
     [ValidateRange(64,1048576)][int]$CacheSizeMiB = 4096,
     [ValidatePattern('^[A-Za-z0-9_-]+$')][string]$CacheScenario = 'RustBxl',
-    [switch]$Diagnostics
+    [switch]$Diagnostics,
+    [ValidatePattern('^[A-Za-z0-9-]{1,40}$')][string[]]$ActiveInstances = @(),
+    [string[]]$ExcludePath = @(),
+    [ValidateRange(0,36500)][int]$MinimumAgeDays = 7,
+    [ValidateRange(1,1048576)][int]$MinimumSizeKiB = 64,
+    [switch]$Apply
 )
 
 if ($Command -eq 'help') {
@@ -36,11 +41,16 @@ build       Replay the captured graph. Cargo is not an execution pip.
 status      Print configuration, capture state, and output paths as JSON.
 cache-start Run the shared local cache service in the foreground.
 cache-stop  Stop the configured cache service.
+compress    Preview cold artifact compression after clients and cache exit.
+            [-ActiveInstances main,branch-a] [-ExcludePath <state-relative-path>]
+            [-MinimumAgeDays 7] [-MinimumSizeKiB 64] [-Apply]
 
 capture/build/status accept -Project <other-worktree> -Instance <name> -Capture <name>.
 Use a distinct instance for each worktree. Compatible worktrees can share a capture.
 Use a distinct capture after manifests, configuration, or dependencies diverge.
 build accepts -Diagnostics to retain observed-access and fingerprint diagnostics.
+compress protects all existing instances unless -ActiveInstances selects them.
+It preserves all hard links to protected files. -Apply performs the compression.
 Run scripts/build.ps1 once before capture. Tools can also use BUILDXL_ROOT and BINDMOUNT_EXE.
 '@
     exit 0
@@ -50,6 +60,7 @@ Run scripts/build.ps1 once before capture. Tools can also use BUILDXL_ROOT and B
 . (Join-Path $PSScriptRoot 'lib\Contract.ps1')
 . (Join-Path $PSScriptRoot 'lib\Capture.ps1')
 . (Join-Path $PSScriptRoot 'lib\Cache.ps1')
+. (Join-Path $PSScriptRoot 'lib\Compression.ps1')
 $handles = [Collections.Generic.List[IO.FileStream]]::new()
 
 try {
@@ -87,6 +98,15 @@ try {
     if (-not (Test-Path -LiteralPath $configPath)) { throw 'Configuration is missing. Run init first.' }
     $config = Get-Content -LiteralPath $configPath -Raw | ConvertFrom-Json -AsHashtable
     Assert-Config $config
+    $maintenanceShare = if ($Command -eq 'compress') { [IO.FileShare]::None } else { [IO.FileShare]::ReadWrite }
+    $handles.Add([IO.File]::Open((Join-Path $State 'locks\maintenance.lock'), [IO.FileMode]::OpenOrCreate,
+        [IO.FileAccess]::ReadWrite, $maintenanceShare))
+    if ($Command -eq 'compress') {
+        $handles.Add([IO.File]::Open((Join-Path $State 'locks\dependencies.lock'), [IO.FileMode]::Open,
+            [IO.FileAccess]::ReadWrite, [IO.FileShare]::None))
+        Invoke-ArtifactCompression $State $config $ActiveInstances $ExcludePath $MinimumAgeDays ([long]$MinimumSizeKiB * 1024) -Apply:$Apply
+        exit 0
+    }
     if (-not $Project) { $Project = $config.project }
     $Project = Assert-LocalPath $Project
     Assert-Project $Project $State

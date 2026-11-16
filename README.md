@@ -152,8 +152,10 @@ native build systems need extensions. There is no whole-Cargo replay fallback.
 Run the project's own tests before using outputs in a release workflow.
 
 BuildXL process caching, sandbox observation, inferred dependencies, graph disk
-caching, and local parallel execution are enabled. BuildXL server, incremental
-scheduling, and rustc query incremental compilation remain disabled. A cache
+caching, incremental scheduling, and local parallel execution are enabled.
+Replay retains change tracking in each instance's engine directory. Discovery
+keeps incremental scheduling disabled so it records a complete build.
+BuildXL server and rustc query incremental compilation remain disabled. A cache
 miss recompiles the corresponding crate. Small hot builds can be slower than
 Cargo because engine startup and graph checks have a cost; this CLI makes no
 unmeasured speed claim.
@@ -163,6 +165,55 @@ policy does not bound instance outputs, capture state, dependency sources, or
 logs. Remove stale instances only when their clients have stopped. Do not run
 Cargo against rustbxl output directories: cache materialization can use NTFS
 hardlinks. No sidecar-wide automatic cleanup policy is implemented.
+
+## Optional cold artifact compression
+
+`compress` uses native NTFS compression to reduce allocated disk space in the
+shared cache and inactive instance outputs. Run it between builds after the cache
+service exits. The first command previews the selection; only `-Apply` changes
+file compression:
+
+```powershell
+.\rustbxl.ps1 cache-stop -State $state
+.\rustbxl.ps1 compress -State $state
+.\rustbxl.ps1 compress -State $state -Apply
+```
+
+All existing instances are protected by default. To also compress outputs from
+inactive instances, list the instances you still use. `-ExcludePath` protects
+additional files or directories; paths are relative to the state directory or
+absolute paths within it. Use the same selection when you preview and apply:
+
+```powershell
+$selection = @{
+    State = $state
+    ActiveInstances = @('main', 'branch-a', 'branch-b', 'branch-c')
+    ExcludePath = @('instances\archive\target\keep.pdb')
+    MinimumAgeDays = 7
+    MinimumSizeKiB = 64
+}
+.\rustbxl.ps1 compress @selection
+.\rustbxl.ps1 compress @selection -Apply
+.\rustbxl.ps1 cache-start -State $state
+```
+
+Selection uses last-write age, with defaults of 7 days and 64 KiB. File identity
+protects every hardlink alias of an active or excluded file, including its CAS
+blob. Files with unknown hardlinks are skipped. Incremental directories, engine
+state, cache databases, reparse points, sparse files, and encrypted files are
+excluded. Eligible paths are CAS content blobs, inactive instance targets, and
+inactive instance build logs. Files held open by other readers or writers are
+skipped during apply. Maintenance excludes concurrent CLI clients and cache use;
+normal builds retain their existing parallel behavior.
+
+The JSON report lists unique physical files, candidates, skipped reasons, and
+allocated bytes saved. The latest report is also saved as
+`maintenance\compression-result.json` under the state directory. Compression
+preserves content, hardlinks, and the original ACL. A later cache hit can place
+a compressed blob into an active instance; reads decompress it through NTFS.
+Previously compressed files keep their compression when an instance becomes active.
+This command does not change the cache's logical size quota. Its disk savings and
+read costs depend on the selected files. Compression runs only when requested.
 
 ## Verify from a fresh checkout
 
@@ -178,8 +229,25 @@ newly read modules, dynamic inputs, restoration hits, concurrent isolation, feat
 recapture, preserved project targets, and unchanged dependency sources.
 Argument arrays also pass through the actual JSON frontend and BuildXL process
 execution. The Win32 argument check uses 505 asymmetric and randomized cases.
+Additional cases verify contract scanning through hidden directories, excluded
+junctions, Cargo configuration invalidation, unchanged replay, and restoration of
+a deleted executable from cache. The suite also compresses historical CAS content,
+restarts the cache, and restores an executable without recompilation before the
+six-worktree parallel build.
+
+Run the separate NTFS compression integration checks with:
+
+```powershell
+.\tests\Compression.ps1 -RunRoot 'F:\Temp\rustbxl-compression-check'
+```
 
 Evidence is written to `.test\integration`. Use `-RunRoot` with an empty
 directory for another run. The test stops its cache service in `finally`.
 See [implementation notes](docs/implementation.md) for the graph and boundaries.
 See [validation notes](docs/validation.md) for verified results and resolved issues.
+See the [large worktree experiment](docs/large-worktree-experiment.md) for four
+worktrees per large project, measured shared-CAS storage, edit latency,
+and the process startup error investigation.
+See the [build latency investigation](docs/build-latency-investigation.md) for
+measured startup, cache-check, compiler, and linker costs, plus the scan and
+incremental-scheduling experiments.

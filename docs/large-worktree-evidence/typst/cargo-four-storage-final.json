@@ -1,0 +1,60 @@
+{
+  "CompressedFiles": 0,
+  "BuildJobsPerClient": 3,
+  "Targets": [
+    {
+      "Storage": {
+        "Files": 5461,
+        "UniqueFiles": 5134,
+        "LogicalBytes": 4937246951,
+        "UniqueLogicalBytes": 4390138829,
+        "UniqueAllocatedBytes": 4397477536,
+        "HardlinkedFiles": 654
+      },
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\runs\\typst\\cargo-a"
+    },
+    {
+      "Storage": {
+        "Files": 5461,
+        "UniqueFiles": 5134,
+        "LogicalBytes": 4936573279,
+        "UniqueLogicalBytes": 4389801029,
+        "UniqueAllocatedBytes": 4397137568,
+        "HardlinkedFiles": 654
+      },
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\runs\\typst\\cargo-b"
+    },
+    {
+      "Storage": {
+        "Files": 5201,
+        "UniqueFiles": 5128,
+        "LogicalBytes": 4826679683,
+        "UniqueLogicalBytes": 4358734450,
+        "UniqueAllocatedBytes": 4366061216,
+        "HardlinkedFiles": 146
+      },
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\runs\\typst\\cargo-c"
+    },
+    {
+      "Storage": {
+        "Files": 5201,
+        "UniqueFiles": 5128,
+        "LogicalBytes": 4826728748,
+        "UniqueLogicalBytes": 4358750747,
+        "UniqueAllocatedBytes": 4366077600,
+        "HardlinkedFiles": 146
+      },
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\runs\\typst\\cargo-d"
+    }
+  ],
+  "Incremental": 1,
+  "Name": "typst",
+  "Combined": {
+    "Files": 21324,
+    "UniqueFiles": 20524,
+    "LogicalBytes": 19527228661,
+    "UniqueLogicalBytes": 17497425055,
+    "UniqueAllocatedBytes": 17526753920,
+    "HardlinkedFiles": 1600
+  }
+}

@@ -1,0 +1,98 @@
+[
+  {
+    "Name": "rust-analyzer",
+    "Instance": "a",
+    "Seconds": 13.5570327,
+    "StartUtc": "2026-11-16T08:07:30.5251109Z",
+    "ExitUtc": "2026-11-16T08:07:44.0821436Z",
+    "Output": "rustbxl-probe-SHARED-A\nrust-analyzer 0.0.0 (c75729d 2026-02-09)"
+  },
+  {
+    "Name": "rust-analyzer",
+    "Instance": "b",
+    "Seconds": 13.5719597,
+    "StartUtc": "2026-11-16T08:07:30.5432289Z",
+    "ExitUtc": "2026-11-16T08:07:44.1151886Z",
+    "Output": "rustbxl-probe-SHARED-A\nrust-analyzer 0.0.0 (c75729d 2026-02-09)"
+  },
+  {
+    "Name": "rust-analyzer",
+    "Instance": "c",
+    "Seconds": 158.5355474,
+    "StartUtc": "2026-11-16T08:07:30.5540831Z",
+    "ExitUtc": "2026-11-16T08:10:09.0896305Z",
+    "Output": "rustbxl-probe-SHARED-A\nrust-analyzer 0.0.0 (c75729d 2026-02-09)"
+  },
+  {
+    "Name": "rust-analyzer",
+    "Instance": "d",
+    "Seconds": 158.5233696,
+    "StartUtc": "2026-11-16T08:07:30.5663010Z",
+    "ExitUtc": "2026-11-16T08:10:09.0896706Z",
+    "Output": "rustbxl-probe-SHARED-A\nrust-analyzer 0.0.0 (c75729d 2026-02-09)"
+  },
+  {
+    "Name": "biome",
+    "Instance": "a",
+    "Seconds": 36.2764779,
+    "StartUtc": "2026-11-16T08:13:51.9967877Z",
+    "ExitUtc": "2026-11-16T08:14:28.2732656Z",
+    "Output": "rustbxl-probe-SHARED-A\nVersion: 0.0.0\n"
+  },
+  {
+    "Name": "biome",
+    "Instance": "b",
+    "Seconds": 37.341652,
+    "StartUtc": "2026-11-16T08:13:52.0147114Z",
+    "ExitUtc": "2026-11-16T08:14:29.3563634Z",
+    "Output": "rustbxl-probe-SHARED-A\nVersion: 0.0.0\n"
+  },
+  {
+    "Name": "biome",
+    "Instance": "c",
+    "Seconds": 342.7442133,
+    "StartUtc": "2026-11-16T08:13:52.0355348Z",
+    "ExitUtc": "2026-11-16T08:19:34.7797481Z",
+    "Output": "rustbxl-probe-SHARED-A\nVersion: 0.0.0\n"
+  },
+  {
+    "Name": "biome",
+    "Instance": "d",
+    "Seconds": 342.6811252,
+    "StartUtc": "2026-11-16T08:13:52.0545190Z",
+    "ExitUtc": "2026-11-16T08:19:34.7356442Z",
+    "Output": "rustbxl-probe-SHARED-A\nVersion: 0.0.0\n"
+  },
+  {
+    "Name": "typst",
+    "Instance": "a",
+    "Seconds": 15.6514216,
+    "StartUtc": "2026-11-16T08:21:07.4682579Z",
+    "ExitUtc": "2026-11-16T08:21:23.1196795Z",
+    "Output": "rustbxl-probe-SHARED-A\ntypst 0.13.1 (8ace67d9)"
+  },
+  {
+    "Name": "typst",
+    "Instance": "b",
+    "Seconds": 15.0898128,
+    "StartUtc": "2026-11-16T08:21:07.4873373Z",
+    "ExitUtc": "2026-11-16T08:21:22.5771501Z",
+    "Output": "rustbxl-probe-SHARED-A\ntypst 0.13.1 (8ace67d9)"
+  },
+  {
+    "Name": "typst",
+    "Instance": "c",
+    "Seconds": 538.6445162,
+    "StartUtc": "2026-11-16T08:21:07.5033173Z",
+    "ExitUtc": "2026-11-16T08:30:06.1478335Z",
+    "Output": "rustbxl-probe-SHARED-A\ntypst 0.13.1 (8ace67d9)"
+  },
+  {
+    "Name": "typst",
+    "Instance": "d",
+    "Seconds": 539.3531286,
+    "StartUtc": "2026-11-16T08:21:07.5201196Z",
+    "ExitUtc": "2026-11-16T08:30:06.8732482Z",
+    "Output": "rustbxl-probe-SHARED-A\ntypst 0.13.1 (8ace67d9)"
+  }
+]

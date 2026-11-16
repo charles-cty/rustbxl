@@ -73,6 +73,7 @@ function Invoke-BuildXL([string]$Bxl, [string]$Graph, [string]$Run, [string]$Pro
         throw 'The target namespace is too short for cache RPC placement. Use a shorter instance name.'
     }
     New-Item -ItemType Directory -Path $Run -Force | Out-Null
+    $scheduling = if ($Discovery) { '/incrementalScheduling-' } else { '/incrementalScheduling+' }
     $arguments = @(
         "/c:$(Join-Path (Split-Path -Parent $PSScriptRoot) 'frontend\config.dsc')",
         "/substSource:$($Layout.PhysicalTarget)", "/substTarget:$($Layout.Target)",
@@ -81,7 +82,7 @@ function Invoke-BuildXL([string]$Bxl, [string]$Graph, [string]$Run, [string]$Pro
         "/storageRoot:$Run",
         "/engineCacheDirectory:$(Join-Path $Run 'engine')",
         "/logsDirectory:$(Join-Path $Run 'logs')", "/objectDirectory:$(Join-Path $Run 'obj')",
-        '/server-', '/incrementalScheduling-', '/logProcesses+', '/enableLazyOutputs-', '/processRetries:0'
+        '/server-', $scheduling, '/logProcesses+', '/enableLazyOutputs-', '/processRetries:0'
     )
     if ($Discovery -or $Diagnostics) {
         $arguments += @('/logObservedFileAccesses+', '/storeFingerprints+')

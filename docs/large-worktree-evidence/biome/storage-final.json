@@ -1,0 +1,30 @@
+{
+  "Name": "biome",
+  "Label": "final",
+  "MeasuredUtc": "2026-11-16T09:31:41.0885652Z",
+  "Targets": {
+    "Files": 59516,
+    "UniqueFiles": 1196,
+    "LogicalBytes": 175058610604,
+    "UniqueLogicalBytes": 4296506217,
+    "UniqueAllocatedBytes": 4298690504,
+    "HardlinkedFiles": 59508
+  },
+  "TargetsAndCache": {
+    "Files": 62946,
+    "UniqueFiles": 3438,
+    "LogicalBytes": 186237967884,
+    "UniqueLogicalBytes": 11179357280,
+    "UniqueAllocatedBytes": 11187276272,
+    "HardlinkedFiles": 60746
+  },
+  "EntireStateExcludingJunctions": {
+    "Files": 64412,
+    "UniqueFiles": 4775,
+    "LogicalBytes": 186780733861,
+    "UniqueLogicalBytes": 11658782375,
+    "UniqueAllocatedBytes": 11668456120,
+    "HardlinkedFiles": 60897
+  },
+  "CompressedFiles": 0
+}

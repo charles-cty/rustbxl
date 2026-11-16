@@ -1,0 +1,30 @@
+{
+  "Name": "rust-analyzer",
+  "Label": "equal",
+  "MeasuredUtc": "2026-11-16T09:08:53.1979012Z",
+  "Targets": {
+    "Files": 35956,
+    "UniqueFiles": 1008,
+    "LogicalBytes": 68189386388,
+    "UniqueLogicalBytes": 1700486149,
+    "UniqueAllocatedBytes": 1702357120,
+    "HardlinkedFiles": 35944
+  },
+  "TargetsAndCache": {
+    "Files": 38921,
+    "UniqueFiles": 2977,
+    "LogicalBytes": 70300031278,
+    "UniqueLogicalBytes": 2110644890,
+    "UniqueAllocatedBytes": 2122070040,
+    "HardlinkedFiles": 36991
+  },
+  "EntireStateExcludingJunctions": {
+    "Files": 40048,
+    "UniqueFiles": 3973,
+    "LogicalBytes": 70655925707,
+    "UniqueLogicalBytes": 2424001601,
+    "UniqueAllocatedBytes": 2436907304,
+    "HardlinkedFiles": 37144
+  },
+  "CompressedFiles": 0
+}

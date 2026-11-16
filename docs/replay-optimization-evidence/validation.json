@@ -1,0 +1,211 @@
+{
+  "CheckedUtc": "2026-11-16T10:54:25.0639313Z",
+  "RunRoot": "F:\\Temp\\rustbxl-merge-20261116\\integration",
+  "NewPopupCount": 0,
+  "ActiveProcesses": [],
+  "IntegrationCases": [
+    {
+      "passed": true,
+      "details": 4,
+      "case": "contract-file-boundaries"
+    },
+    {
+      "passed": true,
+      "details": true,
+      "case": "shell-session-contract"
+    },
+    {
+      "passed": true,
+      "details": 22,
+      "case": "structured-graph-arguments"
+    },
+    {
+      "passed": true,
+      "details": {
+        "processPips": 10,
+        "cold": {
+          "instance": "alpha",
+          "project": "F:\\Temp\\rustbxl-merge-20261116\\integration\\worktrees\\alpha",
+          "targetDirectory": "F:\\Temp\\rustbxl-merge-20261116\\integration\\sidecar state\\instances\\alpha\\target",
+          "processCacheHits": 0,
+          "processExecuted": 10
+        },
+        "shared": {
+          "instance": "beta",
+          "project": "F:\\Temp\\rustbxl-merge-20261116\\integration\\worktrees\\beta",
+          "targetDirectory": "F:\\Temp\\rustbxl-merge-20261116\\integration\\sidecar state\\instances\\beta\\target",
+          "processCacheHits": 10,
+          "processExecuted": 0
+        }
+      },
+      "case": "cold-and-shared-cache"
+    },
+    {
+      "passed": true,
+      "details": {
+        "instance": "beta",
+        "project": "F:\\Temp\\rustbxl-merge-20261116\\integration\\worktrees\\beta",
+        "targetDirectory": "F:\\Temp\\rustbxl-merge-20261116\\integration\\sidecar state\\instances\\beta\\target",
+        "processCacheHits": 10,
+        "processExecuted": 0
+      },
+      "case": "incremental-no-change"
+    },
+    {
+      "passed": true,
+      "details": {
+        "instance": "beta",
+        "project": "F:\\Temp\\rustbxl-merge-20261116\\integration\\worktrees\\beta",
+        "targetDirectory": "F:\\Temp\\rustbxl-merge-20261116\\integration\\sidecar state\\instances\\beta\\target",
+        "processCacheHits": 10,
+        "processExecuted": 0
+      },
+      "case": "incremental-missing-output"
+    },
+    {
+      "passed": true,
+      "details": {
+        "instance": "beta",
+        "project": "F:\\Temp\\rustbxl-merge-20261116\\integration\\worktrees\\beta",
+        "targetDirectory": "F:\\Temp\\rustbxl-merge-20261116\\integration\\sidecar state\\instances\\beta\\target",
+        "processCacheHits": 10,
+        "processExecuted": 0
+      },
+      "case": "cargo-input-invalidation"
+    },
+    {
+      "passed": true,
+      "details": {
+        "instance": "beta",
+        "project": "F:\\Temp\\rustbxl-merge-20261116\\integration\\worktrees\\beta",
+        "targetDirectory": "F:\\Temp\\rustbxl-merge-20261116\\integration\\sidecar state\\instances\\beta\\target",
+        "processCacheHits": 7,
+        "processExecuted": 3
+      },
+      "case": "ordinary-source"
+    },
+    {
+      "passed": true,
+      "details": {
+        "instance": "beta",
+        "project": "F:\\Temp\\rustbxl-merge-20261116\\integration\\worktrees\\beta",
+        "targetDirectory": "F:\\Temp\\rustbxl-merge-20261116\\integration\\sidecar state\\instances\\beta\\target",
+        "processCacheHits": 7,
+        "processExecuted": 3
+      },
+      "case": "new-module"
+    },
+    {
+      "passed": true,
+      "details": {
+        "instance": "beta",
+        "project": "F:\\Temp\\rustbxl-merge-20261116\\integration\\worktrees\\beta",
+        "targetDirectory": "F:\\Temp\\rustbxl-merge-20261116\\integration\\sidecar state\\instances\\beta\\target",
+        "processCacheHits": 6,
+        "processExecuted": 4
+      },
+      "case": "optional-file"
+    },
+    {
+      "passed": true,
+      "details": {
+        "instance": "beta",
+        "project": "F:\\Temp\\rustbxl-merge-20261116\\integration\\worktrees\\beta",
+        "targetDirectory": "F:\\Temp\\rustbxl-merge-20261116\\integration\\sidecar state\\instances\\beta\\target",
+        "processCacheHits": 6,
+        "processExecuted": 4
+      },
+      "case": "directory-member"
+    },
+    {
+      "passed": true,
+      "details": {
+        "instance": "beta",
+        "project": "F:\\Temp\\rustbxl-merge-20261116\\integration\\worktrees\\beta",
+        "targetDirectory": "F:\\Temp\\rustbxl-merge-20261116\\integration\\sidecar state\\instances\\beta\\target",
+        "processCacheHits": 6,
+        "processExecuted": 4
+      },
+      "case": "external-text"
+    },
+    {
+      "passed": true,
+      "details": {
+        "instance": "beta",
+        "project": "F:\\Temp\\rustbxl-merge-20261116\\integration\\worktrees\\beta",
+        "targetDirectory": "F:\\Temp\\rustbxl-merge-20261116\\integration\\sidecar state\\instances\\beta\\target",
+        "processCacheHits": 9,
+        "processExecuted": 1
+      },
+      "case": "same-directives"
+    },
+    {
+      "passed": true,
+      "details": {
+        "instance": "beta",
+        "project": "F:\\Temp\\rustbxl-merge-20261116\\integration\\worktrees\\beta",
+        "targetDirectory": "F:\\Temp\\rustbxl-merge-20261116\\integration\\sidecar state\\instances\\beta\\target",
+        "processCacheHits": 4,
+        "processExecuted": 6
+      },
+      "case": "build-script"
+    },
+    {
+      "passed": true,
+      "details": {
+        "instance": "beta",
+        "project": "F:\\Temp\\rustbxl-merge-20261116\\integration\\worktrees\\beta",
+        "targetDirectory": "F:\\Temp\\rustbxl-merge-20261116\\integration\\sidecar state\\instances\\beta\\target",
+        "processCacheHits": 8,
+        "processExecuted": 2
+      },
+      "case": "source-text"
+    },
+    {
+      "passed": true,
+      "details": [
+        "alpha",
+        "beta",
+        "gamma",
+        "delta",
+        "alpha-near",
+        "beta-near"
+      ],
+      "case": "six-concurrent-worktrees"
+    },
+    {
+      "passed": true,
+      "details": [
+        "rustbxl-fixture/extra"
+      ],
+      "case": "feature-recapture"
+    },
+    {
+      "passed": true,
+      "details": true,
+      "case": "non-invasive-and-read-only-dependencies"
+    }
+  ],
+  "ScannerComparison": [
+    {
+      "Project": "rust-analyzer",
+      "Equal": true,
+      "ContractEntries": 64
+    },
+    {
+      "Project": "biome",
+      "Equal": true,
+      "ContractEntries": 113
+    },
+    {
+      "Project": "typst",
+      "Equal": true,
+      "ContractEntries": 35
+    }
+  ],
+  "GraphGeneratorChanged": false,
+  "ReplayIncrementalScheduling": true,
+  "DiscoveryIncrementalScheduling": false,
+  "BuildXLServer": false,
+  "RustcIncremental": false
+}

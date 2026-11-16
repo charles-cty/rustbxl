@@ -62,6 +62,49 @@ time. Arbitrary dependency-store writes are not declared compilation outputs.
 
 The CLI uses operating-system file handles for dependency, capture, and instance
 locks. The cache service runs in a separate terminal. Concurrent BuildXL engines
-share its local content and memoization stores. BuildXL server and incremental
-scheduling remain disabled. No sidecar-wide output or log lifetime policy has
-been added.
+share its local content and memoization stores. BuildXL server mode remains
+disabled. Replay enables incremental scheduling with per-instance engine state.
+Discovery disables
+incremental scheduling. The dependency graph and its declared inputs are unchanged
+by this scheduling policy. No sidecar-wide output or log lifetime policy has been
+added.
+
+The capture contract enumerates source directories through .NET filesystem APIs.
+It includes hidden Cargo/toolchain files and retains the existing exclusions for
+`.git`, `target`, and directory reparse points. Each replay still checks file
+contents and ancestor/Cargo-home configuration, including previously absent files.
+
+## Optional artifact compression
+
+`compress` is an explicit maintenance operation. It takes the exclusive
+`maintenance.lock`; normal CLI clients and the foreground cache service hold
+shared handles. It also takes the dependency lock and reserves the cache TCP
+endpoint to detect clients or services from an older driver. It requires the cache
+and compilation clients to exit before either preview or apply.
+
+The helper inventories instance files and the configured cache's
+`Shared/<hash-type>/<prefix>/*.blob` content. It groups names by NTFS volume serial
+number and file ID. Protection on any alias wins over eligibility on another.
+The recorded hardlink count must equal the number of names inventoried; an alias
+outside those roots therefore prevents compression. Directory reparse points are
+not traversed. An instance is active unless the caller supplies an explicit active
+list. Last-write age filters candidates, while active-instance identity protects
+old libraries that are still frequently read. Last-access time is not a reliable
+activity signal and is not used.
+
+Apply opens each file exclusively, rechecks identity, hardlink count, length, and
+last-write time, and calls `FSCTL_SET_COMPRESSION` with native LZNT1 compression.
+It keeps the file and every hardlink in place. `FileStandardInfo.AllocationSize`
+measures allocation once per identity, including partial-cluster allocation on
+uncompressed files. BuildXL CAS content can deny Everyone
+`WriteData | AppendData`. For that exact explicit deny rule, the helper holds a
+security-only handle that prevents file replacement, saves the DACL, removes the
+rule, opens the exclusive data handle, and restores the original DACL through the
+security handle before compression. A failed data open also restores the DACL.
+Other deny rules are retained. Preview never changes compression or permissions.
+DACL restoration uses `finally`; forced process termination during the short
+permission transition can bypass that restoration. Let maintenance exit normally.
+
+Compression changes physical allocation. The cache still manages its existing
+logical content quota and eviction policy. Engine state, RocksDB metadata,
+incremental state, and dependency sources stay outside the eligible scope.

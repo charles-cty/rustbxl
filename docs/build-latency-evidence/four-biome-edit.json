@@ -1,0 +1,66 @@
+[
+  {
+    "Instance": "a",
+    "Marker": "PERF-FOUR-A",
+    "StartUtc": "2026-11-16T10:31:29.4096437Z",
+    "EndUtc": "2026-11-16T10:31:52.8656352Z",
+    "Seconds": 23.4559915,
+    "Passed": true,
+    "Output": "rustbxl-probe-PERF-FOUR-A\nfunction value() {\n\treturn 42;\n}",
+    "Statistics": {
+      "instance": "a",
+      "project": "F:\\Temp\\rustbxl-large-20261116\\runs\\biome\\a",
+      "targetDirectory": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\instances\\a\\target",
+      "processCacheHits": 491,
+      "processExecuted": 2
+    }
+  },
+  {
+    "Instance": "b",
+    "Marker": "PERF-FOUR-B",
+    "StartUtc": "2026-11-16T10:31:29.4405914Z",
+    "EndUtc": "2026-11-16T10:32:00.9555172Z",
+    "Seconds": 31.5149258,
+    "Passed": true,
+    "Output": "rustbxl-probe-PERF-FOUR-B\nfunction value() {\n\treturn 42;\n}",
+    "Statistics": {
+      "instance": "b",
+      "project": "F:\\Temp\\rustbxl-large-20261116\\runs\\biome\\b",
+      "targetDirectory": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\instances\\b\\target",
+      "processCacheHits": 491,
+      "processExecuted": 2
+    }
+  },
+  {
+    "Instance": "c",
+    "Marker": "PERF-FOUR-C",
+    "StartUtc": "2026-11-16T10:31:29.4564708Z",
+    "EndUtc": "2026-11-16T10:32:01.6013227Z",
+    "Seconds": 32.1448519,
+    "Passed": true,
+    "Output": "rustbxl-probe-PERF-FOUR-C\nfunction value() {\n\treturn 42;\n}",
+    "Statistics": {
+      "instance": "c",
+      "project": "F:\\Temp\\rustbxl-large-20261116\\runs\\biome\\c",
+      "targetDirectory": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\instances\\c\\target",
+      "processCacheHits": 491,
+      "processExecuted": 2
+    }
+  },
+  {
+    "Instance": "d",
+    "Marker": "PERF-FOUR-D",
+    "StartUtc": "2026-11-16T10:31:29.4748869Z",
+    "EndUtc": "2026-11-16T10:32:00.6049165Z",
+    "Seconds": 31.1300296,
+    "Passed": true,
+    "Output": "rustbxl-probe-PERF-FOUR-D\nfunction value() {\n\treturn 42;\n}",
+    "Statistics": {
+      "instance": "d",
+      "project": "F:\\Temp\\rustbxl-large-20261116\\runs\\biome\\d",
+      "targetDirectory": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\instances\\d\\target",
+      "processCacheHits": 491,
+      "processExecuted": 2
+    }
+  }
+]

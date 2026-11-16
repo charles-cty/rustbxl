@@ -1,0 +1,110 @@
+[
+  {
+    "OriginalMs": 402.4733,
+    "Equal": true,
+    "Scan": {
+      "Items": 2499,
+      "CargoFiles": 50,
+      "Directories": 246
+    },
+    "Round": 1,
+    "FastMs": 52.2481,
+    "Name": "rust-analyzer"
+  },
+  {
+    "OriginalMs": 358.4292,
+    "Equal": true,
+    "Scan": {
+      "Items": 2499,
+      "CargoFiles": 50,
+      "Directories": 246
+    },
+    "Round": 2,
+    "FastMs": 27.5306,
+    "Name": "rust-analyzer"
+  },
+  {
+    "OriginalMs": 350.3868,
+    "Equal": true,
+    "Scan": {
+      "Items": 2499,
+      "CargoFiles": 50,
+      "Directories": 246
+    },
+    "Round": 3,
+    "FastMs": 28.4911,
+    "Name": "rust-analyzer"
+  },
+  {
+    "OriginalMs": 2884.0624,
+    "Equal": true,
+    "Scan": {
+      "Items": 18823,
+      "CargoFiles": 99,
+      "Directories": 2021
+    },
+    "Round": 1,
+    "FastMs": 142.4756,
+    "Name": "biome"
+  },
+  {
+    "OriginalMs": 2595.4178,
+    "Equal": true,
+    "Scan": {
+      "Items": 18823,
+      "CargoFiles": 99,
+      "Directories": 2021
+    },
+    "Round": 2,
+    "FastMs": 143.7598,
+    "Name": "biome"
+  },
+  {
+    "OriginalMs": 2509.6031,
+    "Equal": true,
+    "Scan": {
+      "Items": 18823,
+      "CargoFiles": 99,
+      "Directories": 2021
+    },
+    "Round": 3,
+    "FastMs": 145.2494,
+    "Name": "biome"
+  },
+  {
+    "OriginalMs": 118.6966,
+    "Equal": true,
+    "Scan": {
+      "Items": 2240,
+      "CargoFiles": 21,
+      "Directories": 99
+    },
+    "Round": 1,
+    "FastMs": 18.2096,
+    "Name": "typst"
+  },
+  {
+    "OriginalMs": 119.9869,
+    "Equal": true,
+    "Scan": {
+      "Items": 2240,
+      "CargoFiles": 21,
+      "Directories": 99
+    },
+    "Round": 2,
+    "FastMs": 12.8496,
+    "Name": "typst"
+  },
+  {
+    "OriginalMs": 116.2903,
+    "Equal": true,
+    "Scan": {
+      "Items": 2240,
+      "CargoFiles": 21,
+      "Directories": 99
+    },
+    "Round": 3,
+    "FastMs": 11.1781,
+    "Name": "typst"
+  }
+]

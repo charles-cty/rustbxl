@@ -1,0 +1,145 @@
+[
+  {
+    "passed": true,
+    "details": true,
+    "case": "shell-session-contract"
+  },
+  {
+    "passed": true,
+    "details": 22,
+    "case": "structured-graph-arguments"
+  },
+  {
+    "passed": true,
+    "details": {
+      "processPips": 12,
+      "cold": {
+        "instance": "alpha",
+        "project": "F:\\Temp\\rustbxl-large-20261116\\integration-dependency-views\\worktrees\\alpha",
+        "targetDirectory": "F:\\Temp\\rustbxl-large-20261116\\integration-dependency-views\\sidecar state\\instances\\alpha\\target",
+        "processCacheHits": 0,
+        "processExecuted": 12
+      },
+      "shared": {
+        "instance": "beta",
+        "project": "F:\\Temp\\rustbxl-large-20261116\\integration-dependency-views\\worktrees\\beta",
+        "targetDirectory": "F:\\Temp\\rustbxl-large-20261116\\integration-dependency-views\\sidecar state\\instances\\beta\\target",
+        "processCacheHits": 12,
+        "processExecuted": 0
+      }
+    },
+    "case": "cold-and-shared-cache"
+  },
+  {
+    "passed": true,
+    "details": {
+      "instance": "beta",
+      "project": "F:\\Temp\\rustbxl-large-20261116\\integration-dependency-views\\worktrees\\beta",
+      "targetDirectory": "F:\\Temp\\rustbxl-large-20261116\\integration-dependency-views\\sidecar state\\instances\\beta\\target",
+      "processCacheHits": 9,
+      "processExecuted": 3
+    },
+    "case": "ordinary-source"
+  },
+  {
+    "passed": true,
+    "details": {
+      "instance": "beta",
+      "project": "F:\\Temp\\rustbxl-large-20261116\\integration-dependency-views\\worktrees\\beta",
+      "targetDirectory": "F:\\Temp\\rustbxl-large-20261116\\integration-dependency-views\\sidecar state\\instances\\beta\\target",
+      "processCacheHits": 9,
+      "processExecuted": 3
+    },
+    "case": "new-module"
+  },
+  {
+    "passed": true,
+    "details": {
+      "instance": "beta",
+      "project": "F:\\Temp\\rustbxl-large-20261116\\integration-dependency-views\\worktrees\\beta",
+      "targetDirectory": "F:\\Temp\\rustbxl-large-20261116\\integration-dependency-views\\sidecar state\\instances\\beta\\target",
+      "processCacheHits": 8,
+      "processExecuted": 4
+    },
+    "case": "optional-file"
+  },
+  {
+    "passed": true,
+    "details": {
+      "instance": "beta",
+      "project": "F:\\Temp\\rustbxl-large-20261116\\integration-dependency-views\\worktrees\\beta",
+      "targetDirectory": "F:\\Temp\\rustbxl-large-20261116\\integration-dependency-views\\sidecar state\\instances\\beta\\target",
+      "processCacheHits": 8,
+      "processExecuted": 4
+    },
+    "case": "directory-member"
+  },
+  {
+    "passed": true,
+    "details": {
+      "instance": "beta",
+      "project": "F:\\Temp\\rustbxl-large-20261116\\integration-dependency-views\\worktrees\\beta",
+      "targetDirectory": "F:\\Temp\\rustbxl-large-20261116\\integration-dependency-views\\sidecar state\\instances\\beta\\target",
+      "processCacheHits": 8,
+      "processExecuted": 4
+    },
+    "case": "external-text"
+  },
+  {
+    "passed": true,
+    "details": {
+      "instance": "beta",
+      "project": "F:\\Temp\\rustbxl-large-20261116\\integration-dependency-views\\worktrees\\beta",
+      "targetDirectory": "F:\\Temp\\rustbxl-large-20261116\\integration-dependency-views\\sidecar state\\instances\\beta\\target",
+      "processCacheHits": 11,
+      "processExecuted": 1
+    },
+    "case": "same-directives"
+  },
+  {
+    "passed": true,
+    "details": {
+      "instance": "beta",
+      "project": "F:\\Temp\\rustbxl-large-20261116\\integration-dependency-views\\worktrees\\beta",
+      "targetDirectory": "F:\\Temp\\rustbxl-large-20261116\\integration-dependency-views\\sidecar state\\instances\\beta\\target",
+      "processCacheHits": 6,
+      "processExecuted": 6
+    },
+    "case": "build-script"
+  },
+  {
+    "passed": true,
+    "details": {
+      "instance": "beta",
+      "project": "F:\\Temp\\rustbxl-large-20261116\\integration-dependency-views\\worktrees\\beta",
+      "targetDirectory": "F:\\Temp\\rustbxl-large-20261116\\integration-dependency-views\\sidecar state\\instances\\beta\\target",
+      "processCacheHits": 10,
+      "processExecuted": 2
+    },
+    "case": "source-text"
+  },
+  {
+    "passed": true,
+    "details": [
+      "alpha",
+      "beta",
+      "gamma",
+      "delta",
+      "alpha-near",
+      "beta-near"
+    ],
+    "case": "six-concurrent-worktrees"
+  },
+  {
+    "passed": true,
+    "details": [
+      "rustbxl-fixture/extra"
+    ],
+    "case": "feature-recapture"
+  },
+  {
+    "passed": true,
+    "details": true,
+    "case": "non-invasive-and-read-only-dependencies"
+  }
+]

@@ -1,0 +1,60 @@
+{
+  "CompressedFiles": 0,
+  "BuildJobsPerClient": 3,
+  "Targets": [
+    {
+      "Storage": {
+        "Files": 12444,
+        "UniqueFiles": 12280,
+        "LogicalBytes": 12240464588,
+        "UniqueLogicalBytes": 10756872366,
+        "UniqueAllocatedBytes": 10778470672,
+        "HardlinkedFiles": 328
+      },
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\runs\\biome\\cargo-a"
+    },
+    {
+      "Storage": {
+        "Files": 12444,
+        "UniqueFiles": 12280,
+        "LogicalBytes": 12239266431,
+        "UniqueLogicalBytes": 10756190305,
+        "UniqueAllocatedBytes": 10777790752,
+        "HardlinkedFiles": 328
+      },
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\runs\\biome\\cargo-b"
+    },
+    {
+      "Storage": {
+        "Files": 12425,
+        "UniqueFiles": 12275,
+        "LogicalBytes": 12226287408,
+        "UniqueLogicalBytes": 10747885023,
+        "UniqueAllocatedBytes": 10769475856,
+        "HardlinkedFiles": 300
+      },
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\runs\\biome\\cargo-c"
+    },
+    {
+      "Storage": {
+        "Files": 12425,
+        "UniqueFiles": 12275,
+        "LogicalBytes": 12226385922,
+        "UniqueLogicalBytes": 10747926193,
+        "UniqueAllocatedBytes": 10769516816,
+        "HardlinkedFiles": 300
+      },
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\runs\\biome\\cargo-d"
+    }
+  ],
+  "Incremental": 1,
+  "Name": "biome",
+  "Combined": {
+    "Files": 49738,
+    "UniqueFiles": 49110,
+    "LogicalBytes": 48932404349,
+    "UniqueLogicalBytes": 43008873887,
+    "UniqueAllocatedBytes": 43095254096,
+    "HardlinkedFiles": 1256
+  }
+}

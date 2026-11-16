@@ -1,12 +1,15 @@
 function Get-CargoFiles([string]$Project, [string]$CargoHome) {
     $paths = [Collections.Generic.List[string]]::new()
-    $pending = [Collections.Generic.Stack[string]]::new()
-    $pending.Push($Project)
+    $pending = [Collections.Generic.Stack[IO.DirectoryInfo]]::new()
+    $pending.Push([IO.DirectoryInfo]::new($Project))
     while ($pending.Count) {
         $directory = $pending.Pop()
-        foreach ($item in Get-ChildItem -LiteralPath $directory -Force) {
-            if ($item.PSIsContainer) {
-                if ($item.Name -notin @('.git', 'target') -and -not $item.LinkType) { $pending.Push($item.FullName) }
+        foreach ($item in $directory.EnumerateFileSystemInfos()) {
+            if (($item.Attributes -band [IO.FileAttributes]::Directory) -ne 0) {
+                if ($item.Name -notin @('.git', 'target') -and
+                    ($item.Attributes -band [IO.FileAttributes]::ReparsePoint) -eq 0) {
+                    $pending.Push([IO.DirectoryInfo]$item)
+                }
             } elseif ($item.Name -in @('Cargo.toml', 'Cargo.lock', 'rust-toolchain', 'rust-toolchain.toml')) {
                 $paths.Add($item.FullName)
             }

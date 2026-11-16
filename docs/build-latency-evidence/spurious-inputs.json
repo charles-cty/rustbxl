@@ -1,0 +1,911 @@
+{
+  "CompilerPid": 69744,
+  "Node": "unicode_width-69cf98482d5e2dbf",
+  "AccessCount": 129,
+  "FailedCount": 0,
+  "Accesses": [
+    {
+      "Producer": "biome_rowan-0303ad538963ef06",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\x86_64-pc-windows-msvc\\debug\\deps\\libbiome_rowan-0303ad538963ef06.rlib"
+    },
+    {
+      "Producer": "biome_rowan-0303ad538963ef06",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\x86_64-pc-windows-msvc\\debug\\deps\\libbiome_rowan-0303ad538963ef06.rmeta"
+    },
+    {
+      "Producer": "biome_string_case-1f84a24cf45e460e",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\x86_64-pc-windows-msvc\\debug\\deps\\libbiome_string_case-1f84a24cf45e460e.rlib"
+    },
+    {
+      "Producer": "biome_string_case-1f84a24cf45e460e",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\x86_64-pc-windows-msvc\\debug\\deps\\libbiome_string_case-1f84a24cf45e460e.rmeta"
+    },
+    {
+      "Producer": "biome_text_edit-08152895b7f30f2d",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\x86_64-pc-windows-msvc\\debug\\deps\\libbiome_text_edit-08152895b7f30f2d.rlib"
+    },
+    {
+      "Producer": "biome_text_edit-08152895b7f30f2d",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\x86_64-pc-windows-msvc\\debug\\deps\\libbiome_text_edit-08152895b7f30f2d.rmeta"
+    },
+    {
+      "Producer": "biome_text_size-401677a9ea54aa5e",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\x86_64-pc-windows-msvc\\debug\\deps\\libbiome_text_size-401677a9ea54aa5e.rlib"
+    },
+    {
+      "Producer": "biome_text_size-401677a9ea54aa5e",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\x86_64-pc-windows-msvc\\debug\\deps\\libbiome_text_size-401677a9ea54aa5e.rmeta"
+    },
+    {
+      "Producer": "camino-a5973d93d7d62450",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\x86_64-pc-windows-msvc\\debug\\deps\\libcamino-a5973d93d7d62450.rlib"
+    },
+    {
+      "Producer": "camino-a5973d93d7d62450",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\x86_64-pc-windows-msvc\\debug\\deps\\libcamino-a5973d93d7d62450.rmeta"
+    },
+    {
+      "Producer": "cfg_if-cc6f5cb158d352c4",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\x86_64-pc-windows-msvc\\debug\\deps\\libcfg_if-cc6f5cb158d352c4.rlib"
+    },
+    {
+      "Producer": "cfg_if-cc6f5cb158d352c4",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\x86_64-pc-windows-msvc\\debug\\deps\\libcfg_if-cc6f5cb158d352c4.rmeta"
+    },
+    {
+      "Producer": "enumflags2-099dd14903f22a18",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\x86_64-pc-windows-msvc\\debug\\deps\\libenumflags2-099dd14903f22a18.rlib"
+    },
+    {
+      "Producer": "enumflags2-099dd14903f22a18",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\x86_64-pc-windows-msvc\\debug\\deps\\libenumflags2-099dd14903f22a18.rmeta"
+    },
+    {
+      "Producer": "hashbrown-3eeb68da7d2153cd",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\x86_64-pc-windows-msvc\\debug\\deps\\libhashbrown-3eeb68da7d2153cd.rlib"
+    },
+    {
+      "Producer": "hashbrown-3eeb68da7d2153cd",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\x86_64-pc-windows-msvc\\debug\\deps\\libhashbrown-3eeb68da7d2153cd.rmeta"
+    },
+    {
+      "Producer": "io_lifetimes-5d8d4f16b98b9332",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\x86_64-pc-windows-msvc\\debug\\deps\\libio_lifetimes-5d8d4f16b98b9332.rlib"
+    },
+    {
+      "Producer": "io_lifetimes-5d8d4f16b98b9332",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\x86_64-pc-windows-msvc\\debug\\deps\\libio_lifetimes-5d8d4f16b98b9332.rmeta"
+    },
+    {
+      "Producer": "is_terminal-09f2745bc0c60f02",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\x86_64-pc-windows-msvc\\debug\\deps\\libis_terminal-09f2745bc0c60f02.rlib"
+    },
+    {
+      "Producer": "is_terminal-09f2745bc0c60f02",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\x86_64-pc-windows-msvc\\debug\\deps\\libis_terminal-09f2745bc0c60f02.rmeta"
+    },
+    {
+      "Producer": "itoa-9dd3fba0a2bec7fb",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\x86_64-pc-windows-msvc\\debug\\deps\\libitoa-9dd3fba0a2bec7fb.rlib"
+    },
+    {
+      "Producer": "itoa-9dd3fba0a2bec7fb",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\x86_64-pc-windows-msvc\\debug\\deps\\libitoa-9dd3fba0a2bec7fb.rmeta"
+    },
+    {
+      "Producer": "log-ceb4628308f2d8ad",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\x86_64-pc-windows-msvc\\debug\\deps\\liblog-ceb4628308f2d8ad.rlib"
+    },
+    {
+      "Producer": "log-ceb4628308f2d8ad",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\x86_64-pc-windows-msvc\\debug\\deps\\liblog-ceb4628308f2d8ad.rmeta"
+    },
+    {
+      "Producer": "memchr-51b2f1114de79ef8",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\x86_64-pc-windows-msvc\\debug\\deps\\libmemchr-51b2f1114de79ef8.rlib"
+    },
+    {
+      "Producer": "memchr-51b2f1114de79ef8",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\x86_64-pc-windows-msvc\\debug\\deps\\libmemchr-51b2f1114de79ef8.rmeta"
+    },
+    {
+      "Producer": "once_cell-cb87b1797593cdb6",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\x86_64-pc-windows-msvc\\debug\\deps\\libonce_cell-cb87b1797593cdb6.rlib"
+    },
+    {
+      "Producer": "once_cell-cb87b1797593cdb6",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\x86_64-pc-windows-msvc\\debug\\deps\\libonce_cell-cb87b1797593cdb6.rmeta"
+    },
+    {
+      "Producer": "pin_project_lite-3c2f4500d7113abe",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\x86_64-pc-windows-msvc\\debug\\deps\\libpin_project_lite-3c2f4500d7113abe.rlib"
+    },
+    {
+      "Producer": "pin_project_lite-3c2f4500d7113abe",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\x86_64-pc-windows-msvc\\debug\\deps\\libpin_project_lite-3c2f4500d7113abe.rmeta"
+    },
+    {
+      "Producer": "rustc_hash-9f6f4d426e7cb655",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\x86_64-pc-windows-msvc\\debug\\deps\\librustc_hash-9f6f4d426e7cb655.rlib"
+    },
+    {
+      "Producer": "rustc_hash-9f6f4d426e7cb655",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\x86_64-pc-windows-msvc\\debug\\deps\\librustc_hash-9f6f4d426e7cb655.rmeta"
+    },
+    {
+      "Producer": "ryu-8960968730f087b3",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\x86_64-pc-windows-msvc\\debug\\deps\\libryu-8960968730f087b3.rlib"
+    },
+    {
+      "Producer": "ryu-8960968730f087b3",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\x86_64-pc-windows-msvc\\debug\\deps\\libryu-8960968730f087b3.rmeta"
+    },
+    {
+      "Producer": "serde-db78975383595e65",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\x86_64-pc-windows-msvc\\debug\\deps\\libserde-db78975383595e65.rlib"
+    },
+    {
+      "Producer": "serde-db78975383595e65",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\x86_64-pc-windows-msvc\\debug\\deps\\libserde-db78975383595e65.rmeta"
+    },
+    {
+      "Producer": "serde_core-b6cd4dca83ba9c2e",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\x86_64-pc-windows-msvc\\debug\\deps\\libserde_core-b6cd4dca83ba9c2e.rlib"
+    },
+    {
+      "Producer": "serde_core-b6cd4dca83ba9c2e",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\x86_64-pc-windows-msvc\\debug\\deps\\libserde_core-b6cd4dca83ba9c2e.rmeta"
+    },
+    {
+      "Producer": "serde_json-8acd3dfdad98750f",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\x86_64-pc-windows-msvc\\debug\\deps\\libserde_json-8acd3dfdad98750f.rlib"
+    },
+    {
+      "Producer": "serde_json-8acd3dfdad98750f",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\x86_64-pc-windows-msvc\\debug\\deps\\libserde_json-8acd3dfdad98750f.rmeta"
+    },
+    {
+      "Producer": "similar-960cd5c12ecf3a24",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\x86_64-pc-windows-msvc\\debug\\deps\\libsimilar-960cd5c12ecf3a24.rlib"
+    },
+    {
+      "Producer": "similar-960cd5c12ecf3a24",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\x86_64-pc-windows-msvc\\debug\\deps\\libsimilar-960cd5c12ecf3a24.rmeta"
+    },
+    {
+      "Producer": "smallvec-9291b4ca5a676c3e",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\x86_64-pc-windows-msvc\\debug\\deps\\libsmallvec-9291b4ca5a676c3e.rlib"
+    },
+    {
+      "Producer": "smallvec-9291b4ca5a676c3e",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\x86_64-pc-windows-msvc\\debug\\deps\\libsmallvec-9291b4ca5a676c3e.rmeta"
+    },
+    {
+      "Producer": "termcolor-20a35ebb71899311",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\x86_64-pc-windows-msvc\\debug\\deps\\libtermcolor-20a35ebb71899311.rlib"
+    },
+    {
+      "Producer": "termcolor-20a35ebb71899311",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\x86_64-pc-windows-msvc\\debug\\deps\\libtermcolor-20a35ebb71899311.rmeta"
+    },
+    {
+      "Producer": "tracing-77b2851288344c93",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\x86_64-pc-windows-msvc\\debug\\deps\\libtracing-77b2851288344c93.rlib"
+    },
+    {
+      "Producer": "tracing-77b2851288344c93",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\x86_64-pc-windows-msvc\\debug\\deps\\libtracing-77b2851288344c93.rmeta"
+    },
+    {
+      "Producer": "tracing_core-16fd95c5e80cd6e8",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\x86_64-pc-windows-msvc\\debug\\deps\\libtracing_core-16fd95c5e80cd6e8.rlib"
+    },
+    {
+      "Producer": "tracing_core-16fd95c5e80cd6e8",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\x86_64-pc-windows-msvc\\debug\\deps\\libtracing_core-16fd95c5e80cd6e8.rmeta"
+    },
+    {
+      "Producer": "unicode_segmentation-c33dcf3109ff22b1",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\x86_64-pc-windows-msvc\\debug\\deps\\libunicode_segmentation-c33dcf3109ff22b1.rlib"
+    },
+    {
+      "Producer": "unicode_segmentation-c33dcf3109ff22b1",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\x86_64-pc-windows-msvc\\debug\\deps\\libunicode_segmentation-c33dcf3109ff22b1.rmeta"
+    },
+    {
+      "Producer": "winapi-6606e8a323483cec",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\x86_64-pc-windows-msvc\\debug\\deps\\libwinapi-6606e8a323483cec.rlib"
+    },
+    {
+      "Producer": "winapi-6606e8a323483cec",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\x86_64-pc-windows-msvc\\debug\\deps\\libwinapi-6606e8a323483cec.rmeta"
+    },
+    {
+      "Producer": "winapi_util-b6266a94ab2c265b",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\x86_64-pc-windows-msvc\\debug\\deps\\libwinapi_util-b6266a94ab2c265b.rlib"
+    },
+    {
+      "Producer": "winapi_util-b6266a94ab2c265b",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\x86_64-pc-windows-msvc\\debug\\deps\\libwinapi_util-b6266a94ab2c265b.rmeta"
+    },
+    {
+      "Producer": "windows_link-e3a50bbdf646acc0",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\x86_64-pc-windows-msvc\\debug\\deps\\libwindows_link-e3a50bbdf646acc0.rlib"
+    },
+    {
+      "Producer": "windows_link-e3a50bbdf646acc0",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\x86_64-pc-windows-msvc\\debug\\deps\\libwindows_link-e3a50bbdf646acc0.rmeta"
+    },
+    {
+      "Producer": "windows_sys-66c6b540c1d99791",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\x86_64-pc-windows-msvc\\debug\\deps\\libwindows_sys-66c6b540c1d99791.rlib"
+    },
+    {
+      "Producer": "windows_sys-66c6b540c1d99791",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\x86_64-pc-windows-msvc\\debug\\deps\\libwindows_sys-66c6b540c1d99791.rmeta"
+    },
+    {
+      "Producer": "windows_sys-8fd45718491dd7b7",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\x86_64-pc-windows-msvc\\debug\\deps\\libwindows_sys-8fd45718491dd7b7.rlib"
+    },
+    {
+      "Producer": "windows_sys-8fd45718491dd7b7",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\x86_64-pc-windows-msvc\\debug\\deps\\libwindows_sys-8fd45718491dd7b7.rmeta"
+    },
+    {
+      "Producer": "windows_sys-968b45020f65fd38",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\x86_64-pc-windows-msvc\\debug\\deps\\libwindows_sys-968b45020f65fd38.rmeta"
+    },
+    {
+      "Producer": "windows_targets-7aebdd949facf723",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\x86_64-pc-windows-msvc\\debug\\deps\\libwindows_targets-7aebdd949facf723.rlib"
+    },
+    {
+      "Producer": "windows_targets-7aebdd949facf723",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\x86_64-pc-windows-msvc\\debug\\deps\\libwindows_targets-7aebdd949facf723.rmeta"
+    },
+    {
+      "Producer": "windows_targets-c4e1a1d20c0b1343",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\x86_64-pc-windows-msvc\\debug\\deps\\libwindows_targets-c4e1a1d20c0b1343.rlib"
+    },
+    {
+      "Producer": "windows_targets-c4e1a1d20c0b1343",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\x86_64-pc-windows-msvc\\debug\\deps\\libwindows_targets-c4e1a1d20c0b1343.rmeta"
+    },
+    {
+      "Producer": "windows_targets-da95d6d597b4671b",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\x86_64-pc-windows-msvc\\debug\\deps\\libwindows_targets-da95d6d597b4671b.rlib"
+    },
+    {
+      "Producer": "windows_targets-da95d6d597b4671b",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\x86_64-pc-windows-msvc\\debug\\deps\\libwindows_targets-da95d6d597b4671b.rmeta"
+    },
+    {
+      "Producer": "windows_x86_64_msvc-4e1ace9887ca5026",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\x86_64-pc-windows-msvc\\debug\\deps\\libwindows_x86_64_msvc-4e1ace9887ca5026.rlib"
+    },
+    {
+      "Producer": "windows_x86_64_msvc-4e1ace9887ca5026",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\x86_64-pc-windows-msvc\\debug\\deps\\libwindows_x86_64_msvc-4e1ace9887ca5026.rmeta"
+    },
+    {
+      "Producer": "windows_x86_64_msvc-99e6d3e072793c43",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\x86_64-pc-windows-msvc\\debug\\deps\\libwindows_x86_64_msvc-99e6d3e072793c43.rlib"
+    },
+    {
+      "Producer": "windows_x86_64_msvc-99e6d3e072793c43",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\x86_64-pc-windows-msvc\\debug\\deps\\libwindows_x86_64_msvc-99e6d3e072793c43.rmeta"
+    },
+    {
+      "Producer": "windows_x86_64_msvc-bd689e3f7f7612af",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\x86_64-pc-windows-msvc\\debug\\deps\\libwindows_x86_64_msvc-bd689e3f7f7612af.rlib"
+    },
+    {
+      "Producer": "windows_x86_64_msvc-bd689e3f7f7612af",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\x86_64-pc-windows-msvc\\debug\\deps\\libwindows_x86_64_msvc-bd689e3f7f7612af.rmeta"
+    },
+    {
+      "Producer": "biome_diagnostics_macros-493e009102107671-link",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\debug\\deps\\biome_diagnostics_macros-493e009102107671.dll"
+    },
+    {
+      "Producer": "biome_diagnostics_macros-493e009102107671-link",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\debug\\deps\\biome_diagnostics_macros-493e009102107671.dll.exp"
+    },
+    {
+      "Producer": "biome_diagnostics_macros-493e009102107671-link",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\debug\\deps\\biome_diagnostics_macros-493e009102107671.dll.lib"
+    },
+    {
+      "Producer": "biome_diagnostics_macros-493e009102107671-link",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\debug\\deps\\biome_diagnostics_macros-493e009102107671.pdb"
+    },
+    {
+      "Producer": "biome_markup-d36687e77e4647e8-link",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\debug\\deps\\biome_markup-d36687e77e4647e8.dll"
+    },
+    {
+      "Producer": "biome_markup-d36687e77e4647e8-link",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\debug\\deps\\biome_markup-d36687e77e4647e8.dll.exp"
+    },
+    {
+      "Producer": "biome_markup-d36687e77e4647e8-link",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\debug\\deps\\biome_markup-d36687e77e4647e8.dll.lib"
+    },
+    {
+      "Producer": "biome_markup-d36687e77e4647e8-link",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\debug\\deps\\biome_markup-d36687e77e4647e8.pdb"
+    },
+    {
+      "Producer": "enumflags2_derive-7f26313ff7a8288a-link",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\debug\\deps\\enumflags2_derive-7f26313ff7a8288a.dll"
+    },
+    {
+      "Producer": "enumflags2_derive-7f26313ff7a8288a-link",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\debug\\deps\\enumflags2_derive-7f26313ff7a8288a.dll.exp"
+    },
+    {
+      "Producer": "enumflags2_derive-7f26313ff7a8288a-link",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\debug\\deps\\enumflags2_derive-7f26313ff7a8288a.dll.lib"
+    },
+    {
+      "Producer": "enumflags2_derive-7f26313ff7a8288a-link",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\debug\\deps\\enumflags2_derive-7f26313ff7a8288a.pdb"
+    },
+    {
+      "Producer": "biome_rowan-232435c46743af6c",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\debug\\deps\\libbiome_rowan-232435c46743af6c.rlib"
+    },
+    {
+      "Producer": "biome_rowan-232435c46743af6c",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\debug\\deps\\libbiome_rowan-232435c46743af6c.rmeta"
+    },
+    {
+      "Producer": "biome_text_edit-4cb30a111c77abf6",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\debug\\deps\\libbiome_text_edit-4cb30a111c77abf6.rlib"
+    },
+    {
+      "Producer": "biome_text_edit-4cb30a111c77abf6",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\debug\\deps\\libbiome_text_edit-4cb30a111c77abf6.rmeta"
+    },
+    {
+      "Producer": "biome_text_size-45029e312d94a3ed",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\debug\\deps\\libbiome_text_size-45029e312d94a3ed.rlib"
+    },
+    {
+      "Producer": "biome_text_size-45029e312d94a3ed",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\debug\\deps\\libbiome_text_size-45029e312d94a3ed.rmeta"
+    },
+    {
+      "Producer": "hashbrown-303c4af239d854ef",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\debug\\deps\\libhashbrown-303c4af239d854ef.rlib"
+    },
+    {
+      "Producer": "hashbrown-303c4af239d854ef",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\debug\\deps\\libhashbrown-303c4af239d854ef.rmeta"
+    },
+    {
+      "Producer": "proc_macro2-65b45cdf5ea5fbb0",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\debug\\deps\\libproc_macro2-65b45cdf5ea5fbb0.rlib"
+    },
+    {
+      "Producer": "proc_macro2-65b45cdf5ea5fbb0",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\debug\\deps\\libproc_macro2-65b45cdf5ea5fbb0.rmeta"
+    },
+    {
+      "Producer": "proc_macro_error2-6b397d945eb1e793",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\debug\\deps\\libproc_macro_error2-6b397d945eb1e793.rlib"
+    },
+    {
+      "Producer": "proc_macro_error2-6b397d945eb1e793",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\debug\\deps\\libproc_macro_error2-6b397d945eb1e793.rmeta"
+    },
+    {
+      "Producer": "quote-0bbdb4fa6e8d253c",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\debug\\deps\\libquote-0bbdb4fa6e8d253c.rlib"
+    },
+    {
+      "Producer": "quote-0bbdb4fa6e8d253c",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\debug\\deps\\libquote-0bbdb4fa6e8d253c.rmeta"
+    },
+    {
+      "Producer": "rustc_hash-6688f4f76b23f71f",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\debug\\deps\\librustc_hash-6688f4f76b23f71f.rlib"
+    },
+    {
+      "Producer": "rustc_hash-6688f4f76b23f71f",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\debug\\deps\\librustc_hash-6688f4f76b23f71f.rmeta"
+    },
+    {
+      "Producer": "serde-cd07c574419e602e",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\debug\\deps\\libserde-cd07c574419e602e.rlib"
+    },
+    {
+      "Producer": "serde-cd07c574419e602e",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\debug\\deps\\libserde-cd07c574419e602e.rmeta"
+    },
+    {
+      "Producer": "serde_core-22acf98466b0d38a",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\debug\\deps\\libserde_core-22acf98466b0d38a.rlib"
+    },
+    {
+      "Producer": "serde_core-22acf98466b0d38a",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\debug\\deps\\libserde_core-22acf98466b0d38a.rmeta"
+    },
+    {
+      "Producer": "similar-08ffec94f6774cc6",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\debug\\deps\\libsimilar-08ffec94f6774cc6.rlib"
+    },
+    {
+      "Producer": "similar-08ffec94f6774cc6",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\debug\\deps\\libsimilar-08ffec94f6774cc6.rmeta"
+    },
+    {
+      "Producer": "syn-b4123441d7cb7036",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\debug\\deps\\libsyn-b4123441d7cb7036.rlib"
+    },
+    {
+      "Producer": "syn-b4123441d7cb7036",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\debug\\deps\\libsyn-b4123441d7cb7036.rmeta"
+    },
+    {
+      "Producer": "syn-cb92d10d4d320ffb",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\debug\\deps\\libsyn-cb92d10d4d320ffb.rlib"
+    },
+    {
+      "Producer": "syn-cb92d10d4d320ffb",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\debug\\deps\\libsyn-cb92d10d4d320ffb.rmeta"
+    },
+    {
+      "Producer": "unicode_ident-8f6ac8bd94905ebb",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\debug\\deps\\libunicode_ident-8f6ac8bd94905ebb.rlib"
+    },
+    {
+      "Producer": "unicode_ident-8f6ac8bd94905ebb",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\debug\\deps\\libunicode_ident-8f6ac8bd94905ebb.rmeta"
+    },
+    {
+      "Producer": "unicode_segmentation-734ae13e73d61b34",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\debug\\deps\\libunicode_segmentation-734ae13e73d61b34.rlib"
+    },
+    {
+      "Producer": "unicode_segmentation-734ae13e73d61b34",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\debug\\deps\\libunicode_segmentation-734ae13e73d61b34.rmeta"
+    },
+    {
+      "Producer": "proc_macro_error_attr2-ebd9d509171ee5a3-link",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\debug\\deps\\proc_macro_error_attr2-ebd9d509171ee5a3.dll"
+    },
+    {
+      "Producer": "proc_macro_error_attr2-ebd9d509171ee5a3-link",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\debug\\deps\\proc_macro_error_attr2-ebd9d509171ee5a3.dll.exp"
+    },
+    {
+      "Producer": "proc_macro_error_attr2-ebd9d509171ee5a3-link",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\debug\\deps\\proc_macro_error_attr2-ebd9d509171ee5a3.dll.lib"
+    },
+    {
+      "Producer": "proc_macro_error_attr2-ebd9d509171ee5a3-link",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\debug\\deps\\proc_macro_error_attr2-ebd9d509171ee5a3.pdb"
+    },
+    {
+      "Producer": "serde_derive-0297905450677ce4-link",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\debug\\deps\\serde_derive-0297905450677ce4.dll"
+    },
+    {
+      "Producer": "serde_derive-0297905450677ce4-link",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\debug\\deps\\serde_derive-0297905450677ce4.dll.exp"
+    },
+    {
+      "Producer": "serde_derive-0297905450677ce4-link",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\debug\\deps\\serde_derive-0297905450677ce4.dll.lib"
+    },
+    {
+      "Producer": "serde_derive-0297905450677ce4-link",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\debug\\deps\\serde_derive-0297905450677ce4.pdb"
+    },
+    {
+      "Producer": "tracing_attributes-b69ad4f2b2818d4a-link",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\debug\\deps\\tracing_attributes-b69ad4f2b2818d4a.dll"
+    },
+    {
+      "Producer": "tracing_attributes-b69ad4f2b2818d4a-link",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\debug\\deps\\tracing_attributes-b69ad4f2b2818d4a.dll.exp"
+    },
+    {
+      "Producer": "tracing_attributes-b69ad4f2b2818d4a-link",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\debug\\deps\\tracing_attributes-b69ad4f2b2818d4a.dll.lib"
+    },
+    {
+      "Producer": "tracing_attributes-b69ad4f2b2818d4a-link",
+      "Operation": "FindNextFile",
+      "Requested": 16,
+      "Error": 0,
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\shared-biome\\namespace\\workspace-output-root-for-concurrent-rust-builds-with-shared-cache\\debug\\deps\\tracing_attributes-b69ad4f2b2818d4a.pdb"
+    }
+  ]
+}

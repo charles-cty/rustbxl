@@ -1,0 +1,60 @@
+{
+  "CompressedFiles": 0,
+  "BuildJobsPerClient": 3,
+  "Targets": [
+    {
+      "Storage": {
+        "Files": 8046,
+        "UniqueFiles": 7771,
+        "LogicalBytes": 3955892341,
+        "UniqueLogicalBytes": 3337528812,
+        "UniqueAllocatedBytes": 3350700352,
+        "HardlinkedFiles": 550
+      },
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\runs\\rust-analyzer\\cargo-a"
+    },
+    {
+      "Storage": {
+        "Files": 8046,
+        "UniqueFiles": 7771,
+        "LogicalBytes": 3955837447,
+        "UniqueLogicalBytes": 3337473918,
+        "UniqueAllocatedBytes": 3350651200,
+        "HardlinkedFiles": 550
+      },
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\runs\\rust-analyzer\\cargo-b"
+    },
+    {
+      "Storage": {
+        "Files": 7851,
+        "UniqueFiles": 7766,
+        "LogicalBytes": 3921454526,
+        "UniqueLogicalBytes": 3321384311,
+        "UniqueAllocatedBytes": 3334549824,
+        "HardlinkedFiles": 170
+      },
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\runs\\rust-analyzer\\cargo-c"
+    },
+    {
+      "Storage": {
+        "Files": 7851,
+        "UniqueFiles": 7766,
+        "LogicalBytes": 3921454543,
+        "UniqueLogicalBytes": 3321384328,
+        "UniqueAllocatedBytes": 3334549824,
+        "HardlinkedFiles": 170
+      },
+      "Path": "F:\\Temp\\rustbxl-large-20261116\\runs\\rust-analyzer\\cargo-d"
+    }
+  ],
+  "Incremental": 1,
+  "Name": "rust-analyzer",
+  "Combined": {
+    "Files": 31794,
+    "UniqueFiles": 31074,
+    "LogicalBytes": 15754638857,
+    "UniqueLogicalBytes": 13317771369,
+    "UniqueAllocatedBytes": 13370451200,
+    "HardlinkedFiles": 1440
+  }
+}

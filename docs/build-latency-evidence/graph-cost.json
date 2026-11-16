@@ -1,0 +1,35 @@
+[
+  {
+    "Name": "rust-analyzer",
+    "Processes": 365,
+    "Compilers": 260,
+    "Copies": 7950,
+    "Dependencies": 116596,
+    "DirectoryDependencies": 41978,
+    "PublicationDependencies": 64708,
+    "DependencyViewInputs": 7966,
+    "MaxDependencies": 1364.0
+  },
+  {
+    "Name": "biome",
+    "Processes": 493,
+    "Compilers": 353,
+    "Copies": 13626,
+    "Dependencies": 224369,
+    "DirectoryDependencies": 83547,
+    "PublicationDependencies": 123032,
+    "DependencyViewInputs": 13710,
+    "MaxDependencies": 1771.0
+  },
+  {
+    "Name": "typst",
+    "Processes": 478,
+    "Compilers": 357,
+    "Copies": 9261,
+    "Dependencies": 197128,
+    "DirectoryDependencies": 70602,
+    "PublicationDependencies": 114506,
+    "DependencyViewInputs": 9304,
+    "MaxDependencies": 1810.0
+  }
+]

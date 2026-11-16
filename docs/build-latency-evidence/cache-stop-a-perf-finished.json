@@ -1,0 +1,10 @@
+{
+  "Name": "biome",
+  "Command": "cache-stop",
+  "Instance": "a",
+  "Label": "perf-finished",
+  "Seconds": 1.2265295,
+  "StartUtc": "2026-11-16T10:35:39.5210315Z",
+  "ExitUtc": "2026-11-16T10:35:40.7475610Z",
+  "ExitCode": 0
+}

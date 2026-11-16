@@ -1,0 +1,139 @@
+{
+  "CheckedUtc": "2026-11-16T11:29:12.4914945Z",
+  "IntegrationRun": "F:\\Temp\\rustbxl-compression-20261116\\integration-final",
+  "CompressionRun": "F:\\Temp\\rustbxl-compression-20261116\\allocation-verified",
+  "IntegrationPassed": 20,
+  "CompressionPassed": 7,
+  "Win32ArgumentCases": 505,
+  "BuildXLArgumentArrays": 22,
+  "ConcurrentWorktrees": 6,
+  "IntegrationCases": [
+    {
+      "Case": "contract-file-boundaries",
+      "Passed": true
+    },
+    {
+      "Case": "shell-session-contract",
+      "Passed": true
+    },
+    {
+      "Case": "structured-graph-arguments",
+      "Passed": true
+    },
+    {
+      "Case": "cold-and-shared-cache",
+      "Passed": true
+    },
+    {
+      "Case": "incremental-no-change",
+      "Passed": true
+    },
+    {
+      "Case": "incremental-missing-output",
+      "Passed": true
+    },
+    {
+      "Case": "cargo-input-invalidation",
+      "Passed": true
+    },
+    {
+      "Case": "ordinary-source",
+      "Passed": true
+    },
+    {
+      "Case": "new-module",
+      "Passed": true
+    },
+    {
+      "Case": "optional-file",
+      "Passed": true
+    },
+    {
+      "Case": "directory-member",
+      "Passed": true
+    },
+    {
+      "Case": "external-text",
+      "Passed": true
+    },
+    {
+      "Case": "same-directives",
+      "Passed": true
+    },
+    {
+      "Case": "build-script",
+      "Passed": true
+    },
+    {
+      "Case": "source-text",
+      "Passed": true
+    },
+    {
+      "Case": "compression-rejects-running-cache",
+      "Passed": true
+    },
+    {
+      "Case": "compressed-cache-restoration",
+      "Passed": true
+    },
+    {
+      "Case": "six-concurrent-worktrees",
+      "Passed": true
+    },
+    {
+      "Case": "feature-recapture",
+      "Passed": true
+    },
+    {
+      "Case": "non-invasive-and-read-only-dependencies",
+      "Passed": true
+    }
+  ],
+  "CompressionCases": [
+    {
+      "Case": "preview-and-hardlink-policy",
+      "Passed": true
+    },
+    {
+      "Case": "maintenance-exclusion",
+      "Passed": true
+    },
+    {
+      "Case": "compression-preserves-content-acl-and-identity",
+      "Passed": true
+    },
+    {
+      "Case": "idempotent",
+      "Passed": true
+    },
+    {
+      "Case": "held-file-restores-acl",
+      "Passed": true
+    },
+    {
+      "Case": "size-and-access-boundaries",
+      "Passed": true
+    },
+    {
+      "Case": "reparse-root-rejected",
+      "Passed": true
+    }
+  ],
+  "RealCasCompression": {
+    "CandidateFiles": 38,
+    "CompressedFiles": 38,
+    "AllocatedBefore": 14540800,
+    "AllocatedAfter": 7032832,
+    "SavedBytes": 7507968,
+    "SavingsPercent": 51.63,
+    "Skipped": {
+      "protected": 130,
+      "small": 73
+    },
+    "RestoredProcessCacheHits": 10,
+    "RestoredProcessesExecuted": 0
+  },
+  "PopupCheckStartLocal": "2026-11-16T14:47:05",
+  "NewPopupCount": 0,
+  "ActiveProcesses": []
+}

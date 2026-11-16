@@ -9,6 +9,17 @@ if (args.FirstOrDefault() == "generate") { GraphGenerator.Generate(args[1], args
 if (args.FirstOrDefault() == "prepare-build-script") { BuildScriptOutput.Prepare(args[1], args[2]); return 0; }
 if (args.FirstOrDefault() == "replay-rustc") return await BuildScriptOutput.CompileAsync(args[1], args[2], args[3], args[4..]);
 if (args.FirstOrDefault() == "check-arguments") { ArgumentChecks.Run(); return 0; }
+if (args.FirstOrDefault() == "compress-artifacts")
+{
+    if (!OperatingSystem.IsWindows()) throw new PlatformNotSupportedException("Artifact compression requires Windows.");
+    try { ArtifactCompression.Run(args[1]); return 0; }
+    catch (Exception error) when (error is IOException or UnauthorizedAccessException or ArgumentException
+        or System.ComponentModel.Win32Exception or NotSupportedException)
+    {
+        Console.Error.WriteLine("Artifact compression: " + error.Message);
+        return 1;
+    }
+}
 if (args.FirstOrDefault() == "write-arguments")
 {
     Directory.CreateDirectory(Path.GetDirectoryName(args[1])!);
