@@ -35,7 +35,7 @@ function Invoke-Capture([string]$Project, [string]$StateRoot, $Config, $Layout, 
     Write-Json $discovery (Join-Path $graph 'graph.json')
     Invoke-BuildXL $bxl $graph (Join-Path $Layout.Capture 'discovery-run') $Project $Layout $Config $StateRoot $Instance -Discovery
     Write-Json $metadata (Join-Path $capture 'cargo-metadata.json')
-    & $helper generate $Project $Layout.Capture $Layout.Source $Layout.PhysicalTarget $Layout.Target
+    & $helper generate $Project $Layout.Capture $Layout.Source $Layout.PhysicalTarget $Layout.Target (Join-Path $StateRoot 'plans')
     # Cargo discovery outputs must not become undeclared replay inputs.
     # Only BuildXL's pip outputs can populate an instance target during replay.
     Remove-Item -LiteralPath $Layout.PhysicalTarget -Recurse -Force

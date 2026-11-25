@@ -43,7 +43,7 @@ function Get-CaptureContract([string]$Project, [string]$StateRoot, $Config, $Lay
     }
     [ordered]@{
         version = 1
-        graphFormat = 2
+        graphFormat = 3
         helperVersion = (Get-Item -LiteralPath (Get-Helper)).VersionInfo.FileVersion
         sourceNamespace = $Layout.Source
         targetNamespace = $Layout.Target

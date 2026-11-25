@@ -12,6 +12,7 @@ $root = Split-Path -Parent $PSScriptRoot
 . (Join-Path $PSScriptRoot 'GraphArguments.ps1')
 . (Join-Path $PSScriptRoot 'ContractFiles.ps1')
 . (Join-Path $PSScriptRoot 'Environment.ps1')
+. (Join-Path $PSScriptRoot 'CrossCapture.ps1')
 $RunRoot = Assert-LocalPath $RunRoot
 if (Test-Path -LiteralPath $RunRoot) { throw "Use an empty test directory: $RunRoot" }
 New-Item -ItemType Directory -Path $RunRoot -Force | Out-Null
@@ -197,6 +198,8 @@ try {
     Assert ($materialized.processExecuted -eq 0) 'Missing cached executable caused recompilation.'
     Assert ((Program-Output 'beta') -ceq $oracle) 'Missing executable was not restored from cache.'
     Record 'incremental-missing-output' $materialized
+
+    Test-CrossCapture
 
     foreach ($relative in @('.hidden\Cargo.toml', 'rust-toolchain.toml', '.cargo\config.toml')) {
         $path = Join-Path $trees.beta $relative

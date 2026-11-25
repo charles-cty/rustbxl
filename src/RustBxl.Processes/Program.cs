@@ -3,7 +3,7 @@ using System.Text.Json;
 using RustBxl.Processes;
 
 if (args.FirstOrDefault() == "capture") return DebugCapture.Run(args[1], args[2..]);
-if (args.FirstOrDefault() == "generate") { GraphGenerator.Generate(args[1], args[2], args[3], args[4], args[5]); return 0; }
+if (args.FirstOrDefault() == "generate") { GraphGenerator.Generate(args[1], args[2], args[3], args[4], args[5], args[6]); return 0; }
 if (args.FirstOrDefault() == "prepare-build-script") { BuildScriptOutput.Prepare(args[1], args[2]); return 0; }
 if (args.FirstOrDefault() == "replay-rustc") return await BuildScriptOutput.CompileAsync(args[1], args[2], args[3], args[4..]);
 if (args.FirstOrDefault() == "run-build-script") return await BuildScriptRunner.RunAsync(args[1]);

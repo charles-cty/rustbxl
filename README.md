@@ -139,6 +139,14 @@ a named capture:
 .\rustbxl.ps1 build -State $state -Project $worktreeB -Instance branch-b -Capture branch-b
 ```
 
+Captures in one state share execution plans under `<state>\plans`. A plan's
+SHA-256 content hash determines its path. Equal plans keep the same path and
+contents across captures, so the capture name does not change their task cache
+keys. Changed plans receive new paths and leave existing captures intact.
+Cargo changes to features, arguments, dependencies, or output paths still affect
+the corresponding tasks. Capture currently performs a clean Cargo discovery
+build; cache reuse applies to the generated BuildXL replay.
+
 Manifest, lockfile, toolchain, build options, environment, Cargo configuration, or
 BuildXL package changes require capture. Ordinary Rust edits, new modules read
 by existing compiler invocations, build-script source edits, observed file
@@ -251,7 +259,7 @@ restarts the cache, and restores an executable without recompilation before the
 six-worktree parallel build.
 The build-script cases also require CMake and Ninja on PATH. They exercise a real
 MSVC C build, native source changes, and Git commit changes without Rust source
-changes. Capture contracts from graph format 1 require a new capture.
+changes. Capture contracts from graph formats 1 and 2 require a new capture.
 
 Run the separate NTFS compression integration checks with:
 

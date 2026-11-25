@@ -1,0 +1,98 @@
+{
+  "BaselineCommit": "52099db",
+  "GraphFormat": 3,
+  "RunRoot": "F:\\Temp\\rbc1116c",
+  "PassedCases": 30,
+  "Win32ArgumentCases": 505,
+  "BuildXLArgumentArrays": 22,
+  "ConcurrentWorktrees": 6,
+  "PopupWindowStart": "2026-11-16T21:06:49.1949520+08:00",
+  "PopupWindowEnd": "2026-11-16T21:21:00.5590696+08:00",
+  "MatchingPopupEvents": 0,
+  "CheckedUtc": "2026-11-25T10:57:08.8021006Z",
+  "ActiveProcesses": [],
+  "CrossCaptureCases": [
+    {
+      "passed": true,
+      "case": "identical-named-captures",
+      "details": {
+        "instance": "gamma",
+        "project": "F:\\Temp\\rbc1116c\\worktrees\\gamma",
+        "targetDirectory": "F:\\Temp\\rbc1116c\\sidecar state\\instances\\gamma\\target",
+        "processCacheHits": 26,
+        "processExecuted": 0
+      }
+    },
+    {
+      "passed": true,
+      "case": "dependency-added-cross-capture",
+      "details": {
+        "result": {
+          "instance": "gamma",
+          "project": "F:\\Temp\\rbc1116c\\worktrees\\gamma",
+          "targetDirectory": "F:\\Temp\\rbc1116c\\sidecar state\\instances\\gamma\\target",
+          "processCacheHits": 20,
+          "processExecuted": 11
+        },
+        "processPips": 31,
+        "changedPlan": "run-rustbxl-fixture-6b0ff185b545f3b1-B59C6B795602",
+        "unchanged": [
+          "build_script_build-6b0ff185b545f3b1",
+          "build_script_build-87dd66c4a4caa959",
+          "build_script_build-f6f9451f1f6e1c58",
+          "itoa-7b8dcb82193b6fba",
+          "build_script_build-6b0ff185b545f3b1-link",
+          "build_script_build-87dd66c4a4caa959-link",
+          "build_script_build-f6f9451f1f6e1c58-link",
+          "run-probe-support-87dd66c4a4caa959-28C4A895563D",
+          "prepare-run-probe-support-87dd66c4a4caa959-28C4A895563D",
+          "run-probe-support-87dd66c4a4caa959-9DB8A5E097A5",
+          "prepare-run-probe-support-87dd66c4a4caa959-9DB8A5E097A5",
+          "probe_support-038c616f8b79556e",
+          "run-marker-f6f9451f1f6e1c58-DBEABBBD6447",
+          "prepare-run-marker-f6f9451f1f6e1c58-DBEABBBD6447",
+          "build_script_build-1f3c7e2e7c78857c",
+          "marker-56708b6519cd90e7",
+          "build_script_build-1f3c7e2e7c78857c-link",
+          "marker-56708b6519cd90e7-link",
+          "run-engine-1f3c7e2e7c78857c-A6084B95F3DA",
+          "prepare-run-engine-1f3c7e2e7c78857c-A6084B95F3DA"
+        ]
+      }
+    },
+    {
+      "passed": true,
+      "case": "concurrent-distinct-captures",
+      "details": {
+        "alpha": {
+          "instance": "alpha",
+          "project": "F:\\Temp\\rbc1116c\\worktrees\\alpha",
+          "targetDirectory": "F:\\Temp\\rbc1116c\\sidecar state\\instances\\alpha\\target",
+          "processCacheHits": 26,
+          "processExecuted": 0
+        },
+        "gamma": {
+          "instance": "gamma",
+          "project": "F:\\Temp\\rbc1116c\\worktrees\\gamma",
+          "targetDirectory": "F:\\Temp\\rbc1116c\\sidecar state\\instances\\gamma\\target",
+          "processCacheHits": 31,
+          "processExecuted": 0
+        }
+      }
+    },
+    {
+      "passed": true,
+      "case": "original-capture-and-plans-preserved",
+      "details": {
+        "restored": {
+          "instance": "gamma",
+          "project": "F:\\Temp\\rbc1116c\\worktrees\\gamma",
+          "targetDirectory": "F:\\Temp\\rbc1116c\\sidecar state\\instances\\gamma\\target",
+          "processCacheHits": 26,
+          "processExecuted": 0
+        },
+        "plans": 8
+      }
+    }
+  ]
+}

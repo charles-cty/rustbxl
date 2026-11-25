@@ -13,6 +13,27 @@ retain their contents.
 
 ## Verified results
 
+The cross-capture fingerprint change passed all 30 Windows integration cases
+under `F:\Temp\rbc1116c`. The run included the 505 Win32 argument checks, 22
+BuildXL argument arrays, and six concurrent worktrees.
+
+| Replay scenario | Process cache hits | Processes executed |
+| --- | ---: | ---: |
+| Identical sources with a separate capture on a fresh instance | 26 | 0 |
+| Added local dependency with a build script and `links` metadata | 20 | 11 |
+| Original and dependency captures built concurrently | 26 and 31 | 0 and 0 |
+| Original capture after restoring the dependency edit | 26 | 0 |
+
+All 20 unchanged process definitions retained their BuildXL weak fingerprints
+and hit the shared cache. The new metadata consumer used a different plan and
+executed. Replay output matched clean Cargo, and existing shared plans retained
+their contents and last-write times. Both cache service lifetimes ended
+normally. The Windows System log contained zero matching startup popup events
+during the test window.
+
+See the [cross-capture results](cross-capture-evidence/validation.json) and
+[implementation issues](cross-capture-evidence/issues.md).
+
 The build-script modeling implementation passed all 26 Windows integration
 cases on 2026-11-16. The suite retained 505 Win32 argument checks, 22 actual
 BuildXL argument arrays, six concurrent worktrees, compressed CAS restoration,

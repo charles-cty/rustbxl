@@ -21,6 +21,42 @@ tool search paths use path arrays. Logical roots are equal across instances in
 one state directory. Embedded logical paths in argument strings therefore stay
 equal too. State-directory relocation requires a new capture.
 
+## Fingerprints across captures
+
+Compiler target plans and build-script launch plans use a shared `<state>\plans`
+directory. The SHA-256 of the serialized UTF-8 bytes names each plan. Graph
+arguments and declared file dependencies reference this stable path. Existing
+plans are reused without rewriting; a new plan is published by a same-directory
+rename after its temporary file is complete. Capture holds the dependency-store
+lock exclusively while generating plans. It cannot replace a plan used by another
+capture. Plans remain for the state lifetime; automatic plan collection is not
+implemented.
+
+Copy-task identifiers derive from their destination paths, so inserting a new
+task does not renumber existing producer references. The generator orders
+dependency references by task name. Compiler search paths and metadata inputs
+retain deterministic ordering. Task outputs and temporary
+directories use compiler-unit or build-script execution identities, rather than
+capture names. BuildXL still fingerprints execution arguments, environment,
+declared inputs, and observed file accesses. No cache salt or input validation is
+disabled. Changing the graph or a plan can therefore invalidate affected tasks
+while unchanged tasks reuse the shared process cache.
+
+Cross-capture checks use separately discovered graphs, compare actual BuildXL
+weak fingerprints, and require cache hits from a fresh instance. A second check
+adds a local dependency with its own build script, compares the result with clean
+Cargo, and requires unchanged compiler and script tasks to hit the old cache.
+The added package exports `links` metadata, which must select a new launch plan
+for its consumer and invalidate that script task. Restoring the sources must
+also restore the original capture from cache, with the original shared plans'
+contents and timestamps intact. Discovery still starts
+from an empty Cargo target; incremental capture is a separate change.
+
+Observed dependency sets can still change when a compiler inspects extra files
+in a shared Cargo dependency directory. Those tasks retain their observed edges
+and can receive different fingerprints. Dependency reduction and private
+dependency views are outside this change.
+
 BuildXL also has `PipGraphFragmentBuilder` and `PipGraphFragmentSerializer` for
 direct binary graph construction. They require references to BuildXL engine
 assemblies and matching serialization APIs. The fixed DScript adapter uses the
@@ -73,7 +109,7 @@ single-colon Cargo metadata. The build-script runner reads current producer
 configuration, removes captured `DEP_*` values, and supplies the derived metadata
 environment before it launches the consumer. New metadata keys and changed values
 therefore propagate without recapture. Compiler environment and link directives
-continue to come from current script output. The graph-format contract is 2;
+continue to come from current script output. The graph-format contract is 3;
 earlier captures must be repeated.
 
 Local Git queries run within this process tree. The worktree pointer, HEAD,

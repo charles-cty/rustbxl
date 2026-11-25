@@ -22,7 +22,8 @@ internal static class GraphGenerator
         public bool IsBuildScript => Name.StartsWith("run-", StringComparison.Ordinal);
     }
 
-    public static void Generate(string worktree, string state, string workspace, string physicalTarget, string logicalTarget)
+    public static void Generate(string worktree, string state, string workspace, string physicalTarget, string logicalTarget,
+        string plansDirectory)
     {
         var actualRoot = Path.GetFullPath(worktree).TrimEnd('\\');
         workspace = Path.GetFullPath(workspace).TrimEnd('\\');
@@ -222,7 +223,7 @@ internal static class GraphGenerator
         {
             if (aliases.TryGetValue(node.Invocation.Executable, out var original) && !emittedAliases.ContainsKey(node.Invocation.Executable))
             {
-                var aliasName = "alias" + emittedAliases.Count;
+                var aliasName = "alias-" + Convert.ToHexString(SHA256.HashData(Encoding.UTF8.GetBytes(node.Invocation.Executable)));
                 graph.Add(new GraphNode(aliasName, "copy")
                 {
                     Source = FileReference(producers[original], original),
@@ -239,7 +240,7 @@ internal static class GraphGenerator
                 if (!transitive.Add(dependency)) return;
                 foreach (var predecessor in dependency.Dependencies) Visit(predecessor);
             }
-            foreach (var dependency in node.Dependencies) Visit(dependency);
+            foreach (var dependency in node.Dependencies.OrderBy(dependency => dependency.Name, StringComparer.Ordinal)) Visit(dependency);
             var extraDependencies = new List<GraphInput>();
             string? compilerTool = null;
             if (compilerDirectories.TryGetValue(node, out var compilerDirectory))
@@ -268,10 +269,7 @@ internal static class GraphGenerator
                         environment.Remove(key);
                         if (buildScript.Invocation.Environment.TryGetValue(key, out var fallback)) environment[key] = fallback;
                     }
-                    var plans = Path.Combine(state, "compiler-plans");
-                    Directory.CreateDirectory(plans);
-                    var plan = Path.Combine(plans, node.Name + ".json");
-                    File.WriteAllText(plan, JsonSerializer.Serialize(target));
+                    var plan = ExecutionPlans.Save(plansDirectory, target);
                     extraDependencies.Add(new("file", plan));
                     extraDependencies.Add(new("file", invocation.Executable));
                     arguments.InsertRange(0, ["replay-rustc", plan,
@@ -302,11 +300,8 @@ internal static class GraphGenerator
                     return new BuildScriptRunner.MetadataInput(input.Prefix,
                         Path.Combine(configurationDirectories[producer], "config.json"));
                 }).ToArray();
-                var plans = Path.Combine(state, "build-script-plans");
-                Directory.CreateDirectory(plans);
-                var plan = Path.Combine(plans, node.Name + ".json");
-                File.WriteAllText(plan, JsonSerializer.Serialize(new BuildScriptRunner.Plan(
-                    Relocate(invocation.Executable), arguments.ToArray(), inputs)));
+                var plan = ExecutionPlans.Save(plansDirectory, new BuildScriptRunner.Plan(
+                    Relocate(invocation.Executable), arguments.ToArray(), inputs));
                 extraDependencies.Add(new("file", plan));
                 extraDependencies.Add(emittedAliases.TryGetValue(invocation.Executable, out var executableAlias)
                     ? new("file", invocation.Executable, executableAlias)
@@ -316,8 +311,8 @@ internal static class GraphGenerator
                 foreach (var key in environment.Keys.Where(key => key.StartsWith("DEP_", StringComparison.Ordinal)).ToArray())
                     environment.Remove(key);
             }
-            var dependencies = transitive.Select(DependencyReference).ToList();
-            foreach (var dependency in transitive.Where(configurationPips.ContainsKey))
+            var dependencies = transitive.OrderBy(dependency => dependency.Name, StringComparer.Ordinal).Select(DependencyReference).ToList();
+            foreach (var dependency in transitive.Where(configurationPips.ContainsKey).OrderBy(dependency => dependency.Name, StringComparer.Ordinal))
                 dependencies.Add(new("directory", configurationDirectories[dependency], configurationPips[dependency]));
             dependencies.AddRange(extraDependencies);
             var executable = compilerTool ?? invocation.Executable;
@@ -362,7 +357,6 @@ internal static class GraphGenerator
                 });
             }
         }
-        var binaryIndex = 0;
         foreach (var line in File.ReadLines(Path.Combine(state, "capture", "cargo-messages.jsonl")))
         {
             using var message = JsonDocument.Parse(line);
@@ -374,7 +368,7 @@ internal static class GraphGenerator
             var source = producers.Keys.Single(path => path.EndsWith(".exe", StringComparison.OrdinalIgnoreCase)
                 && File.ReadAllBytes(Physical(path)).AsSpan().SequenceEqual(binary));
             if (!source.Equals(destination, StringComparison.OrdinalIgnoreCase))
-                graph.Add(new GraphNode("executable" + binaryIndex++, "copy")
+                graph.Add(new GraphNode("executable-" + Convert.ToHexString(SHA256.HashData(Encoding.UTF8.GetBytes(destination))), "copy")
                 {
                     Source = FileReference(producers[source], source), Destination = destination
                 });
