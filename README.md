@@ -14,7 +14,7 @@ an external sidecar directory. Existing Cargo `target` directories are preserved
 
 ## Requirements
 
-Use Windows x64, PowerShell 7.4+, .NET 9 SDK, Git for Windows, stable Rust with
+Use Windows x64, PowerShell 7.4+, .NET 8 SDK or later, Git for Windows, stable Rust with
 `x86_64-pc-windows-msvc`, Visual Studio C++ x64 tools, Windows SDK, a
 [BuildXL checkout](https://github.com/microsoft/BuildXL), and
 [bindmount](https://github.com/charles-cty/bindmount).
@@ -28,8 +28,8 @@ Cargo dependencies from the project's configured registry. The first command
 that needs BuildXL downloads the public LKG package selected by its checkout.
 Installed Rust, MSVC, the Windows SDK, and the selected BuildXL package determine
 the build environment. The capture contract detects changes to Rust/Cargo versions
-and the BuildXL package. This repository pins its .NET SDK feature band and test
-Cargo lockfile; it does not provision or freeze the whole Windows installation.
+and the BuildXL package. This repository pins its test Cargo lockfile; it does
+not pin the .NET SDK or provision or freeze the whole Windows installation.
 
 ## Start
 
