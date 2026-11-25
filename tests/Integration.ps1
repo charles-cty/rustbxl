@@ -151,6 +151,8 @@ try {
     $dependencySnapshot = @(Get-ChildItem (Join-Path $state 'cargo-home\registry\src') -Recurse -File | ForEach-Object {
         $_.FullName + ':' + $_.Length + ':' + $_.LastWriteTimeUtc.Ticks
     }) -join [char]10
+    $null = Get-BuildXL $config $state
+    $service = Start-TestCache 'cache-service'
     $null = Invoke-Cli 'capture' @('capture', '-Instance', 'alpha')
     $contractPath = Join-Path $state 'captures\main\contract.json'
     $contractBytes = [Convert]::ToBase64String([IO.File]::ReadAllBytes($contractPath))
@@ -172,7 +174,6 @@ try {
     Assert $status.captureValid "Capture changed across shell nesting: $($status.reason)"
     Record 'shell-session-contract' $true
 
-    $service = Start-TestCache 'cache-service'
     $argumentCases = Test-GraphArguments $trees.alpha $state $config
     Record 'structured-graph-arguments' $argumentCases
     $cold = Replay 'cold-alpha' 'alpha'
@@ -199,6 +200,7 @@ try {
     Assert ((Program-Output 'beta') -ceq $oracle) 'Missing executable was not restored from cache.'
     Record 'incremental-missing-output' $materialized
 
+    Test-IncrementalDiscovery
     Test-CrossCapture
 
     foreach ($relative in @('.hidden\Cargo.toml', 'rust-toolchain.toml', '.cargo\config.toml')) {

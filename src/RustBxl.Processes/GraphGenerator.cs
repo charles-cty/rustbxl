@@ -2,13 +2,13 @@ using System.Text.Json;
 using System.Text.RegularExpressions;
 using System.Security.Cryptography;
 using System.Text;
+using System.IO.Compression;
 
 namespace RustBxl.Processes;
 
 internal static class GraphGenerator
 {
-    private sealed record ObservedProcess(uint Id, string Executable, uint Parent);
-    private sealed record Access(uint Process, string Path, int Requested, int Error, string Operation);
+    private sealed record ObservedProcess(uint Id, string Executable, uint Parent, DateTime Started);
     private sealed record ProcessSnapshot(uint ProcessId, Invocation Invocation);
     private sealed class Node(string name, Invocation invocation)
     {
@@ -23,7 +23,7 @@ internal static class GraphGenerator
     }
 
     public static void Generate(string worktree, string state, string workspace, string physicalTarget, string logicalTarget,
-        string plansDirectory)
+        string plansDirectory, string? discoveryCache)
     {
         var actualRoot = Path.GetFullPath(worktree).TrimEnd('\\');
         workspace = Path.GetFullPath(workspace).TrimEnd('\\');
@@ -43,10 +43,12 @@ internal static class GraphGenerator
             invocation.Environment.ToDictionary(pair => pair.Key, pair => Normalize(pair.Value), StringComparer.OrdinalIgnoreCase));
         var snapshots = File.ReadLines(Path.Combine(state, "capture", "processes.jsonl"))
             .Select(line => JsonSerializer.Deserialize<ProcessSnapshot>(line)!).ToArray();
-        var (processes, accesses) = ReadTrace(Path.Combine(state, "capture-trace.txt"));
+        var (processes, accesses) = ReadTrace(Path.Combine(state, "capture-trace.txt"), discoveryCache is not null);
         accesses = accesses.Select(access => access with { Path = Normalize(access.Path) }).ToList();
         var nodes = new List<Node>();
         var compilerByPid = new Dictionary<uint, Node>();
+        var compilers = new List<Node>();
+        var compilerRecords = new Dictionary<Node, (Invocation Original, string Directory, DiscoveryCache.Entry? Restored)>();
         var scripts = new Dictionary<uint, Node>();
         foreach (var snapshot in snapshots.Where(snapshot => Path.GetFileName(snapshot.Invocation.Executable)
             .StartsWith("build-script-", StringComparison.OrdinalIgnoreCase)))
@@ -71,14 +73,30 @@ internal static class GraphGenerator
             ScriptOwner(process.Id)?.Processes.Add(process.Id);
         foreach (var file in Directory.GetFiles(Path.Combine(state, "capture", "units"), "rustc.json", SearchOption.AllDirectories).Order())
         {
-            var invocation = NormalizeInvocation(JsonSerializer.Deserialize<Invocation>(File.ReadAllText(file))!);
-            var unit = Path.GetFileName(Path.GetDirectoryName(file))!;
+            var original = JsonSerializer.Deserialize<Invocation>(File.ReadAllText(file))!;
+            var invocation = NormalizeInvocation(original);
+            var unitDirectory = Path.GetDirectoryName(file)!;
+            var unit = Path.GetFileName(unitDirectory);
+            var restoredFile = Path.Combine(unitDirectory, "restored.json");
+            if (File.Exists(restoredFile))
+            {
+                var restored = JsonSerializer.Deserialize<DiscoveryCache.Entry>(File.ReadAllText(restoredFile))!;
+                var restoredNode = new Node(unit, invocation);
+                restoredNode.Outputs.UnionWith(restored.Outputs);
+                restoredNode.Reads.UnionWith(restored.Reads);
+                compilerRecords.Add(restoredNode, (original, unitDirectory, restored));
+                compilers.Add(restoredNode);
+                nodes.Add(restoredNode);
+                continue;
+            }
             var snapshot = snapshots.Single(snapshot => Path.GetFileName(snapshot.Invocation.Executable) == "rustc.exe"
                 && Unit(snapshot.Invocation.Arguments) == unit);
             if (ScriptOwner(snapshot.ProcessId) is not null) continue;
             var node = new Node(unit, invocation);
             node.Processes.Add(snapshot.ProcessId);
             compilerByPid.Add(snapshot.ProcessId, node);
+            compilerRecords.Add(node, (original, unitDirectory, null));
+            compilers.Add(node);
             nodes.Add(node);
         }
         foreach (var process in processes.Values.Where(process => Path.GetFileName(process.Executable) == "LinkerRecorder.exe"))
@@ -104,7 +122,7 @@ internal static class GraphGenerator
             foreach (var input in metadataDependencies[script])
                 script.Dependencies.Add(scripts.Values.Single(candidate => candidate.Invocation == input.Producer));
         var owners = nodes.SelectMany(node => node.Processes.Select(pid => (pid, node))).ToDictionary(pair => pair.pid, pair => pair.node);
-        foreach (var compiler in compilerByPid.Values)
+        foreach (var compiler in compilers)
         {
             if (!compiler.Invocation.Environment.TryGetValue("OUT_DIR", out var outputDirectory)) continue;
             var buildScript = nodes.Single(node => node.Name.StartsWith("run-", StringComparison.Ordinal)
@@ -117,12 +135,22 @@ internal static class GraphGenerator
             if (owners.ContainsKey(process.Parent))
                 throw new InvalidOperationException($"Unmodeled child {process.Executable}; capture requires a process adapter.");
         }
+        var librarySearchPaths = compilerByPid.ToDictionary(pair => pair.Key, pair => pair.Value.Invocation.Arguments
+            .Zip(pair.Value.Invocation.Arguments.Skip(1))
+            .Where(option => option.First == "-L" && option.Second.StartsWith("dependency=", StringComparison.Ordinal))
+            .Select(option => option.Second["dependency=".Length..])
+            .Where(path => Under(path, logicalTarget)).ToHashSet(StringComparer.OrdinalIgnoreCase));
         foreach (var access in accesses)
         {
             if (!owners.TryGetValue(access.Process, out var owner)) continue;
             if ((access.Requested & 2) != 0 && access.Error == 0 && Under(access.Path, logicalTarget)
                 && File.Exists(Physical(access.Path)) && !access.Path.EndsWith("link.json", StringComparison.OrdinalIgnoreCase))
                 owner.Outputs.Add(access.Path);
+            // The Cargo deps directory contains libraries from concurrent rustc
+            // jobs. Seeing a name in that listing does not select that library.
+            // Reads and direct probes still establish producer dependencies.
+            if (access.Requested == 16 && librarySearchPaths.TryGetValue(access.Process, out var searchPaths)
+                && Path.GetDirectoryName(access.Path) is { } parent && searchPaths.Contains(parent)) continue;
             if ((access.Requested & (1 | 4 | 8 | 16)) != 0) owner.Reads.Add(access.Path);
         }
         // Cargo creates executable aliases with hard links. Preserve their names with
@@ -133,7 +161,33 @@ internal static class GraphGenerator
             compiler.Outputs.ExceptWith(linker.Outputs);
             compiler.Reads.ExceptWith(linker.Outputs);
         }
-        foreach (var compiler in compilerByPid.Values)
+        if (discoveryCache is not null)
+        {
+            var byProcess = accesses.ToLookup(access => access.Process);
+            var saved = new List<(string Unit, DiscoveryCache.Entry Entry, string Directory)>();
+            var hits = 0;
+            foreach (var compiler in compilers.Where(node => node.Staging is null))
+            {
+                var (original, unitDirectory, restored) = compilerRecords[compiler];
+                var entry = restored;
+                if (entry is null)
+                {
+                    var pid = compiler.Processes.Single();
+                    entry = DiscoveryCache.Record(compiler.Name, original, compiler.Outputs.ToArray(), compiler.Reads.ToArray(),
+                        byProcess[pid].ToArray(), logicalTarget, Path.Combine(state, "discovery-run", "obj"),
+                        processes[pid].Started, Physical);
+                }
+                else hits++;
+                if (entry is not null) saved.Add((compiler.Name, entry, unitDirectory));
+            }
+            if (saved.Count > hits)
+            {
+                using var archive = ZipFile.Open(Path.Combine(discoveryCache, DiscoveryCache.ArchiveName), ZipArchiveMode.Create);
+                foreach (var record in saved) DiscoveryCache.AddToArchive(archive, record.Unit, record.Entry, record.Directory, Physical);
+            }
+            Console.WriteLine($"DISCOVERY_CACHE\trestored={hits}\trecorded={saved.Count - hits}\tcompiled={compilers.Count - hits}");
+        }
+        foreach (var compiler in compilers)
         {
             compiler.Outputs.RemoveWhere(path => Path.GetExtension(path) == ".d");
             compiler.Reads.RemoveWhere(path => Path.GetExtension(path) == ".d");
@@ -187,7 +241,7 @@ internal static class GraphGenerator
         }
         var directory = Path.Combine(state, "replay");
         Directory.CreateDirectory(directory);
-        var compilerDirectories = compilerByPid.Values.ToDictionary(node => node,
+        var compilerDirectories = compilers.ToDictionary(node => node,
             node => Path.Combine(logicalTarget, ".sidecar", "compile", node.Name));
         var outputDirectories = nodes.ToDictionary(node => node, node => compilerDirectories.GetValueOrDefault(node,
             node.Name.StartsWith("run-", StringComparison.Ordinal) ? node.Invocation.Environment["OUT_DIR"]
@@ -277,7 +331,7 @@ internal static class GraphGenerator
                     compilerTool = Path.Combine(AppContext.BaseDirectory, "RustBxl.Processes.exe");
                 }
             }
-            if (compilerByPid.Values.Contains(node) && node.Staging is not null)
+            if (node.Staging is not null)
             {
                 var linker = nodes.Single(candidate => candidate.Name == node.Name + "-link");
                 arguments.AddRange(["-C", "linker=" + Path.Combine(AppContext.BaseDirectory, "LinkerRecorder.exe")]);
@@ -408,7 +462,7 @@ internal static class GraphGenerator
         return arguments[index + 1] + (arguments.FirstOrDefault(value => value.StartsWith("extra-filename="))?[15..] ?? "");
     }
 
-    private static (Dictionary<uint, ObservedProcess>, List<Access>) ReadTrace(string file)
+    private static (Dictionary<uint, ObservedProcess>, List<DiscoveryCache.Access>) ReadTrace(string file, bool readAttributes)
     {
         var lines = File.ReadAllLines(file);
         var index = 0;
@@ -431,22 +485,36 @@ internal static class GraphGenerator
         var processes = new Dictionary<uint, ObservedProcess>();
         for (var entry = 0; entry < processCount; entry++)
         {
-            var match = Regex.Match(lines[index++], "^(\\d+),\"(.+)\",(\\d+),");
+            var match = Regex.Match(lines[index++], "^(\\d+),\"(.+)\",(\\d+),(\\d+),");
             if (!match.Success) throw new InvalidOperationException("Malformed process trace record.");
             var pid = uint.Parse(match.Groups[1].Value);
-            if (!processes.TryAdd(pid, new ObservedProcess(pid, match.Groups[2].Value, uint.Parse(match.Groups[3].Value))))
+            var started = new DateTime(long.Parse(match.Groups[4].Value), DateTimeKind.Utc);
+            if (!processes.TryAdd(pid, new ObservedProcess(pid, match.Groups[2].Value, uint.Parse(match.Groups[3].Value), started)))
                 throw new InvalidOperationException($"Reused PID {pid} makes trace attribution ambiguous. Recapture is required with retained process handles.");
             index++; // The debugger snapshot contains the parsed command line.
         }
         var manifestPaths = Mapping();
         var paths = Mapping();
         var accessCount = int.Parse(lines[index++]);
-        var accesses = new List<Access>();
+        var accesses = new List<DiscoveryCache.Access>();
         for (var entry = 0; entry < accessCount; entry++)
         {
-            var fields = lines[index++].Split(',');
+            var fields = lines[index++].Split(',', 9);
             var path = fields[2].Length > 0 ? manifestPaths[long.Parse(fields[2])] : paths[long.Parse(fields[3])];
-            accesses.Add(new Access(uint.Parse(fields[1]), path, int.Parse(fields[5]), int.Parse(fields[6]), operations[long.Parse(fields[4])]));
+            accesses.Add(new DiscoveryCache.Access(uint.Parse(fields[1]), path, int.Parse(fields[5]), int.Parse(fields[6]),
+                operations[long.Parse(fields[4])], fields[8]));
+        }
+        if (!readAttributes) return (processes, accesses);
+
+        // The second block stores access correlations. The third records the
+        // file attributes returned by each operation.
+        index += 1 + int.Parse(lines[index]);
+        var attributeCount = int.Parse(lines[index++]);
+        for (var entry = 0; entry < attributeCount; entry++)
+        {
+            var fields = lines[index++].Split(',');
+            var access = int.Parse(fields[0]);
+            accesses[access] = accesses[access] with { Attributes = uint.Parse(fields[2]) };
         }
         return (processes, accesses);
     }

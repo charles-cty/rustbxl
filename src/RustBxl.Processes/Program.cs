@@ -3,7 +3,7 @@ using System.Text.Json;
 using RustBxl.Processes;
 
 if (args.FirstOrDefault() == "capture") return DebugCapture.Run(args[1], args[2..]);
-if (args.FirstOrDefault() == "generate") { GraphGenerator.Generate(args[1], args[2], args[3], args[4], args[5], args[6]); return 0; }
+if (args.FirstOrDefault() == "generate") { GraphGenerator.Generate(args[1], args[2], args[3], args[4], args[5], args[6], args.ElementAtOrDefault(7)); return 0; }
 if (args.FirstOrDefault() == "prepare-build-script") { BuildScriptOutput.Prepare(args[1], args[2]); return 0; }
 if (args.FirstOrDefault() == "replay-rustc") return await BuildScriptOutput.CompileAsync(args[1], args[2], args[3], args[4..]);
 if (args.FirstOrDefault() == "run-build-script") return await BuildScriptRunner.RunAsync(args[1]);
@@ -49,10 +49,20 @@ var staging = Path.Combine(outputDirectory, ".sidecar", unit);
 Directory.CreateDirectory(staging);
 var invocation = new Invocation(executable, arguments.ToArray(), Environment.CurrentDirectory, CaptureEnvironment.Read());
 await File.WriteAllTextAsync(Path.Combine(unitDirectory, "rustc.json"), JsonSerializer.Serialize(invocation));
+var discoveryCache = Environment.GetEnvironmentVariable("SIDECAR_DISCOVERY_CACHE");
+var cacheLibrary = discoveryCache is not null && DiscoveryCache.IsLibrary(invocation);
+if (cacheLibrary && await DiscoveryCache.TryRestoreAsync(discoveryCache!, unit, unitDirectory, invocation) is { } restored)
+{
+    await File.WriteAllTextAsync(Path.Combine(unitDirectory, "restored.json"), JsonSerializer.Serialize(restored));
+    return 0;
+}
 Environment.SetEnvironmentVariable("SIDECAR_UNIT", unit);
 Environment.SetEnvironmentVariable("SIDECAR_STAGING", staging);
 arguments.AddRange(["-C", "linker=" + Path.Combine(AppContext.BaseDirectory, "LinkerRecorder.exe")]);
-var exitCode = await RunAsync(executable, arguments);
+var startInfo = StartInfo(executable, arguments);
+var exitCode = cacheLibrary
+    ? await DiscoveryCache.RunCompilerAsync(startInfo, unitDirectory)
+    : await RunStartAsync(startInfo);
 await File.WriteAllTextAsync(Path.Combine(unitDirectory, "exit-code.txt"), exitCode.ToString());
 return exitCode;
 
@@ -62,11 +72,18 @@ static string? Option(List<string> arguments, string name)
     return index < 0 ? null : arguments[index + 1];
 }
 
-static async Task<int> RunAsync(string executable, IEnumerable<string> arguments)
+static ProcessStartInfo StartInfo(string executable, IEnumerable<string> arguments)
 {
     var startInfo = new ProcessStartInfo(executable) { UseShellExecute = false };
     foreach (var argument in arguments) startInfo.ArgumentList.Add(argument);
-    using var process = Process.Start(startInfo) ?? throw new InvalidOperationException($"Cannot start {executable}");
+    return startInfo;
+}
+
+static Task<int> RunAsync(string executable, IEnumerable<string> arguments) => RunStartAsync(StartInfo(executable, arguments));
+
+static async Task<int> RunStartAsync(ProcessStartInfo startInfo)
+{
+    using var process = Process.Start(startInfo) ?? throw new InvalidOperationException($"Cannot start {startInfo.FileName}");
     await process.WaitForExitAsync();
     return process.ExitCode;
 }

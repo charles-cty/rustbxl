@@ -46,7 +46,6 @@ $bindmount = Read-Host 'bindmount.exe path'
 .\scripts\build.ps1
 .\rustbxl.ps1 init -Project $project -State $state -BuildXLRoot $buildxl -BindMount $bindmount
 .\rustbxl.ps1 prepare -State $state
-.\rustbxl.ps1 capture -State $state
 ```
 
 The workspace must already have `Cargo.lock`. Preparation uses `cargo fetch
@@ -60,9 +59,10 @@ Start the cache in a second PowerShell terminal and keep it running:
 .\rustbxl.ps1 cache-start -State $state
 ```
 
-Build from the first terminal:
+Capture and build from the first terminal:
 
 ```powershell
+.\rustbxl.ps1 capture -State $state
 .\rustbxl.ps1 build -State $state
 .\rustbxl.ps1 status -State $state
 ```
@@ -144,8 +144,14 @@ SHA-256 content hash determines its path. Equal plans keep the same path and
 contents across captures, so the capture name does not change their task cache
 keys. Changed plans receive new paths and leave existing captures intact.
 Cargo changes to features, arguments, dependencies, or output paths still affect
-the corresponding tasks. Capture currently performs a clean Cargo discovery
-build; cache reuse applies to the generated BuildXL replay.
+the corresponding tasks. Capture starts Cargo with an empty instance target.
+With the cache service running, the wrapper can restore library compilations
+from the previous capture with the same name, or from `main` for a new name.
+It checks the compiler invocation, file contents, file probes, and directory
+entries before restoring Cargo's artifacts and compiler output. Cargo still runs
+build scripts and compiles units that require linking, contain proc macros, or
+have a changed or unavailable cache record. BuildXL replay has its own pip cache.
+The `DISCOVERY_CACHE` line reports how many rustc invocations capture skipped.
 
 Manifest, lockfile, toolchain, build options, environment, Cargo configuration, or
 BuildXL package changes require capture. Ordinary Rust edits, new modules read

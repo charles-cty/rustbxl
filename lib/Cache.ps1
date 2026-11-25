@@ -1,3 +1,23 @@
+function Test-CacheService($Config) {
+    $client = [Net.Sockets.TcpClient]::new()
+    try { $client.Connect([Net.IPAddress]::Loopback, $Config.cache.port); $true }
+    catch [Net.Sockets.SocketException] { $false }
+    finally { $client.Dispose() }
+}
+
+function Invoke-DiscoveryCacheTransfer([string]$BuildXL, $Config, [string]$Verb, [string]$Path, [string]$Hash) {
+    $application = Join-Path (Split-Path $BuildXL) 'ContentStoreApp.exe'
+    $arguments = @($Verb, '/cacheName:DEFAULT', "/grpcPort:$($Config.cache.port)", "/scenario:$($Config.cache.scenario)",
+        "/path:$Path", '/hashType:SHA256', '/realizationMode:Copy')
+    if ($Verb -eq 'placeFile') { $arguments += @("/hash:$Hash", '/accessMode:Write') }
+    try {
+        $message = & $application @arguments 2>&1
+        $message -join [char]10
+    } catch {
+        Write-Warning "Discovery cache transfer failed: $_"
+    }
+}
+
 function Invoke-CacheService([string]$StateRoot, $Config, [switch]$Stop) {
     $bxl = Get-BuildXL $Config $StateRoot
     $application = Join-Path (Split-Path $bxl) 'ContentStoreApp.exe'

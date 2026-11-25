@@ -32,14 +32,60 @@ function Invoke-Capture([string]$Project, [string]$StateRoot, $Config, $Layout, 
             consoleOutput = Join-Path $capture 'cargo-messages.jsonl'
         })
     }
-    Write-Json $discovery (Join-Path $graph 'graph.json')
-    Invoke-BuildXL $bxl $graph (Join-Path $Layout.Capture 'discovery-run') $Project $Layout $Config $StateRoot $Instance -Discovery
-    Write-Json $metadata (Join-Path $capture 'cargo-metadata.json')
-    & $helper generate $Project $Layout.Capture $Layout.Source $Layout.PhysicalTarget $Layout.Target (Join-Path $StateRoot 'plans')
-    # Cargo discovery outputs must not become undeclared replay inputs.
-    # Only BuildXL's pip outputs can populate an instance target during replay.
-    Remove-Item -LiteralPath $Layout.PhysicalTarget -Recurse -Force
-    Write-Json (Get-CaptureContract $Project $StateRoot $Config $Layout $bxl) $contract
+    $reuse = Join-Path $Layout.Capture 'discovery-cache'
+    $reference = Join-Path $Layout.Capture 'discovery-cache.sha256'
+    if (Test-Path -LiteralPath $reuse) { Remove-Item -LiteralPath $reuse -Recurse -Force }
+    try {
+        $keep = $null
+        $generate = @('generate', $Project, $Layout.Capture, $Layout.Source, $Layout.PhysicalTarget,
+            $Layout.Target, (Join-Path $StateRoot 'plans'))
+        if (Test-CacheService $Config) {
+            New-Item -ItemType Directory -Path $reuse | Out-Null
+            $discovery.nodes[0].environment += @{name='SIDECAR_DISCOVERY_CACHE'; value=$reuse}
+            $generate += $reuse
+            $seed = if (Test-Path -LiteralPath $reference) { $reference } else {
+                Join-Path $StateRoot 'captures\main\discovery-cache.sha256'
+            }
+            if (Test-Path -LiteralPath $seed) {
+                $hash = (Get-Content -LiteralPath $seed -Raw).Trim()
+                if ($hash -match '^[0-9A-Fa-f]{64}$') {
+                    $previous = Join-Path $reuse 'previous.zip'
+                    $null = Invoke-DiscoveryCacheTransfer $bxl $Config 'placeFile' $previous $hash
+                    if (Test-Path -LiteralPath $previous) {
+                        if ((Get-FileHash -LiteralPath $previous -Algorithm SHA256).Hash -eq $hash) {
+                            $keep = $hash
+                        } else {
+                            Remove-Item -LiteralPath $previous
+                        }
+                    }
+                }
+            }
+        }
+        Write-Json $discovery (Join-Path $graph 'graph.json')
+        Invoke-BuildXL $bxl $graph (Join-Path $Layout.Capture 'discovery-run') $Project $Layout $Config $StateRoot $Instance -Discovery
+        Write-Json $metadata (Join-Path $capture 'cargo-metadata.json')
+        & $helper @generate
+        # Cargo discovery outputs must not become undeclared replay inputs.
+        Remove-Item -LiteralPath $Layout.PhysicalTarget -Recurse -Force
+        Write-Json (Get-CaptureContract $Project $StateRoot $Config $Layout $bxl) $contract
+        $next = Join-Path $reuse 'next.zip'
+        if (Test-Path -LiteralPath $next) {
+            $hash = (Get-FileHash -LiteralPath $next -Algorithm SHA256).Hash
+            $result = Invoke-DiscoveryCacheTransfer $bxl $Config 'putFile' $next ''
+            if ($result -match "Content added with hash=\[SHA256:$hash\]") {
+                $keep = $hash
+            } else {
+                Write-Warning "Discovery cache archive was not stored: $result"
+            }
+        }
+        if ($keep) {
+            $temporary = Join-Path $reuse 'reference'
+            [IO.File]::WriteAllText($temporary, $keep)
+            [IO.File]::Move($temporary, $reference, $true)
+        }
+    } finally {
+        if (Test-Path -LiteralPath $reuse) { Remove-Item -LiteralPath $reuse -Recurse -Force }
+    }
     "CAPTURE_READY $($Layout.Capture)"
 }
 

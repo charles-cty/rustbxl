@@ -1,3 +1,64 @@
+function Test-IncrementalDiscovery {
+    $project = Join-Path $RunRoot 'discovery-project'
+    $manifest = Join-Path $project 'Cargo.toml'
+    $library = Join-Path $project 'library\src\lib.rs'
+    New-Item -ItemType Directory -Path (Split-Path $library) -Force | Out-Null
+    @'
+[workspace]
+resolver = "2"
+members = ["library"]
+'@ | Set-Content -LiteralPath $manifest
+    @'
+[package]
+name = "capture-probe"
+version = "0.1.0"
+edition = "2021"
+'@ | Set-Content -LiteralPath (Join-Path $project 'library\Cargo.toml')
+    'pub const VALUE: u32 = 42;' | Set-Content -LiteralPath $library
+    $arguments = @('-Project', $project, '-Instance', 'discovery', '-Capture', 'discovery')
+    $layout = Get-Layout $state 'discovery' 'discovery' $config
+    $environment = Get-BuildEnvironment $config $state $layout
+    Push-Location $project
+    try {
+        Invoke-WithEnvironment $environment { cargo.exe generate-lockfile --offline }
+        $cold = Invoke-Cli 'discovery-cold' (@('capture') + $arguments)
+        Assert ($cold.Contains("restored=0`trecorded=1`tcompiled=1")) 'Capture did not store the library in CAS.'
+
+        @'
+[workspace]
+resolver = "2"
+members = ["library", "consumer"]
+'@ | Set-Content -LiteralPath $manifest
+        New-Item -ItemType Directory -Path (Join-Path $project 'consumer\src') | Out-Null
+        @'
+[package]
+name = "capture-consumer"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+capture-probe = { path = "../library" }
+'@ | Set-Content -LiteralPath (Join-Path $project 'consumer\Cargo.toml')
+        'pub const VALUE: u32 = capture_probe::VALUE;' | Set-Content -LiteralPath (Join-Path $project 'consumer\src\lib.rs')
+        'fn main() { println!("{}", capture_consumer::VALUE); }' | Set-Content -LiteralPath (Join-Path $project 'consumer\src\main.rs')
+        Invoke-WithEnvironment $environment { cargo.exe generate-lockfile --offline }
+        $restored = Invoke-Cli 'discovery-added-package' (@('capture') + $arguments)
+        Assert ($restored.Contains("restored=1`trecorded=1`tcompiled=2")) 'Capture recompiled the unchanged library after adding a package.'
+        $null = Invoke-Cli 'discovery-build-restored' (@('build') + $arguments)
+        $binary = Join-Path $layout.PhysicalTarget 'x86_64-pc-windows-msvc\debug\capture-consumer.exe'
+        Assert ((& $binary) -ceq '42') 'Replay did not use the graph from incremental discovery.'
+
+        'pub const VALUE: u32 = 43;' | Set-Content -LiteralPath $library
+        $changed = Invoke-Cli 'discovery-changed-source' (@('capture') + $arguments)
+        Assert ($changed.Contains("restored=0`trecorded=2`tcompiled=3")) 'Capture accepted a library record after its source or dependency changed.'
+        $null = Invoke-Cli 'discovery-build-changed' (@('build') + $arguments)
+        Assert ((& $binary) -ceq '43') 'Replay used stale contents after recapture.'
+        Record 'incremental-discovery' @{restored=1; recompiledAfterEdit=3}
+    } finally {
+        Pop-Location
+    }
+}
+
 function Get-ProcessCacheHits([string]$Instance) {
     $hits = @{}
     $log = Join-Path $state "instances\$Instance\run\logs\BuildXL.log"
@@ -47,6 +108,14 @@ function Test-CrossCapture {
         $rejected = Invoke-Cli 'reject-added-dependency' @('build','-Project',$tree,'-Instance','gamma') 1
         Assert ($rejected.Contains('Capture input changed: files')) 'Added dependency was accepted by the old capture.'
         $null = Invoke-Cli 'capture-added' @('capture','-Project',$tree,'-Instance','gamma','-Capture','added')
+        $addedUnits = Join-Path $state 'captures\added\capture\units'
+        foreach ($pattern in @('engine-*', 'itoa-*', 'probe_support-*')) {
+            $libraryUnits = @(Get-ChildItem -LiteralPath $addedUnits -Directory -Filter $pattern)
+            Assert ($libraryUnits.Count -gt 0) "No captured library matches $pattern."
+            foreach ($unit in $libraryUnits) {
+                Assert (Test-Path -LiteralPath (Join-Path $unit.FullName 'restored.json')) "Unrelated Cargo outputs invalidated $($unit.Name)."
+            }
+        }
         $null = Invoke-Cli 'build-added' @('build','-Project',$tree,'-Instance','gamma','-Capture','added')
         $added = Get-Content -LiteralPath (Join-Path $state 'instances\gamma\run\result.json') -Raw | ConvertFrom-Json -AsHashtable
         $expected = Cargo-Oracle 'dependency-added' 'gamma'

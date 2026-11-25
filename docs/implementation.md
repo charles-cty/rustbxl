@@ -49,8 +49,30 @@ Cargo, and requires unchanged compiler and script tasks to hit the old cache.
 The added package exports `links` metadata, which must select a new launch plan
 for its consumer and invalidate that script task. Restoring the sources must
 also restore the original capture from cache, with the original shared plans'
-contents and timestamps intact. Discovery still starts
-from an empty Cargo target; incremental capture is a separate change.
+contents and timestamps intact.
+
+## Incremental discovery
+
+Discovery still starts from an empty Cargo target. The wrapper can restore an
+eligible Rust library's original Cargo artifacts, dep-info, and compiler
+output before returning success to Cargo. The graph generator uses the saved
+file accesses and outputs to add the compiler node to the new graph. The
+library's normal replay definition uses the same output directory and
+dependencies as a live capture.
+
+The capture index stores the SHA-256 of a discovery archive in the BuildXL
+content service. Its records identify the exact compiler invocation and the
+observed files, probes, and directory entries. Reuse requires a complete
+matching record. In Cargo-managed Rust dependency search directories, the
+record checks possible crate candidates using the compiler's extern names,
+observed libraries, and implicit sysroot crate names. Other listings keep
+all entries. The record also checks the contents of files the compiler read.
+Directory listings in Cargo's shared Rust library search paths do not establish
+producer edges on their own. Actual reads and direct probes still establish
+those edges. Discovery also retains the listing for cache validation.
+Linkers, build-script executions, and compilers that load a workspace or
+target DLL still execute during discovery. Capture also works with the cache
+service stopped.
 
 Observed dependency sets can still change when a compiler inspects extra files
 in a shared Cargo dependency directory. Those tasks retain their observed edges
