@@ -1,6 +1,6 @@
 function Invoke-Capture([string]$Project, [string]$StateRoot, $Config, $Layout, [string]$Instance) {
     $helper = Get-Helper
-    $bxl = Get-BuildXL $Config $StateRoot
+    $bxl = Get-BuildXL $StateRoot
     Initialize-Msvc
     $metadata = Assert-ContainedDependencies $Project $StateRoot $Config $Layout
     # Invalidate the contract before replacing capture data. A failed capture cannot be replayed.
@@ -90,7 +90,7 @@ function Invoke-Capture([string]$Project, [string]$StateRoot, $Config, $Layout, 
 }
 
 function Invoke-Replay([string]$Project, [string]$StateRoot, $Config, $Layout, [string]$Instance, [switch]$Diagnostics) {
-    $bxl = Get-BuildXL $Config $StateRoot
+    $bxl = Get-BuildXL $StateRoot
     Initialize-Msvc
     Assert-CaptureContract $Project $StateRoot $Config $Layout $bxl
     $graph = Join-Path $Layout.Capture 'replay'

@@ -49,9 +49,8 @@ function Get-BindMount($Config) {
     (Get-Command bindmount.exe -ErrorAction Stop).Source
 }
 
-function Get-BuildXL($Config, [string]$StateRoot) {
-    $checkout = if ($Config.tools.buildxlRoot) { $Config.tools.buildxlRoot } else { $env:BUILDXL_ROOT }
-    & (Join-Path $PSScriptRoot 'Get-BuildXL.ps1') -BuildXLRoot $checkout -StateRoot $StateRoot
+function Get-BuildXL([string]$StateRoot) {
+    & (Join-Path $PSScriptRoot 'Get-BuildXL.ps1') -StateRoot $StateRoot
 }
 
 function Get-Helper {

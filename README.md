@@ -15,36 +15,35 @@ an external sidecar directory. Existing Cargo `target` directories are preserved
 ## Requirements
 
 Use Windows x64, PowerShell 7.4+, .NET 8 SDK or later, Git for Windows, stable Rust with
-`x86_64-pc-windows-msvc`, Visual Studio C++ x64 tools, Windows SDK, a
-[BuildXL checkout](https://github.com/microsoft/BuildXL), and
+`x86_64-pc-windows-msvc`, Visual Studio C++ x64 tools, Windows SDK, and
 [bindmount](https://github.com/charles-cty/bindmount).
-Keep the checkout, workspaces, and sidecar on local NTFS, on the same volume.
+Keep the rustbxl checkout, workspaces, and sidecar on the same local NTFS volume.
 The Windows host must support bindmount job silos and permit their creation.
 The CLI finds Visual Studio with `vswhere.exe`.
 
-Supply BuildXL and bindmount paths at initialization, or set `BUILDXL_ROOT` and
-`BINDMOUNT_EXE`. A bindmount executable on PATH also works. `prepare` downloads
-Cargo dependencies from the project's configured registry. The first command
-that needs BuildXL downloads the public LKG package selected by its checkout.
-Installed Rust, MSVC, the Windows SDK, and the selected BuildXL package determine
+Supply the bindmount path at initialization, set `BINDMOUNT_EXE`, or put
+`bindmount.exe` on PATH. `prepare` downloads Cargo dependencies from the project's
+configured registry. The first command that needs BuildXL downloads the public
+Windows x64 package pinned in `lib/Get-BuildXL.ps1`. Later commands reuse the
+package in `<state>\bootstrap`.
+Installed Rust, MSVC, the Windows SDK, and the pinned BuildXL package determine
 the build environment. The capture contract detects changes to Rust/Cargo versions
 and the BuildXL package. This repository pins its test Cargo lockfile; it does
 not pin the .NET SDK or provision or freeze the whole Windows installation.
 
 ## Start
 
-Run these commands from this checkout in PowerShell. Set the four paths for
+Run these commands from this checkout in PowerShell. Set the three paths for
 your machine. Keep `$state` outside `$project` and give rustbxl its own state
 directory.
 
 ```powershell
 $project = Read-Host 'Cargo workspace directory'
 $state = Read-Host 'External sidecar directory'
-$buildxl = Read-Host 'BuildXL checkout directory'
 $bindmount = Read-Host 'bindmount.exe path'
 
 .\scripts\build.ps1
-.\rustbxl.ps1 init -Project $project -State $state -BuildXLRoot $buildxl -BindMount $bindmount
+.\rustbxl.ps1 init -Project $project -State $state -BindMount $bindmount
 .\rustbxl.ps1 prepare -State $state
 ```
 
@@ -247,7 +246,7 @@ read costs depend on the selected files. Compression runs only when requested.
 ## Verify from a fresh checkout
 
 ```powershell
-.\tests\Integration.ps1 -BuildXLRoot $buildxl -BindMount $bindmount
+.\tests\Integration.ps1 -BindMount $bindmount
 ```
 
 The integration test builds the helper, prepares its own dependency store,

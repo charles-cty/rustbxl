@@ -19,7 +19,7 @@ function Invoke-DiscoveryCacheTransfer([string]$BuildXL, $Config, [string]$Verb,
 }
 
 function Invoke-CacheService([string]$StateRoot, $Config, [switch]$Stop) {
-    $bxl = Get-BuildXL $Config $StateRoot
+    $bxl = Get-BuildXL $StateRoot
     $application = Join-Path (Split-Path $bxl) 'ContentStoreApp.exe'
     $cache = $Config.cache
     if ($Stop) { & $application service /stop "/scenario:$($cache.scenario)"; return }

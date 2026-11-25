@@ -1,7 +1,6 @@
 #Requires -Version 7.4
 [CmdletBinding()]
 param(
-    [string]$BuildXLRoot = $env:BUILDXL_ROOT,
     [string]$BindMount = $env:BINDMOUNT_EXE,
     [string]$RunRoot = (Join-Path (Split-Path -Parent $PSScriptRoot) '.test\integration')
 )
@@ -134,7 +133,7 @@ try {
     $listener.Start()
     $port = $listener.LocalEndpoint.Port
     $listener.Stop()
-    $null = Invoke-Cli 'init' @('init', '-Project', $trees.alpha, '-BuildXLRoot', $BuildXLRoot, '-BindMount', $BindMount,
+    $null = Invoke-Cli 'init' @('init', '-Project', $trees.alpha, '-BindMount', $BindMount,
         '-Port', "$port", '-CacheScenario', "RustBxlTest$PID")
     $configPath = Join-Path $state 'rustbxl.json'
     $config = Get-Content -LiteralPath $configPath -Raw | ConvertFrom-Json -AsHashtable
@@ -151,7 +150,7 @@ try {
     $dependencySnapshot = @(Get-ChildItem (Join-Path $state 'cargo-home\registry\src') -Recurse -File | ForEach-Object {
         $_.FullName + ':' + $_.Length + ':' + $_.LastWriteTimeUtc.Ticks
     }) -join [char]10
-    $null = Get-BuildXL $config $state
+    $null = Get-BuildXL $state
     $service = Start-TestCache 'cache-service'
     $null = Invoke-Cli 'capture' @('capture', '-Instance', 'alpha')
     $contractPath = Join-Path $state 'captures\main\contract.json'

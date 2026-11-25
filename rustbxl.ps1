@@ -8,7 +8,6 @@ param(
     [string]$Project,
     [ValidatePattern('^[A-Za-z0-9-]{1,40}$')][string]$Instance = 'main',
     [ValidatePattern('^[A-Za-z0-9-]{1,40}$')][string]$Capture = 'main',
-    [string]$BuildXLRoot,
     [string]$BindMount,
     [string]$Toolchain = 'stable',
     [string]$Profile = 'dev',
@@ -32,7 +31,7 @@ rustbxl: stable Rust process graphs on Windows x64
 
 pwsh.exe -File rustbxl.ps1 <command> -State <sidecar-directory> [options]
 
-init        -Project <workspace> [-BuildXLRoot <checkout>] [-BindMount <exe>]
+init        -Project <workspace> [-BindMount <exe>]
             [-Toolchain stable] [-Profile dev] [-Packages a,b] [-Features a,b]
             [-DefaultFeatures] [-Port 7089] [-CacheSizeMiB 4096] [-CacheScenario RustBxl]
 prepare     Download Cargo dependencies into the separate Cargo home.
@@ -51,7 +50,8 @@ Use a distinct capture after manifests, configuration, or dependencies diverge.
 build accepts -Diagnostics to retain observed-access and fingerprint diagnostics.
 compress protects all existing instances unless -ActiveInstances selects them.
 It preserves all hard links to protected files. -Apply performs the compression.
-Run scripts/build.ps1 once before capture. Tools can also use BUILDXL_ROOT and BINDMOUNT_EXE.
+Run scripts/build.ps1 once before capture. Set BINDMOUNT_EXE or put bindmount.exe on PATH.
+The first command that needs BuildXL downloads the pinned package.
 '@
     exit 0
 }
@@ -76,7 +76,7 @@ try {
         $config = [ordered]@{
             version = 1
             project = $Project
-            tools = @{ buildxlRoot = $BuildXLRoot; bindmount = $BindMount }
+            tools = @{ bindmount = $BindMount }
             build = [ordered]@{
                 toolchain = $Toolchain; target = 'x86_64-pc-windows-msvc'; profile = $Profile
                 packages = @($Packages); features = @($Features); defaultFeatures = $DefaultFeatures.IsPresent
@@ -119,7 +119,7 @@ try {
         if (Test-Path -LiteralPath $contract) {
             try {
                 Initialize-Msvc
-                $bxl = Get-BuildXL $config $State
+                $bxl = Get-BuildXL $State
                 Assert-CaptureContract $Project $State $config $layout $bxl
                 $valid = $true
                 $reason = 'Capture matches the current configuration and Cargo inputs.'

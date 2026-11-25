@@ -1,9 +1,8 @@
 # Validation
 
 The Windows integration suite runs with PowerShell 7, stable Rust, MSVC x64,
-the BuildXL package selected by the configured checkout, and bindmount. Each
-run has its own dependency store, engine download, local cache, repository,
-and six Git worktrees. It uses the tools supplied on the command line.
+the pinned BuildXL package, and bindmount. Each run has its own dependency
+store, engine download, local cache, repository, and six Git worktrees.
 
 The suite builds the .NET helper from source. It checks 505 Win32 argument
 round trips and 22 argument arrays through the actual JSON frontend and

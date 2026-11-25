@@ -29,7 +29,7 @@ function Test-GraphArguments([string]$Project, [string]$StateRoot, $Config) {
         }
     })
     Write-Json @{version=1; nodes=$nodes} (Join-Path $graphDirectory 'graph.json')
-    $bxl = Get-BuildXL $Config $StateRoot
+    $bxl = Get-BuildXL $StateRoot
     Invoke-BuildXL $bxl $graphDirectory $layout.Run $Project $layout $Config $StateRoot 'arguments' | Out-Host
     for ($index = 0; $index -lt $samples.Count; $index++) {
         $path = Join-Path $layout.PhysicalTarget "arguments\$index\actual.json"
